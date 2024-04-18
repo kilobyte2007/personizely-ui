@@ -31,7 +31,7 @@
       initial-focus
       :number-of-months="2"
       :placeholder="modelValue.start"
-      @update:start-value="(startDate: DateValue) => modelValue.start = startDate"
+      @update:start-value="(startDate: DateValue | undefined) => modelValue.start = startDate"
     />
   </Popover>
 </template>
@@ -59,10 +59,8 @@ withDefaults(defineProps<{
   class?: HTMLAttributes['class']
 }>(), {
   placeholder: 'Pick a date range',
-  formatter: () => {
-    return new DateFormatter('en-US', {
-      dateStyle: 'long'
-    })
-  }
+  formatter: () => new DateFormatter('en-US', {
+    dateStyle: 'long'
+  })
 })
 </script>

@@ -37,10 +37,8 @@ withDefaults(defineProps<{
   formatter?: DateFormatter
 }>(), {
   placeholder: 'Pick a date',
-  formatter: () => {
-    return new DateFormatter('en-US', {
-      dateStyle: 'long'
-    })
-  }
+  formatter: () => new DateFormatter('en-US', {
+    dateStyle: 'long'
+  })
 })
 </script>
