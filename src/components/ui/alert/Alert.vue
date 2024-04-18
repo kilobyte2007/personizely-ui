@@ -7,7 +7,7 @@
         class="w-4 h-4 absolute left-3.5 top-3.5"
       />
     </slot>
-    <h5 v-if="title || $slots.title" class="font-medium leading-normal tracking-tight" :class="!removeIcon ? 'pl-7' : ''">
+    <h5 v-if="title || $slots.title" class="font-medium leading-tight tracking-tight" :class="!removeIcon ? 'pl-7' : ''">
       <slot name="title">
         {{ title }}
       </slot>
@@ -46,7 +46,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   type: 'info',
   removeIcon: false,
-  dismissible: false,
+  dismissible: true,
   visible: true
 })
 
