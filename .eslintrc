@@ -1,0 +1,242 @@
+{
+  "plugins": [
+    "@stylistic/ts",
+    "@stylistic/js",
+    "@typescript-eslint"
+  ],
+  "ignorePatterns": ["build", "node_modules", "public"],
+  "parserOptions": {
+    "extraFileExtensions": [".vue"],
+    "parser": "@typescript-eslint/parser"
+  },
+  "parser": "vue-eslint-parser",
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": [0],
+    "@stylistic/js/arrow-parens": [
+      "error",
+      "as-needed",
+      {
+        "requireForBlockBody": true
+      }
+    ],
+    "@stylistic/js/arrow-spacing": [
+      "error"
+    ],
+    "@stylistic/js/comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "@stylistic/js/no-extra-semi": [
+      "error"
+    ],
+    "@stylistic/js/brace-style": [
+      "error"
+    ],
+    "@stylistic/js/max-statements-per-line": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "@stylistic/js/multiline-ternary": [
+      "error",
+      "always-multiline"
+    ],
+    "@stylistic/js/comma-style": [
+      "error",
+      "last"
+    ],
+    "@stylistic/js/dot-location": [
+      "error",
+      "property"
+    ],
+    "@stylistic/js/new-parens": [
+      "error",
+      "always"
+    ],
+    "@stylistic/js/lines-between-class-members": [
+      "error",
+      "always"
+    ],
+    "@stylistic/js/semi": [
+      "error",
+      "never"
+    ],
+    "@stylistic/js/function-call-argument-newline": [
+      "error",
+      "never"
+    ],
+    "@stylistic/js/function-paren-newline": [
+      "error",
+      "never"
+    ],
+    "@stylistic/js/function-call-spacing": [
+      "error",
+      "never"
+    ],
+    "@stylistic/js/computed-property-spacing": [
+      "error",
+      "never"
+    ],
+    "@stylistic/js/indent": [
+      "error",
+      2
+    ],
+    "@stylistic/js/space-unary-ops": [
+      "error",
+      {
+        "words": true,
+        "nonwords": false
+      }
+    ],
+    "@stylistic/js/keyword-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "@stylistic/js/space-in-parens": [
+      "error",
+      "never"
+    ],
+    "@stylistic/js/quotes": [
+      "error",
+      "single"
+    ],
+    "@stylistic/js/space-infix-ops": [
+      "error",
+      {
+        "int32Hint": false
+      }
+    ],
+    "@stylistic/js/space-before-function-paren": [
+      "error",
+      "always"
+    ],
+    "@stylistic/js/comma-dangle": [
+      "error",
+      "never"
+    ],
+    "@stylistic/js/array-bracket-spacing": [
+      "error",
+      "never"
+    ],
+    "@stylistic/js/array-bracket-newline": [
+      "error",
+      "consistent"
+    ],
+    "@stylistic/js/rest-spread-spacing": [
+      "error",
+      "never"
+    ],
+    "@stylistic/js/key-spacing": [
+      "error"
+    ],
+    "@stylistic/js/no-multi-spaces": [
+      "error"
+    ],
+    "@stylistic/js/no-mixed-operators": [
+      "error"
+    ],
+    "@stylistic/js/no-floating-decimal": [
+      "error"
+    ],
+    "@stylistic/js/quote-props": [
+      "error",
+      "as-needed"
+    ],
+    "@stylistic/js/block-spacing": [
+      "error"
+    ],
+    "@stylistic/js/object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "vue/max-attributes-per-line": [
+      "error",
+      {
+        "singleline": {
+          "max": 3
+        },
+        "multiline": {
+          "max": 1
+        }
+      }
+    ],
+    "vue/singleline-html-element-content-newline": [
+      "error",
+      {
+        "ignoreWhenNoAttributes": true
+      }
+    ],
+    "vue/order-in-components": [
+      "error",
+      {
+        "order": [
+          "el",
+          "name",
+          "key",
+          "parent",
+          "functional",
+          [
+            "delimiters",
+            "comments"
+          ],
+          [
+            "components",
+            "directives",
+            "filters"
+          ],
+          "extends",
+          "mixins",
+          [
+            "provide",
+            "inject"
+          ],
+          "layout",
+          "middleware",
+          "validate",
+          "scrollToTop",
+          "transition",
+          "loading",
+          "inheritAttrs",
+          "model",
+          [
+            "props",
+            "propsData"
+          ],
+          "emits",
+          "setup",
+          "asyncData",
+          "data",
+          "fetch",
+          "head",
+          "computed",
+          "methods",
+          "watch",
+          "watchQuery",
+          "LIFECYCLE_HOOKS",
+          "ROUTER_GUARDS",
+          [
+            "template",
+            "render"
+          ],
+          "renderError"
+        ]
+      }
+    ],
+    "vue/no-v-html": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/require-default-prop": "off",
+    "vue/no-mutating-props": "off"
+  }
+}

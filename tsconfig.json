@@ -1,0 +1,23 @@
+{
+  "extends": "@vue/tsconfig",
+  "compilerOptions": {
+    "lib": ["dom"],
+    "rootDir": "./",
+    "outDir": "./dist",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": [
+      "node"
+    ],
+    "allowJs": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true
+  }
+}

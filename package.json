@@ -1,0 +1,101 @@
+{
+  "name": "personizely-ui",
+  "version": "1.4.0",
+  "description": "Personizely UI is a Vue.js UI library with a simple API, based on Radix Vue, inspired by shadcn-vue and Keen UI.",
+  "main": "./dist/personizely-ui.js",
+  "module": "./dist/personizely-ui.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/personizely-ui.esm.js",
+      "require": "./dist/personizely-ui.js"
+    },
+    "./personizely-ui.css": "./dist/personizely-ui.css",
+    "./src/*": {
+      "import": "./src/*"
+    },
+    "./*": {
+      "import": "./dist/*.esm.js",
+      "require": "./dist/*.js"
+    }
+  },
+  "scripts": {
+    "build": "vite build --config vite.config.dist.js",
+    "clean": "rimraf ./dist",
+    "lint": "eslint --ext .ts,.vue . --no-ignore",
+    "lint:fix": "eslint --fix --ext .ts,.vue . --no-ignore",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosephusPaye/Keen-UI.git"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "material design",
+    "components",
+    "ui"
+  ],
+  "files": [
+    "dist",
+    "src",
+    "LICENSE.md",
+    "README.md",
+    "package-lock.lock"
+  ],
+  "author": {
+    "name": "Josephus Paye II"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JosephusPaye/Keen-UI/issues"
+  },
+  "homepage": "https://github.com/JosephusPaye/Keen-UI/",
+  "dependencies": {
+    "@unhead/vue": "^1.9.4",
+    "@vueuse/core": "^10.9.0",
+    "autosize": "^3.0.20",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "deepmerge": "^2.0.1",
+    "fuzzysearch": "^1.0.3",
+    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
+    "lucide-vue-next": "^0.364.0",
+    "radix-vue": "^1.6.1",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7",
+    "tippy.js": "^6.3.7"
+  },
+  "devDependencies": {
+    "@iconify/vue": "^4.1.1",
+    "@stylistic/eslint-plugin-js": "^1.2.0",
+    "@stylistic/eslint-plugin-ts": "^1.6.3",
+    "@vitejs/plugin-vue": "5.0.4",
+    "@vue/tsconfig": "^0.5.1",
+    "@whyframe/core": "^0.1.11",
+    "@whyframe/vue": "^0.1.7",
+    "autoprefixer": "^10.4.19",
+    "cross-env": "^3.0.0",
+    "eslint": "^8.22.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^9.4.0",
+    "rimraf": "^2.5.4",
+    "sass": "^1.41.0",
+    "tailwindcss": "^3.4.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^7.1.0",
+    "vite": "^5.2.8",
+    "vite-plugin-banner": "^0.7.0",
+    "vitepress": "^1.0.2",
+    "vue": "^3.4.21",
+    "vue-router": "^4.0.0",
+    "vue-tsc": "^1.8.27"
+  }
+}

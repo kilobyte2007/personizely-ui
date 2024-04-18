@@ -1,0 +1,15 @@
+import { cva } from 'class-variance-authority'
+
+export { default } from './RadioGroup.vue'
+
+export const radioGroupVariants = cva('flex ', {
+  variants: {
+    orientation: {
+      vertical: 'flex-col gap-2',
+      horizontal: 'gap-4'
+    }
+  },
+  defaultVariants: {
+    orientation: 'vertical'
+  }
+})

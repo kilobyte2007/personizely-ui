@@ -1,0 +1,13 @@
+_del
+_deprecated
+_older
+_reminder
+._reminder
+.idea
+/node_modules
+Thumbs.db
+npm-debug.log
+.DS_Store
+dist
+docs/.vitepress/cache
+docs/.vitepress/dist

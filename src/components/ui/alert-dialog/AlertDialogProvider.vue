@@ -1,0 +1,26 @@
+<template>
+  <AlertDialog
+    v-for="item in items"
+    :title="item.title"
+    :description="item.description"
+    :default-open="true"
+    @confirm="confirm(item)"
+    @cancel="cancel(item)"
+  />
+</template>
+
+<script setup lang="ts">
+import AlertDialog from '@/components/ui/alert-dialog/AlertDialog.vue'
+import { useAlertDialog, type Item } from '@/components/ui/alert-dialog/use-alert-dialog'
+
+const { items } = useAlertDialog()
+
+const confirm = async (item: Item) => {
+  await item.onConfirm()
+  items.splice(items.indexOf(item), 1)
+}
+const cancel = (item: Item) => {
+  item.onCancel?.()
+  items.splice(items.indexOf(item), 1)
+}
+</script>
