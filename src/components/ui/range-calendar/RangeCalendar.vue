@@ -3,8 +3,14 @@ import { type HTMLAttributes, computed } from 'vue'
 import { RangeCalendarRoot, type RangeCalendarRootEmits, type RangeCalendarRootProps, useForwardPropsEmits } from 'radix-vue'
 import { RangeCalendarCell, RangeCalendarCellTrigger, RangeCalendarGrid, RangeCalendarGridBody, RangeCalendarGridHead, RangeCalendarGridRow, RangeCalendarHeadCell, RangeCalendarHeader, RangeCalendarHeading, RangeCalendarNextButton, RangeCalendarPrevButton } from '.'
 import { cn } from '@/utils'
+import {
+  today,
+  getLocalTimeZone
+} from '@internationalized/date'
 
-const props = defineProps<RangeCalendarRootProps & { class?: HTMLAttributes['class'] }>()
+const props = withDefaults(defineProps<RangeCalendarRootProps & { class?: HTMLAttributes['class'] }>(), {
+  placeholder: () => today(getLocalTimeZone())
+})
 
 const emits = defineEmits<RangeCalendarRootEmits>()
 
@@ -34,7 +40,8 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
         <RangeCalendarGridHead>
           <RangeCalendarGridRow>
             <RangeCalendarHeadCell
-              v-for="day in weekDays" :key="day"
+              v-for="day in weekDays"
+              :key="day"
             >
               {{ day }}
             </RangeCalendarHeadCell>
