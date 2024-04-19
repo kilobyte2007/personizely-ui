@@ -2,6 +2,7 @@
   <Input
     type="file"
     placeholder="Upload your file..."
+    class="max-w-xs"
   />
 </template>
 

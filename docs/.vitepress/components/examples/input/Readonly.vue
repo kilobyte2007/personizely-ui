@@ -2,6 +2,7 @@
   <Input
     v-model="value"
     readonly
+    class="max-w-xs"
   />
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <Input v-model="value" />
+  <Input v-model="value" class="max-w-xs" />
 </template>
 
 <script setup lang="ts">

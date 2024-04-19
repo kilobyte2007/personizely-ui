@@ -30,7 +30,6 @@
       v-model="modelValue"
       initial-focus
       :number-of-months="2"
-      :placeholder="modelValue.start"
       @update:start-value="(startDate: DateValue | undefined) => modelValue.start = startDate"
     />
   </Popover>

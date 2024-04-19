@@ -1,5 +1,5 @@
 <template>
-  <div :class="cn('relative w-full max-w-sm items-center', props.class)">
+  <div :class="cn('relative w-full items-center', props.class)">
     <InputBase
       v-bind="$attrs"
       v-model="modelValue"

@@ -1,8 +1,7 @@
 <template>
   <Accordion
-    type="single"
+    type="multiple"
     class="w-full"
-    collapsible
     :default-value="defaultValue"
   >
     <AccordionItem
@@ -20,7 +19,7 @@
 import { AccordionItem } from '@/components/ui/accordion'
 import Accordion from '@/components/ui/accordion'
 
-const defaultValue = 'item-1'
+const defaultValue = ['item-1']
 
 const accordionItems = [
   { value: 'item-1', title: 'Is it accessible?', content: 'Yes. It adheres to the WAI-ARIA design pattern.' },

@@ -36,7 +36,7 @@ export default defineConfig({
       {
         text: 'Components',
         items: [
-          { text: 'Accordion - WIP', link: '/components/accordion' },
+          { text: 'Accordion', link: '/components/accordion' },
           { text: 'Avatar', link: '/components/avatar' },
           { text: 'Alert', link: '/components/alert' },
           { text: 'Alert dialog', link: '/components/alert-dialog' },

@@ -1,9 +1,9 @@
 <template>
   <Accordion
+    v-model="value"
     type="single"
     class="w-full"
     collapsible
-    :default-value="defaultValue"
   >
     <AccordionItem
       v-for="item in accordionItems"
@@ -19,8 +19,9 @@
 <script setup lang="ts">
 import { AccordionItem } from '@/components/ui/accordion'
 import Accordion from '@/components/ui/accordion'
+import { ref } from 'vue'
 
-const defaultValue = 'item-1'
+const value = ref('item-3')
 
 const accordionItems = [
   { value: 'item-1', title: 'Is it accessible?', content: 'Yes. It adheres to the WAI-ARIA design pattern.' },

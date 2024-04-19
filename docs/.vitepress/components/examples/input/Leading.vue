@@ -4,11 +4,12 @@
     placeholder="Cost"
     type="number"
     :min="0"
+    class="max-w-xs"
   >
     <template #leading>
-      <div class="text-[0.6rem]">
-        EUR
-      </div>
+      <span class="block text-xs w-4">
+        $
+      </span>
     </template>
   </Input>
 </template>

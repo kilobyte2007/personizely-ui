@@ -1,5 +1,10 @@
 <template>
-  <Input v-model="value" icon="search" placeholder="Search..." />
+  <Input
+    v-model="value"
+    icon="search"
+    placeholder="Search..."
+    class="max-w-xs"
+  />
 </template>
 
 <script setup lang="ts">

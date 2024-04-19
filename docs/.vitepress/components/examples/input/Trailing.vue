@@ -4,11 +4,12 @@
     placeholder="Cost"
     type="number"
     :min="0"
+    class="max-w-xs"
   >
     <template #trailing>
-      <div class="text-[0.6rem]">
+      <span class="block text-[0.6rem]">
         USD
-      </div>
+      </span>
     </template>
   </Input>
 </template>

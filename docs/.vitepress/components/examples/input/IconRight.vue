@@ -4,6 +4,7 @@
     icon="search"
     placeholder="Search..."
     icon-position="right"
+    class="max-w-xs"
   />
 </template>
 
