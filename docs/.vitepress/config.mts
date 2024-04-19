@@ -57,7 +57,7 @@ export default defineConfig({
           { text: 'Select - WIP', link: '/components/select' },
           { text: 'Slider', link: '/components/slider' },
           { text: 'Switch', link: '/components/switch' },
-          { text: 'Tabs - WIP', link: '/components/tabs' },
+          { text: 'Tabs', link: '/components/tabs' },
           { text: 'Textarea', link: '/components/textarea' },
           { text: 'Toast', link: '/components/toast' },
           { text: 'Tooltip', link: '/components/tooltip' }
