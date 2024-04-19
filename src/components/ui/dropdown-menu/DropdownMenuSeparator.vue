@@ -2,7 +2,7 @@
 import { type HTMLAttributes, computed } from 'vue'
 import {
   DropdownMenuSeparator,
-  type DropdownMenuSeparatorProps,
+  type DropdownMenuSeparatorProps
 } from 'radix-vue'
 import { cn } from '@/utils'
 

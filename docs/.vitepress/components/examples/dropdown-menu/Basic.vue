@@ -6,11 +6,11 @@
   </DropdownMenu>
 </template>
 <script setup lang="ts">
-import DropdownMenu from '@/components/ui/dropdown-menu'
+import DropdownMenu, { type MenuItem } from '@/components/ui/dropdown-menu'
 import Button from '@/components/ui/button'
 
-const onSelect = (item) => {
-  console.log(item)
+const onSelect = (item: MenuItem) => {
+  alert(item.label + ' menu item was selected.')
 }
 
 const items = [
@@ -43,6 +43,14 @@ const items = [
             label: 'Messenger',
             icon: 'send',
             help: '⇧⌘M'
+          },
+          {
+            items: [
+              {
+                label: 'More',
+                icon: 'plus'
+              }
+            ]
           }
         ]
       }

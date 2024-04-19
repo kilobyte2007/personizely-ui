@@ -1,15 +1,15 @@
 <template>
-  <DropdownMenuRoot v-bind="omit(forwarded, ['align', 'side', 'label', 'items', 'onSelect'])">
+  <DropdownMenuRoot v-bind="omit(forwarded, ['align', 'side', 'label', 'items', 'onSelect', 'modelValue', 'onUpdateModelValue'])">
     <DropdownMenuTrigger as-child>
       <slot name="trigger" />
     </DropdownMenuTrigger>
-
     <DropdownMenuContent
-      :class="cn('min-w-56', props.class)"
+      class="min-w-56"
       :side-offset="4"
       :align-offset="4"
       :align="align"
       :side="side"
+      :class="cn('min-w-56', props.class)"
     >
       <template v-if="label || $slots.label">
         <DropdownMenuLabel>
@@ -19,34 +19,40 @@
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
       </template>
-
-      <template v-for="(item, index) in items">
-        <DropdownMenuPart :item="item" @select="$emit('select', $event)" />
-        <DropdownMenuSeparator v-if="index !== items.length - 1 && ('items' in item || 'items' in items[index + 1])" />
-      </template>
+      <DropdownMenuRadioGroup v-model="modelValue">
+        <DropdownMenuRadioGroupItem v-for="item in items" :value="item.value" @select="$emit('select', item)">
+          <span>{{ item.label }}</span>
+          <DropdownMenuShortcut v-if="item.help">
+            {{ item.help }}
+          </DropdownMenuShortcut>
+        </DropdownMenuRadioGroupItem>
+      </DropdownMenuRadioGroup>
     </DropdownMenuContent>
   </DropdownMenuRoot>
 </template>
 
 <script setup lang="ts">
+import omit from 'lodash/omit'
 import { DropdownMenuRoot, type DropdownMenuRootEmits, type DropdownMenuRootProps, type DropdownMenuContentProps, useForwardPropsEmits } from 'radix-vue'
 import DropdownMenuTrigger from './DropdownMenuTrigger.vue'
 import DropdownMenuContent from './DropdownMenuContent.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
+import DropdownMenuRadioGroup from './DropdownMenuRadioGroup.vue'
+import DropdownMenuRadioGroupItem from './DropdownMenuRadioItem.vue'
+import DropdownMenuShortcut from './DropdownMenuShortcut.vue'
 import DropdownMenuLabel from './DropdownMenuLabel.vue'
-import DropdownMenuPart from './DropdownMenuPart.vue'
-import omit from 'lodash/omit'
-import type { MenuItem, MenuItemWithChildren, MenuGroupItem } from './'
+import type { MenuRadioItem } from './'
 import { cn } from '@/utils'
 import type { HTMLAttributes } from 'vue'
 
+const modelValue = defineModel<any>()
 const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps, 'side' | 'align'> & {
-  items:(MenuItem | MenuItemWithChildren | MenuGroupItem)[]
+  items: MenuRadioItem[]
   label?: string,
   class?: HTMLAttributes['class']
 }>()
 const emits = defineEmits<DropdownMenuRootEmits & {
-  select: [item: MenuItem]
+  select: [item: MenuRadioItem]
 }>()
 
 const forwarded = useForwardPropsEmits(props, emits)
