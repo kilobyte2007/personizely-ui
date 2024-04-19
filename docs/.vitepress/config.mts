@@ -45,6 +45,7 @@ export default defineConfig({
           { text: 'Card', link: '/components/card' },
           { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Checkbox group', link: '/components/checkbox-group' },
+          { text: 'Color picker - WIP', link: '/components/color-picker' },
           { text: 'Date picker', link: '/components/date-picker' },
           { text: 'Date range picker', link: '/components/date-range-picker' },
           { text: 'Dialog', link: '/components/dialog' },
