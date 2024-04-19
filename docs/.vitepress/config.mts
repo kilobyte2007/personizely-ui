@@ -32,6 +32,10 @@ export default defineConfig({
       { text: 'Home', link: '/' },
     ],
 
+    outline: {
+      level: [2, 3],
+    },
+
     sidebar: [
       {
         text: 'Components',
@@ -64,6 +68,8 @@ export default defineConfig({
           { text: 'Tabs', link: '/components/tabs' },
           { text: 'Textarea', link: '/components/textarea' },
           { text: 'Toast', link: '/components/toast' },
+          { text: 'Toggle', link: '/components/toggle' },
+          { text: 'Toggle group', link: '/components/toggle-group' },
           { text: 'Tooltip', link: '/components/tooltip' }
         ]
       }

@@ -1,4 +1,4 @@
-]<template>
+<template>
   <RadioGroup v-model="value" :options="options" />
 </template>
 <script setup lang="ts">

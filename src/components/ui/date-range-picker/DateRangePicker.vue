@@ -5,7 +5,7 @@
         variant="outline"
         :class="cn(
           'justify-start text-left font-normal',
-          !modelValue && 'text-muted-foreground',
+          !modelValue.start && 'text-muted-foreground',
           $props.class
         )"
       >
