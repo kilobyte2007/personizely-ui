@@ -7,7 +7,7 @@
     class="max-w-xs"
   >
     <template #leading>
-      <span class="block text-xs w-4">
+      <span class="block text-sm text-center w-4">
         $
       </span>
     </template>
