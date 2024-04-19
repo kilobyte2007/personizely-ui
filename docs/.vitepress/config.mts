@@ -53,6 +53,7 @@ export default defineConfig({
           { text: 'Dropdown menu', link: '/components/dropdown-menu' },
           { text: 'Input', link: '/components/input' },
           { text: 'Icon', link: '/components/icon' },
+          { text: 'Fieldset - WIP', link: '/components/fieldset' },
           { text: 'Popover', link: '/components/popover' },
           { text: 'Progress', link: '/components/progress' },
           { text: 'Progress circular', link: '/components/progress-circular' },
