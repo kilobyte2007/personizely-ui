@@ -3,8 +3,9 @@
     <DialogTrigger v-if="$slots.trigger" as-child>
       <slot name="trigger" />
     </DialogTrigger>
-    <DialogContent :class="cn('grid-rows-[auto_minmax(0,1fr)_auto] p-0 max-h-[90dvh]', $attrs.class)">
-      <DialogHeader class="p-6 pb-0">
+
+    <DialogContent :class="cn('max-h-[90dvh]', $attrs.class)">
+      <DialogHeader>
         <DialogTitle v-if="title || $slots.title">
           <slot name="title">
             {{ title }}
@@ -16,19 +17,24 @@
           </slot>
         </DialogDescription>
       </DialogHeader>
-      <div class="text-sm py-2 px-6">
+
+      <div class="text-sm overflow-auto">
         <slot />
       </div>
-      <DialogFooter v-if="$slots.footer" class="p-6 pt-0">
+
+      <DialogFooter v-if="$slots.footer">
         <slot name="footer" />
       </DialogFooter>
 
-      <DialogClose v-if="!removeCloseButton" as-child>
+      <DialogClose
+        v-if="!removeCloseButton"
+        as-child
+        class="absolute right-4 top-4"
+      >
         <Button
           size="sm"
           icon="x"
           variant="ghost"
-          class="absolute right-4 top-4"
         />
       </DialogClose>
     </DialogContent>
