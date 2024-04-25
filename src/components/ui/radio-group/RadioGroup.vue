@@ -54,7 +54,7 @@ import omit from 'lodash/omit'
 const props = withDefaults(defineProps<RadioGroupRootProps & {
   class?: HTMLAttributes['class']
   keys?: Keys
-  options: string[] | Option[] | CustomOption[] | { [key:string]: string }
+  options: string[] | Option[] | CustomOption[] | { [key:string]: string },
 }>(), {
   keys: () => ({
     id: 'id',
