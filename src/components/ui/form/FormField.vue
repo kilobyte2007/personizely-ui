@@ -21,6 +21,7 @@ const props = withDefaults(defineProps<{
   description?: string
   label?: string
   required?: boolean
+  rules?: string
 }>(), {
   required: false
 })
@@ -30,7 +31,7 @@ provide(FORM_ITEM_INJECTION_KEY, id)
 </script>
 
 <template>
-  <Field v-slot="{ componentField, errors }" :name="name">
+  <Field v-slot="{ componentField, errors }" :name="name" :rules="rules">
     <div :class="cn('flex flex-col gap-2 group', props.class)">
       <FormLabel v-if="$slots.label || label" :class="required ? 'after:content-[\'*\'] after:ms-0.5 after:text-red-500 dark:after:text-red-40' : ''">
         <slot name="label">

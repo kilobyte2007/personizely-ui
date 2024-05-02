@@ -4,7 +4,6 @@
       v-slot="{ componentField }"
       name="name"
       required
-      rules="required|min:2"
       label="Your name"
       description="Please provide the full name as in your passport."
     >
@@ -14,7 +13,6 @@
     <FormField
       v-slot="{ componentField }"
       required
-      rules="required"
       name="framework"
       label="Your favorite framework"
     >
@@ -24,7 +22,6 @@
     <FormField
       v-slot="{ componentField }"
       required
-      rules="required"
       name="accept"
     >
       <Checkbox label="I accept the terms of use." v-bind="componentField" />
@@ -39,14 +36,19 @@ import Input from '@/components/ui/input'
 import Select from '@/components/ui/select'
 import Button from '@/components/ui/button'
 import Checkbox from '@/components/ui/checkbox'
-import { defineRule, useForm } from 'vee-validate'
-import { required, email, min } from '@vee-validate/rules'
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import * as z from 'zod'
 
-defineRule('required', required)
-defineRule('email', email)
-defineRule('min', min)
+const validationSchema = toTypedSchema(z.object({
+  name: z.string().min(2).max(50),
+  framework: z.string(),
+  accept: z.literal<boolean>(true)
+}))
 
-const { handleSubmit } = useForm()
+const { handleSubmit } = useForm({
+  validationSchema
+})
 
 const submit = handleSubmit((values) => {
   console.log('Form submitted!', values)
