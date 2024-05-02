@@ -35,7 +35,6 @@ import { useId } from 'radix-vue'
 const modelValue = defineModel<(string | number)[]>({
   default: () => []
 })
-
 const props = withDefaults(defineProps<{
   name?: string
   horizontal?: boolean

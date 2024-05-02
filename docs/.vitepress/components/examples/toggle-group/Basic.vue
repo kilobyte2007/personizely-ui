@@ -9,8 +9,8 @@ import { ref } from 'vue'
 const value = ref(null)
 
 const items = [
-  { value: 'bold', icon: 'bold', label: 'Bold' },
-  { value: 'italic', icon: 'italic', label: 'Italic' },
-  { value: 'underline', icon: 'underline', label: 'Underline' }
+  { value: 'left', icon: 'align-left', label: 'Left' },
+  { value: 'center', icon: 'align-center', label: 'Center' },
+  { value: 'right', icon: 'align-right', label: 'Right' }
 ]
 </script>

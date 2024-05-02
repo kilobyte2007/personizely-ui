@@ -46,17 +46,17 @@ const searchTerm = ref(null)
 const onSelect = ({ detail }) => {
   modelValue.value = detail.value
   open.value = false
-  requestAnimationFrame(() => {
-    searchTerm.value = null
-  })
+  // requestAnimationFrame(() => {
+  //   searchTerm.value = null
+  // })
 }
 
 const onToggle = (open: boolean) => {
-  if (open) {
-    requestAnimationFrame(() => {
-      searchTerm.value = null
-    })
-  }
+  // if (open) {
+  //   requestAnimationFrame(() => {
+  //     searchTerm.value = null
+  //   })
+  // }
 }
 
 const selectedValueLabel = computed(() => {

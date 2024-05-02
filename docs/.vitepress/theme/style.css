@@ -137,7 +137,6 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
-
-.vp-doc iframe {
-  @apply rounded border border-gray-100 dark:border-gray-100/10 min-w-full min-h-48 mt-4 box-content;
+.VPNav {
+  padding-right: var(--scrollbar-width, 0);
 }

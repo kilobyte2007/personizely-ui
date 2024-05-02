@@ -1,7 +1,8 @@
 <template>
   <RadioGroupRoot
-    :class="cn(radioGroupVariants({ orientation }), props.class)"
     v-bind="omit(forwarded, ['options', 'keys'])"
+    v-model="normalizedValue"
+    :class="cn(radioGroupVariants({ orientation }), props.class)"
   >
     <div v-for="(option, index) in preparedOptions" :key="option[keys.id] || index" class="flex items-start space-x-2">
       <RadioGroupItem
@@ -50,8 +51,12 @@ import RadioGroupItem from './RadioGroupItem.vue'
 import { Label } from '@/components/ui/label'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
 import omit from 'lodash/omit'
+import { useNormalizedTypes } from '@/composables/useNormalizedTypes'
+import { useEmpty } from '@/composables/useEmpty'
 
-const props = withDefaults(defineProps<RadioGroupRootProps & {
+const modelValue = defineModel<string | number | null | true | false>()
+const normalizedValue = useNormalizedTypes(useEmpty(modelValue))
+const props = withDefaults(defineProps<Omit<RadioGroupRootProps, 'modelValue'> & {
   class?: HTMLAttributes['class']
   keys?: Keys
   options: string[] | Option[] | CustomOption[] | { [key:string]: string },
