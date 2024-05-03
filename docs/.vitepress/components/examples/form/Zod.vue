@@ -31,7 +31,7 @@
   </Form>
 </template>
 <script setup lang="ts">
-import { Form, FormField } from '@/components/ui/form'
+import Form, { FormField } from '@/components/ui/form'
 import Input from '@/components/ui/input'
 import Select from '@/components/ui/select'
 import Button from '@/components/ui/button'
