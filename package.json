@@ -55,6 +55,7 @@
   },
   "homepage": "https://github.com/JosephusPaye/Keen-UI/",
   "dependencies": {
+    "@ctrl/tinycolor": "^4.1.0",
     "@vee-validate/rules": "^4.12.6",
     "@vee-validate/zod": "^4.12.6",
     "@vueuse/core": "^10.9.0",

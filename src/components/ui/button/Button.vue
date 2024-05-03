@@ -3,7 +3,7 @@
     <Primitive
       v-bind="$attrs"
       :as="href ? 'a' : 'button'"
-      :class="cn(buttonVariants({ variant, size, icon: Boolean(icon) && !$slots.default }), props.class)"
+      :class="cn(buttonVariants({ variant, size, icon: Boolean(icon || $slots.icon) && !$slots.default }), props.class)"
       :disabled="!href ? disabled || loading : null"
       :href="href && !(disabled || loading) ? href : null"
     >

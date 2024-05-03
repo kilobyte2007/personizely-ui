@@ -9,6 +9,6 @@ const twMerge = extendTailwindMerge({
   }
 })
 
-export function cn (...inputs) {
+export function cn (...inputs: unknown[]) {
   return twMerge(clsx(inputs))
 }
