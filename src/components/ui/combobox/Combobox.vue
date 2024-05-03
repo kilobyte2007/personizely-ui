@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed, ref } from 'vue'
-import { ComboboxItemIndicator, type ComboboxRootEmits, type ComboboxRootProps, Primitive } from 'radix-vue'
-import { useForwardPropsEmits } from 'radix-vue'
+import {
+  Primitive,
+  ComboboxItemIndicator,
+  useForwardPropsEmits,
+  type ComboboxItemEmits,
+  type ComboboxRootEmits,
+  type ComboboxRootProps
+} from 'radix-vue'
 import { cn } from '@/utils'
 import ComboboxRoot from './ComboboxRoot.vue'
 import ComboboxContent from './ComboboxContent.vue'
@@ -14,9 +20,12 @@ import Popover from '@/components/ui/popover'
 import { ChevronDown } from 'lucide-vue-next'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
 import omit from 'lodash/omit'
+import { useEmpty } from '@/composables/useEmpty'
 
-const modelValue = defineModel<number | string | number[] | string[] | boolean | null | undefined>()
-const props = withDefaults(defineProps<ComboboxRootProps & {
+const modelValue = defineModel<ComboboxRootProps['modelValue']>()
+const normalizedValue = useEmpty(modelValue)
+
+const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue'> & {
   class?: HTMLAttributes['class'],
   placeholder?: string
   searchPlaceholder?: string,
@@ -41,22 +50,22 @@ const emits = defineEmits<ComboboxRootEmits & {
 
 
 const open = ref(false)
-const searchTerm = ref(null)
+const searchTerm = ref()
 
-const onSelect = ({ detail }) => {
-  modelValue.value = detail.value
+const onSelect = (event: ComboboxItemEmits['select'][0]) => {
+  modelValue.value = event.detail.value
   open.value = false
-  // requestAnimationFrame(() => {
-  //   searchTerm.value = null
-  // })
+  requestAnimationFrame(() => {
+    searchTerm.value = null
+  })
 }
 
 const onToggle = (open: boolean) => {
-  // if (open) {
-  //   requestAnimationFrame(() => {
-  //     searchTerm.value = null
-  //   })
-  // }
+  if (open) {
+    requestAnimationFrame(() => {
+      searchTerm.value = null
+    })
+  }
 }
 
 const selectedValueLabel = computed(() => {
@@ -70,7 +79,7 @@ const selectedValueLabel = computed(() => {
   return null
 })
 
-const forwarded = useForwardPropsEmits(omit(), emits)
+const forwarded = useForwardPropsEmits(omit(props, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options']), emits)
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
 </script>
@@ -86,7 +95,7 @@ const preparedOptions = computed(() => prepareOptions(props.options, props.keys)
         as="button"
         role="combobox"
         :aria-expanded="open"
-        :class="cn('flex h-8 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]',
+        :class="cn('flex h-8 items-center justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]',
                    !modelValue ? 'text-muted-foreground' : '',
                    props.class
         )"
@@ -100,7 +109,7 @@ const preparedOptions = computed(() => prepareOptions(props.options, props.keys)
 
     <ComboboxRoot
       v-bind="forwarded"
-      v-model="modelValue"
+      v-model="normalizedValue"
       v-model:search-term="searchTerm"
       class="flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground"
     >

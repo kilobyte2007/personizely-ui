@@ -18,6 +18,8 @@ const props = withDefaults(defineProps<{
 const background = computed(() => `url(${getCheckboard(props.white, props.black, props.size)})`)
 
 const renderCheckboard = (c1: string, c2: string, size: number) => {
+  if (typeof document === 'undefined') return ''
+
   const canvas = document.createElement('canvas')
   canvas.width = canvas.height = size * 2
   const ctx = canvas.getContext('2d')
