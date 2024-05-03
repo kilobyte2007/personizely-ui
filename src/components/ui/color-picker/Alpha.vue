@@ -18,6 +18,7 @@
 import { computed } from 'vue'
 import Rail from './Rail.vue'
 import Handle from './Handle.vue'
+import type { Numberify } from '@ctrl/tinycolor'
 
 interface RGB {
   r: string
@@ -27,7 +28,7 @@ interface RGB {
 
 const modelValue = defineModel<number>({ required: true })
 const props = withDefaults(defineProps<{
-  rgb: RGB
+  rgb: Numberify<RGB>
   orientation?: 'horizontal' | 'vertical'
 }>(), {
   orientation: 'horizontal'

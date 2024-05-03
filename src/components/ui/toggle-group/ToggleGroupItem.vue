@@ -36,7 +36,7 @@ const forwardedProps = useForwardProps(delegatedProps)
     <slot>
       <Icon
         :class="buttonIconVariants({ size })"
-        :icon="icon"
+        :icon="icon!"
       />
     </slot>
   </ToggleGroupItem>

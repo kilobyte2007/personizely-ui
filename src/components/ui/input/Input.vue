@@ -11,12 +11,12 @@
     />
     <span v-if="$slots.leading || (icon && iconPosition === 'left')" class="absolute start-0 inset-y-0 flex items-center justify-center px-2 pointer-events-none">
       <slot name="leading">
-        <Icon :icon="icon" class="size-4 text-muted-foreground" />
+        <Icon :icon="icon!" class="size-4 text-muted-foreground" />
       </slot>
     </span>
     <span v-if="$slots.trailing || (icon && iconPosition === 'right')" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 pointer-events-none">
       <slot name="trailing">
-        <Icon :icon="icon" class="size-4 text-muted-foreground" />
+        <Icon :icon="icon!" class="size-4 text-muted-foreground" />
       </slot>
     </span>
   </div>

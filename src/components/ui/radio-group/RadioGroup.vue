@@ -72,8 +72,8 @@ const props = withDefaults(defineProps<Omit<RadioGroupRootProps, 'modelValue'> &
   name: () => useId()
 })
 const emits = defineEmits<RadioGroupRootEmits & {
-  blur: [option: Option[] | CustomOption[]]
-  focus: [option: Option[] | CustomOption[]]
+  blur: [option: Option | CustomOption]
+  focus: [option: Option | CustomOption]
 }>()
 
 const delegatedProps = computed(() => {

@@ -11,7 +11,7 @@
       :icon="item.icon"
       :size="size"
       :variant="variant"
-      :value="item.value"
+      :value="normalize(item.value)"
     >
       <slot v-if="$slots.default || !item.icon" v-bind="{ item }">
         {{ item.label }}
@@ -23,11 +23,11 @@
 <script setup lang="ts">
 import type { VariantProps } from 'class-variance-authority'
 import { type HTMLAttributes, computed } from 'vue'
-import { ToggleGroupRoot, type ToggleGroupRootEmits, type ToggleGroupRootProps, useForwardPropsEmits } from 'radix-vue'
+import { ToggleGroupRoot, type ToggleGroupRootProps, useForwardProps } from 'radix-vue'
 import type { toggleVariants } from '@/components/ui/toggle'
 import ToggleGroupItem from './ToggleGroupItem.vue'
 import { cn } from '@/utils'
-import { useNormalizedTypes } from '@/composables/useNormalizedTypes'
+import { useNormalizedTypes, normalize } from '@/composables/useNormalizedTypes'
 import { useEmpty } from '@/composables/useEmpty'
 
 type ToggleGroupVariants = VariantProps<typeof toggleVariants>
@@ -46,7 +46,6 @@ const props = defineProps<Omit<ToggleGroupRootProps, 'modelValue'> & {
   size?: ToggleGroupVariants['size'],
   items: Item[]
 }>()
-const emits = defineEmits<Omit<ToggleGroupRootEmits, 'update:modelValue'>>()
 
 const delegatedProps = computed(() => {
   const { class: _, items, ...delegated } = props
@@ -57,5 +56,5 @@ defineSlots<{
   default(props: { item: Item }): any
 }>()
 
-const forwarded = useForwardPropsEmits(delegatedProps, emits)
+const forwarded = useForwardProps(delegatedProps)
 </script>

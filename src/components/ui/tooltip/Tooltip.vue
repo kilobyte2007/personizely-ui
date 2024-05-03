@@ -27,8 +27,11 @@ import {
   useForwardPropsEmits
 } from 'radix-vue'
 import { cn } from '@/utils'
+import type { HTMLAttributes } from 'vue'
 
-const props = defineProps<TooltipRootProps>()
+const props = defineProps<TooltipRootProps & {
+  class?: HTMLAttributes['class']
+}>()
 const emits = defineEmits<TooltipRootEmits>()
 
 const forwarded = useForwardPropsEmits(props, emits)

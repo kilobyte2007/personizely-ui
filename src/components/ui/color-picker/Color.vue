@@ -70,7 +70,7 @@
             :id="id"
             :model-value="Math.round(h)"
             class="w-12 [&>*]:text-center"
-            @update:model-value="setHsl(Number($event) || color.h, 'h')"
+            @update:model-value="setHsl(Number($event) || color.toHsl().h, 'h')"
           />
         </LabelInput>
         <LabelInput v-slot="{ id }" label="S">
@@ -78,7 +78,7 @@
             :id="id"
             :model-value="Math.round(s * 100)"
             class="w-12 [&>input]:text-center"
-            @update:model-value="setHsl(Number($event) || color.s / 100, 's')"
+            @update:model-value="setHsl(Number($event) || color.toHsl().s / 100, 's')"
           />
         </LabelInput>
         <LabelInput v-slot="{ id }" label="L">
@@ -227,7 +227,7 @@ const setHsl = (value: number, key: 'h' | 's' | 'l') => {
 
 const isSafeHex = (color: TinyColor) => {
   const from = new TinyColor(color.clone().toHexString()).toHsl()
-  const to = color.toHsl
+  const to = color.toHsl()
   return to.h === from.h && to.s === from.s && to.l === from.l
 }
 

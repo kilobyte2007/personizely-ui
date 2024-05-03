@@ -23,7 +23,7 @@
         :value="item.value"
         :checked="modelValue.includes(item.value)"
         @update:checked="$event ? modelValue.push(item.value) : modelValue.splice(modelValue.indexOf(item.value), 1)"
-        @select="$emit('select', $event)"
+        @select="$emit('select', item)"
       >
         <span>{{ item.label }}</span>
         <DropdownMenuShortcut v-if="item.help">

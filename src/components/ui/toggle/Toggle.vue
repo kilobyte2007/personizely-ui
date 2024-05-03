@@ -35,6 +35,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
   >
     <slot>
       <Icon
+        v-if="icon"
         :class="buttonIconVariants({ size })"
         :icon="icon"
       />

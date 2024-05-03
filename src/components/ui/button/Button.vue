@@ -17,7 +17,7 @@
         </template>
         <slot v-else name="icon">
           <Icon
-            :icon="icon"
+            :icon="icon!"
             :class="buttonIconVariants({ size })"
           />
         </slot>
@@ -35,7 +35,7 @@
         </template>
         <slot v-else name="icon">
           <Icon
-            :icon="icon"
+            :icon="icon!"
             :class="buttonIconVariants({ size })"
           />
         </slot>

@@ -26,7 +26,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "vue-typecheck": "vue-tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -56,6 +57,7 @@
   "homepage": "https://github.com/JosephusPaye/Keen-UI/",
   "dependencies": {
     "@ctrl/tinycolor": "^4.1.0",
+    "@types/lodash": "^4.17.0",
     "@vee-validate/rules": "^4.12.6",
     "@vee-validate/zod": "^4.12.6",
     "@vueuse/core": "^10.9.0",
