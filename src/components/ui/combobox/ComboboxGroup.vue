@@ -19,7 +19,7 @@ const delegatedProps = computed(() => {
 <template>
   <SelectGroup
     v-bind="delegatedProps"
-    :class="cn('overflow-hidden p-1 text-foreground', props.class)"
+    :class="cn('overflow-hidden text-foreground', props.class)"
   >
     <SelectLabel v-if="heading" class="px-2 py-1.5 text-xs font-medium text-muted-foreground">
       {{ heading }}

@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed, ref } from 'vue'
 import {
-  Primitive,
   ComboboxItemIndicator,
+  ComboboxAnchor,
   useForwardPropsEmits,
   type ComboboxItemEmits,
   type ComboboxRootEmits,
-  type ComboboxRootProps
+  type ComboboxRootProps,
+  ComboboxPortal,
+  ComboboxTrigger,
+  ComboboxViewport
 } from 'radix-vue'
 import { cn } from '@/utils'
 import ComboboxRoot from './ComboboxRoot.vue'
@@ -16,7 +19,6 @@ import ComboboxInput from './ComboboxInput.vue'
 import ComboboxEmpty from './ComboboxEmpty.vue'
 import ComboboxGroup from './ComboboxGroup.vue'
 import { Check } from 'lucide-vue-next'
-import Popover from '@/components/ui/popover'
 import { ChevronDown } from 'lucide-vue-next'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
 import omit from 'lodash/omit'
@@ -85,16 +87,20 @@ const preparedOptions = computed(() => prepareOptions(props.options, props.keys)
 </script>
 
 <template>
-  <Popover
+  <ComboboxRoot
+    v-bind="forwarded"
+    v-model="normalizedValue"
+    v-model:search-term="searchTerm"
     v-model:open="open"
-    class="p-0 min-w-[--radix-popper-anchor-width]"
     @update:open="onToggle"
   >
-    <template #trigger>
-      <Primitive
+    <ComboboxAnchor>
+      <ComboboxTrigger
         as="button"
         role="combobox"
+        :aria-disable="disabled"
         :aria-expanded="open"
+        tabindex="0"
         :class="cn('flex h-8 items-center justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]',
                    !modelValue ? 'text-muted-foreground' : '',
                    props.class
@@ -104,35 +110,32 @@ const preparedOptions = computed(() => prepareOptions(props.options, props.keys)
       >
         {{ selectedValueLabel || placeholder }}
         <ChevronDown class="w-4 h-4 text-muted-foreground" />
-      </Primitive>
-    </template>
+      </ComboboxTrigger>
+    </ComboboxAnchor>
 
-    <ComboboxRoot
-      v-bind="forwarded"
-      v-model="normalizedValue"
-      v-model:search-term="searchTerm"
-      class="flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground"
-    >
-      <ComboboxInput :placeholder="searchPlaceholder" />
-      <ComboboxEmpty>No matching options.</ComboboxEmpty>
-      <ComboboxContent>
-        <ComboboxGroup>
-          <ComboboxItem
-            v-for="(option, index) in preparedOptions"
-            :key="option[keys.id] || index"
-            :value="option[keys.value]"
-            :disabled="option[keys.disabled] || disabled"
-            @select="onSelect"
-          >
-            <slot name="option" v-bind="option">
-              {{ option[keys.label] || option }}
-            </slot>
-            <ComboboxItemIndicator as-child>
-              <Check class="ml-auto h-4 w-4 text-muted-foreground" />
-            </ComboboxItemIndicator>
-          </ComboboxItem>
-        </ComboboxGroup>
+    <ComboboxPortal>
+      <ComboboxContent :side-offset="5">
+        <ComboboxInput :placeholder="searchPlaceholder" />
+        <ComboboxViewport class="p-1">
+          <ComboboxEmpty>No matching options.</ComboboxEmpty>
+          <ComboboxGroup>
+            <ComboboxItem
+              v-for="(option, index) in preparedOptions"
+              :key="option[keys.id] || index"
+              :value="option[keys.value]"
+              :disabled="option[keys.disabled] || disabled"
+              @select="onSelect"
+            >
+              <slot name="option" v-bind="option">
+                {{ option[keys.label] || option }}
+              </slot>
+              <ComboboxItemIndicator as-child>
+                <Check class="ml-auto h-4 w-4 text-muted-foreground" />
+              </ComboboxItemIndicator>
+            </ComboboxItem>
+          </ComboboxGroup>
+        </ComboboxViewport>
       </ComboboxContent>
-    </ComboboxRoot>
-  </Popover>
+    </ComboboxPortal>
+  </ComboboxRoot>
 </template>
