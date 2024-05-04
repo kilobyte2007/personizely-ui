@@ -1,5 +1,5 @@
 <template>
-  <div :class="cn('flex items-center p-6 pt-0', props.class)">
+  <div :class="cn('flex items-center px-2 py-2', props.class)">
     <slot />
   </div>
 </template>
