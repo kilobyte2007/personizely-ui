@@ -4,19 +4,19 @@ layout: home
 
 hero:
   name: "Personizely UI"
-  text: "Beautiful set of components."
+  text: "Beautiful set of accessible components."
   tagline: UI Components used in Personizely
   actions:
     - theme: brand
       text: Components
-      link: /components/alert
+      link: /components/accordion
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Fully accessible
+    details: The components are fully accessible and support tab navigation and aria attributes.
+  - title: Based on radix-vue
+    details: The components are based on radix-vue to support adhere to best accessibility practices.
+  - title: Customizable
+    details: Can be styled using css variables.
 ---
 
