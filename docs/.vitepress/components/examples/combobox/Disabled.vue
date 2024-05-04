@@ -1,5 +1,10 @@
 <template>
-  <Combobox v-model="value" :options="options" class="w-64" />
+  <Combobox
+    v-model="value"
+    :options="options"
+    class="w-64"
+    disabled
+  />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'

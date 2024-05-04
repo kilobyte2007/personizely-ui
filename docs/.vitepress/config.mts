@@ -50,7 +50,7 @@ export default defineConfig({
           { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Checkbox group', link: '/components/checkbox-group' },
           { text: 'Color picker', link: '/components/color-picker' },
-          { text: 'Combobox - [Alpha]', link: '/components/combobox' },
+          { text: 'Combobox', link: '/components/combobox' },
           { text: 'Date picker', link: '/components/date-picker' },
           { text: 'Date range picker', link: '/components/date-range-picker' },
           { text: 'Dialog', link: '/components/dialog' },

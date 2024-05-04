@@ -9,9 +9,8 @@
     <ComboboxAnchor as-child>
       <ComboboxTrigger
         ref="button"
-        as="button"
         role="combobox"
-        :aria-disable="disabled"
+        :aria-disabled="disabled"
         :aria-expanded="open"
         :tabindex="null"
         :class="cn('flex h-8 items-center justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]',
@@ -21,8 +20,15 @@
         @focus="$emit('focus', $event)"
         @blur="$emit('blur', $event)"
       >
-        {{ selectedValueLabel || placeholder }}
-        <ChevronDown class="w-4 h-4 text-muted-foreground" />
+        <span class="pointer-events-none">
+          <slot v-if="selectedOption" name="label" v-bind="{ option: selectedOption }">
+            {{ selectedOptionLabel }}
+          </slot>
+          <template v-else>
+            {{ placeholder }}
+          </template>
+        </span>
+        <ChevronDown class="w-4 h-4 opacity-50" />
       </ComboboxTrigger>
     </ComboboxAnchor>
 
@@ -39,7 +45,7 @@
               :disabled="option[keys.disabled] || disabled"
               @select="onSelect"
             >
-              <slot name="option" v-bind="option">
+              <slot name="option" v-bind="{ option }">
                 {{ option[keys.label] || option }}
               </slot>
               <ComboboxItemIndicator as-child>
@@ -83,11 +89,11 @@ const modelValue = defineModel<ComboboxRootProps['modelValue']>()
 const normalizedValue = useEmpty(modelValue)
 
 const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue'> & {
-  class?: HTMLAttributes['class'],
+  class?: HTMLAttributes['class']
   placeholder?: string
-  searchPlaceholder?: string,
+  searchPlaceholder?: string
   keys?: Keys
-  options: string[] | Option[] | CustomOption[] | { [key:string]: string },
+  options: string[] | Option[] | CustomOption[] | { [key:string]: string }
 }>(), {
   placeholder: 'Select a value...',
   searchPlaceholder: 'Search...',
@@ -111,7 +117,6 @@ const searchTerm = ref()
 
 const onSelect = (event: ComboboxItemEmits['select'][0]) => {
   modelValue.value = event.detail.value
-  open.value = false
   requestAnimationFrame(() => {
     searchTerm.value = null
   })
@@ -126,12 +131,17 @@ const onToggle = (open: boolean) => {
   })
 }
 
-const selectedValueLabel = computed(() => {
+const selectedOption = computed(() => {
   if (modelValue.value) {
-    const option = preparedOptions.value.find(o => o.value === modelValue.value)
-    if (option) {
-      return option[props.keys.label]
-    }
+    return preparedOptions.value.find(o => o.value === modelValue.value)
+  }
+
+  return null
+})
+
+const selectedOptionLabel = computed(() => {
+  if (selectedOption.value) {
+    return selectedOption.value[props.keys.label]
   }
 
   return null
