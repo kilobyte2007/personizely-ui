@@ -1,3 +1,9 @@
+<template>
+  <CalendarHeadCell :class="cn('w-7 rounded-md text-[0.8rem] font-normal text-muted-foreground', props.class)" v-bind="forwardedProps">
+    <slot />
+  </CalendarHeadCell>
+</template>
+
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
 import { CalendarHeadCell, type CalendarHeadCellProps, useForwardProps } from 'radix-vue'
@@ -13,9 +19,3 @@ const delegatedProps = computed(() => {
 
 const forwardedProps = useForwardProps(delegatedProps)
 </script>
-
-<template>
-  <CalendarHeadCell :class="cn('w-7 rounded-md text-[0.8rem] font-normal text-muted-foreground', props.class)" v-bind="forwardedProps">
-    <slot />
-  </CalendarHeadCell>
-</template>

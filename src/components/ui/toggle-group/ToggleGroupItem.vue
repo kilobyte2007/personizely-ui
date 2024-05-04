@@ -1,3 +1,21 @@
+<template>
+  <ToggleGroupItem
+    v-bind="forwardedProps"
+    :class="cn(toggleVariants({
+      variant: variant,
+      size: size,
+      icon: Boolean(icon)
+    }), props.class)"
+  >
+    <slot>
+      <Icon
+        :class="buttonIconVariants({ size })"
+        :icon="icon!"
+      />
+    </slot>
+  </ToggleGroupItem>
+</template>
+
 <script setup lang="ts">
 import type { VariantProps } from 'class-variance-authority'
 import { type HTMLAttributes, computed } from 'vue'
@@ -17,27 +35,9 @@ const props = defineProps<ToggleGroupItemProps & {
 }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, variant, size, ...delegated } = props
+  const { class: _, variant: _variant, size: _size, ...delegated } = props
   return delegated
 })
 
 const forwardedProps = useForwardProps(delegatedProps)
 </script>
-
-<template>
-  <ToggleGroupItem
-    v-bind="forwardedProps"
-    :class="cn(toggleVariants({
-      variant: variant,
-      size: size,
-      icon: Boolean(icon)
-    }), props.class)"
-  >
-    <slot>
-      <Icon
-        :class="buttonIconVariants({ size })"
-        :icon="icon!"
-      />
-    </slot>
-  </ToggleGroupItem>
-</template>

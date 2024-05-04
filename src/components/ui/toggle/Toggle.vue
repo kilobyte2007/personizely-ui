@@ -1,3 +1,18 @@
+<template>
+  <Toggle
+    v-bind="forwarded"
+    :class="cn(toggleVariants({ variant, size, icon: Boolean(icon) }), props.class)"
+  >
+    <slot>
+      <Icon
+        v-if="icon"
+        :class="buttonIconVariants({ size })"
+        :icon="icon"
+      />
+    </slot>
+  </Toggle>
+</template>
+
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { Toggle, type ToggleEmits, type ToggleProps, useForwardPropsEmits } from 'radix-vue'
@@ -20,25 +35,10 @@ const props = withDefaults(defineProps<ToggleProps & {
 const emits = defineEmits<ToggleEmits>()
 
 const delegatedProps = computed(() => {
-  const { class: _, size, variant, ...delegated } = props
+  const { class: _, size: _size, variant: _variant, ...delegated } = props
 
   return delegated
 })
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>
-
-<template>
-  <Toggle
-    v-bind="forwarded"
-    :class="cn(toggleVariants({ variant, size, icon: Boolean(icon) }), props.class)"
-  >
-    <slot>
-      <Icon
-        v-if="icon"
-        :class="buttonIconVariants({ size })"
-        :icon="icon"
-      />
-    </slot>
-  </Toggle>
-</template>

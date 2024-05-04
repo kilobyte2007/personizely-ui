@@ -1,3 +1,18 @@
+<template>
+  <CalendarPrev
+    :class="cn(
+      buttonVariants({ variant: 'outline' }),
+      'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
+      props.class,
+    )"
+    v-bind="forwardedProps"
+  >
+    <slot>
+      <ChevronLeft class="h-4 w-4" />
+    </slot>
+  </CalendarPrev>
+</template>
+
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
 import { CalendarPrev, type CalendarPrevProps, useForwardProps } from 'radix-vue'
@@ -15,18 +30,3 @@ const delegatedProps = computed(() => {
 
 const forwardedProps = useForwardProps(delegatedProps)
 </script>
-
-<template>
-  <CalendarPrev
-    :class="cn(
-      buttonVariants({ variant: 'outline' }),
-      'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
-      props.class,
-    )"
-    v-bind="forwardedProps"
-  >
-    <slot>
-      <ChevronLeft class="h-4 w-4" />
-    </slot>
-  </CalendarPrev>
-</template>

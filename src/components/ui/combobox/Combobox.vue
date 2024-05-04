@@ -1,5 +1,60 @@
+<template>
+  <ComboboxRoot
+    v-bind="forwarded"
+    v-model="normalizedValue"
+    v-model:search-term="searchTerm"
+    v-model:open="open"
+    @update:open="onToggle"
+  >
+    <ComboboxAnchor as-child>
+      <ComboboxTrigger
+        ref="button"
+        as="button"
+        role="combobox"
+        :aria-disable="disabled"
+        :aria-expanded="open"
+        :tabindex="null"
+        :class="cn('flex h-8 items-center justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]',
+                   !modelValue ? 'text-muted-foreground' : '',
+                   props.class
+        )"
+        @focus="$emit('focus', $event)"
+        @blur="$emit('blur', $event)"
+      >
+        {{ selectedValueLabel || placeholder }}
+        <ChevronDown class="w-4 h-4 text-muted-foreground" />
+      </ComboboxTrigger>
+    </ComboboxAnchor>
+
+    <ComboboxPortal>
+      <ComboboxContent :side-offset="5">
+        <ComboboxInput :placeholder="searchPlaceholder" />
+        <ComboboxViewport class="p-1">
+          <ComboboxEmpty>No matching options.</ComboboxEmpty>
+          <ComboboxGroup>
+            <ComboboxItem
+              v-for="(option, index) in preparedOptions"
+              :key="option[keys.id] || index"
+              :value="option[keys.value]"
+              :disabled="option[keys.disabled] || disabled"
+              @select="onSelect"
+            >
+              <slot name="option" v-bind="option">
+                {{ option[keys.label] || option }}
+              </slot>
+              <ComboboxItemIndicator as-child>
+                <Check class="ml-auto h-4 w-4 text-muted-foreground" />
+              </ComboboxItemIndicator>
+            </ComboboxItem>
+          </ComboboxGroup>
+        </ComboboxViewport>
+      </ComboboxContent>
+    </ComboboxPortal>
+  </ComboboxRoot>
+</template>
+
 <script setup lang="ts">
-import { type HTMLAttributes, computed, ref } from 'vue'
+import { type HTMLAttributes, computed, ref, type ComponentInstance } from 'vue'
 import {
   ComboboxItemIndicator,
   ComboboxAnchor,
@@ -50,7 +105,7 @@ const emits = defineEmits<ComboboxRootEmits & {
   focus: [option: Option[] | CustomOption[]]
 }>()
 
-
+const button = ref<ComponentInstance<typeof ComboboxTrigger>>()
 const open = ref(false)
 const searchTerm = ref()
 
@@ -63,11 +118,12 @@ const onSelect = (event: ComboboxItemEmits['select'][0]) => {
 }
 
 const onToggle = (open: boolean) => {
-  if (open) {
-    requestAnimationFrame(() => {
-      searchTerm.value = null
-    })
-  }
+  requestAnimationFrame(() => {
+    if (!open) {
+      button.value!.$el.focus()
+    }
+    searchTerm.value = null
+  })
 }
 
 const selectedValueLabel = computed(() => {
@@ -85,57 +141,3 @@ const forwarded = useForwardPropsEmits(omit(props, ['class', 'placeholder', 'sea
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
 </script>
-
-<template>
-  <ComboboxRoot
-    v-bind="forwarded"
-    v-model="normalizedValue"
-    v-model:search-term="searchTerm"
-    v-model:open="open"
-    @update:open="onToggle"
-  >
-    <ComboboxAnchor>
-      <ComboboxTrigger
-        as="button"
-        role="combobox"
-        :aria-disable="disabled"
-        :aria-expanded="open"
-        tabindex="0"
-        :class="cn('flex h-8 items-center justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]',
-                   !modelValue ? 'text-muted-foreground' : '',
-                   props.class
-        )"
-        @focus="$emit('focus', $event)"
-        @blur="$emit('blur', $event)"
-      >
-        {{ selectedValueLabel || placeholder }}
-        <ChevronDown class="w-4 h-4 text-muted-foreground" />
-      </ComboboxTrigger>
-    </ComboboxAnchor>
-
-    <ComboboxPortal>
-      <ComboboxContent :side-offset="5">
-        <ComboboxInput :placeholder="searchPlaceholder" />
-        <ComboboxViewport class="p-1">
-          <ComboboxEmpty>No matching options.</ComboboxEmpty>
-          <ComboboxGroup>
-            <ComboboxItem
-              v-for="(option, index) in preparedOptions"
-              :key="option[keys.id] || index"
-              :value="option[keys.value]"
-              :disabled="option[keys.disabled] || disabled"
-              @select="onSelect"
-            >
-              <slot name="option" v-bind="option">
-                {{ option[keys.label] || option }}
-              </slot>
-              <ComboboxItemIndicator as-child>
-                <Check class="ml-auto h-4 w-4 text-muted-foreground" />
-              </ComboboxItemIndicator>
-            </ComboboxItem>
-          </ComboboxGroup>
-        </ComboboxViewport>
-      </ComboboxContent>
-    </ComboboxPortal>
-  </ComboboxRoot>
-</template>

@@ -1,3 +1,12 @@
+<template>
+  <p
+    :id="formDescriptionId"
+    :class="cn('text-sm text-muted-foreground group-[:has([disabled])]:opacity-70 group-[:has([disabled])]:cursor-not-allowed', props.class)"
+  >
+    <slot />
+  </p>
+</template>
+
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue'
 import { useFormField } from './useFormField'
@@ -9,12 +18,3 @@ const props = defineProps<{
 
 const { formDescriptionId } = useFormField()
 </script>
-
-<template>
-  <p
-    :id="formDescriptionId"
-    :class="cn('text-sm text-muted-foreground group-[:has([disabled])]:opacity-70 group-[:has([disabled])]:cursor-not-allowed', props.class)"
-  >
-    <slot />
-  </p>
-</template>

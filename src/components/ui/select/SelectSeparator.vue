@@ -1,3 +1,7 @@
+<template>
+  <SelectSeparator v-bind="delegatedProps" :class="cn('-mx-1 my-1 h-px bg-muted', props.class)" />
+</template>
+
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { SelectSeparator, type SelectSeparatorProps } from 'radix-vue'
@@ -11,7 +15,3 @@ const delegatedProps = computed(() => {
   return delegated
 })
 </script>
-
-<template>
-  <SelectSeparator v-bind="delegatedProps" :class="cn('-mx-1 my-1 h-px bg-muted', props.class)" />
-</template>

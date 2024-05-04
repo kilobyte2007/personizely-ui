@@ -1,22 +1,3 @@
-<script lang="ts" setup>
-import { type HTMLAttributes, computed } from 'vue'
-import { RangeCalendarRoot, type RangeCalendarRootEmits, type RangeCalendarRootProps, useForwardPropsEmits } from 'radix-vue'
-import { RangeCalendarCell, RangeCalendarCellTrigger, RangeCalendarGrid, RangeCalendarGridBody, RangeCalendarGridHead, RangeCalendarGridRow, RangeCalendarHeadCell, RangeCalendarHeader, RangeCalendarHeading, RangeCalendarNextButton, RangeCalendarPrevButton } from '.'
-import { cn } from '@/utils'
-
-const props = defineProps<RangeCalendarRootProps & { class?: HTMLAttributes['class'] }>()
-
-const emits = defineEmits<RangeCalendarRootEmits>()
-
-const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
-
-  return delegated
-})
-
-const forwarded = useForwardPropsEmits(delegatedProps, emits)
-</script>
-
 <template>
   <RangeCalendarRoot
     v-slot="{ grid, weekDays }"
@@ -59,3 +40,22 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
     </div>
   </RangeCalendarRoot>
 </template>
+
+<script lang="ts" setup>
+import { type HTMLAttributes, computed } from 'vue'
+import { RangeCalendarRoot, type RangeCalendarRootEmits, type RangeCalendarRootProps, useForwardPropsEmits } from 'radix-vue'
+import { RangeCalendarCell, RangeCalendarCellTrigger, RangeCalendarGrid, RangeCalendarGridBody, RangeCalendarGridHead, RangeCalendarGridRow, RangeCalendarHeadCell, RangeCalendarHeader, RangeCalendarHeading, RangeCalendarNextButton, RangeCalendarPrevButton } from '.'
+import { cn } from '@/utils'
+
+const props = defineProps<RangeCalendarRootProps & { class?: HTMLAttributes['class'] }>()
+
+const emits = defineEmits<RangeCalendarRootEmits>()
+
+const delegatedProps = computed(() => {
+  const { class: _, ...delegated } = props
+
+  return delegated
+})
+
+const forwarded = useForwardPropsEmits(delegatedProps, emits)
+</script>

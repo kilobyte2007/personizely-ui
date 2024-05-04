@@ -9,7 +9,12 @@
       <DropdownMenuSeparator />
     </template>
     <DropdownMenuGroup>
-      <DropdownMenuPartItem v-for="(groupItem) in item.items" :item="groupItem" @select="$emit('select', $event)" />
+      <DropdownMenuPartItem
+        v-for="(groupItem, index) in item.items"
+        :key="index"
+        :item="groupItem"
+        @select="$emit('select', $event)"
+      />
     </DropdownMenuGroup>
   </template>
   <DropdownMenuPartItem v-else :item="item" @select="$emit('select', $event)" />

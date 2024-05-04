@@ -48,7 +48,7 @@ const props = defineProps<Omit<ToggleGroupRootProps, 'modelValue'> & {
 }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, items, ...delegated } = props
+  const { class: _, items: _items, ...delegated } = props
   return delegated
 })
 

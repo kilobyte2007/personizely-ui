@@ -1,22 +1,3 @@
-<script lang="ts" setup>
-import { type HTMLAttributes, computed } from 'vue'
-import { CalendarRoot, type CalendarRootEmits, type CalendarRootProps, useForwardPropsEmits } from 'radix-vue'
-import { CalendarCell, CalendarCellTrigger, CalendarGrid, CalendarGridBody, CalendarGridHead, CalendarGridRow, CalendarHeadCell, CalendarHeader, CalendarHeading, CalendarNextButton, CalendarPrevButton } from '.'
-import { cn } from '@/utils'
-
-const props = defineProps<CalendarRootProps & { class?: HTMLAttributes['class'] }>()
-
-const emits = defineEmits<CalendarRootEmits>()
-
-const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
-
-  return delegated
-})
-
-const forwarded = useForwardPropsEmits(delegatedProps, emits)
-</script>
-
 <template>
   <CalendarRoot
     v-slot="{ grid, weekDays }"
@@ -34,7 +15,8 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
         <CalendarGridHead>
           <CalendarGridRow>
             <CalendarHeadCell
-              v-for="day in weekDays" :key="day"
+              v-for="day in weekDays"
+              :key="day"
             >
               {{ day }}
             </CalendarHeadCell>
@@ -58,3 +40,22 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
     </div>
   </CalendarRoot>
 </template>
+
+<script lang="ts" setup>
+import { type HTMLAttributes, computed } from 'vue'
+import { CalendarRoot, type CalendarRootEmits, type CalendarRootProps, useForwardPropsEmits } from 'radix-vue'
+import { CalendarCell, CalendarCellTrigger, CalendarGrid, CalendarGridBody, CalendarGridHead, CalendarGridRow, CalendarHeadCell, CalendarHeader, CalendarHeading, CalendarNextButton, CalendarPrevButton } from '.'
+import { cn } from '@/utils'
+
+const props = defineProps<CalendarRootProps & { class?: HTMLAttributes['class'] }>()
+
+const emits = defineEmits<CalendarRootEmits>()
+
+const delegatedProps = computed(() => {
+  const { class: _, ...delegated } = props
+
+  return delegated
+})
+
+const forwarded = useForwardPropsEmits(delegatedProps, emits)
+</script>

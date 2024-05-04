@@ -1,3 +1,12 @@
+<template>
+  <ComboboxRoot
+    v-bind="forwarded"
+    :class="cn(props.class)"
+  >
+    <slot />
+  </ComboboxRoot>
+</template>
+
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import type { ComboboxRootEmits, ComboboxRootProps } from 'radix-vue'
@@ -19,12 +28,3 @@ const delegatedProps = computed(() => {
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>
-
-<template>
-  <ComboboxRoot
-    v-bind="forwarded"
-    :class="cn(props.class)"
-  >
-    <slot />
-  </ComboboxRoot>
-</template>

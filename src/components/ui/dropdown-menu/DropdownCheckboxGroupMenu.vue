@@ -19,7 +19,8 @@
         <DropdownMenuSeparator />
       </template>
       <DropdownMenuCheckboxItem
-        v-for="item in items"
+        v-for="(item, index) in items"
+        :key="index"
         :value="item.value"
         :checked="modelValue.includes(item.value)"
         @update:checked="$event ? modelValue.push(item.value) : modelValue.splice(modelValue.indexOf(item.value), 1)"

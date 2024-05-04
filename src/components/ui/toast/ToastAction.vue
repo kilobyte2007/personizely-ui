@@ -1,3 +1,15 @@
+<template>
+  <ToastAction v-bind="delegatedProps" as-child>
+    <Button
+      size="sm"
+      :class="props.class"
+      :variant="variant === 'destructive' ? 'destructive' : 'ghost'"
+    >
+      <slot />
+    </Button>
+  </ToastAction>
+</template>
+
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { ToastAction, type ToastActionProps } from 'radix-vue'
@@ -12,15 +24,3 @@ const delegatedProps = computed(() => {
   return delegated
 })
 </script>
-
-<template>
-  <ToastAction v-bind="delegatedProps" as-child>
-    <Button
-      size="sm"
-      :class="props.class"
-      :variant="variant === 'destructive' ? 'destructive' : 'ghost'"
-    >
-      <slot />
-    </Button>
-  </ToastAction>
-</template>

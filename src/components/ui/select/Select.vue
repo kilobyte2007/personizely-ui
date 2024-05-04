@@ -1,3 +1,27 @@
+<template>
+  <SelectRoot v-bind="forwarded" v-model="normalizedValue">
+    <SelectTrigger :class="cn(!modelValue ? 'text-muted-foreground' : '', props.class)">
+      <SelectValue :placeholder="placeholder">
+        <slot name="label" v-bind="{ option: selectedOption }">
+          {{ selectedOptionLabel }}
+        </slot>
+      </SelectValue>
+    </SelectTrigger>
+    <SelectContent :body-lock="false">
+      <SelectItem
+        v-for="(option, index) in preparedOptions"
+        :key="option[keys.id] || index"
+        :value="normalize(option[keys.value])"
+        :disabled="option[keys.disabled] || disabled"
+      >
+        <slot name="option" v-bind="{ option }">
+          {{ option[keys.label] || option }}
+        </slot>
+      </SelectItem>
+    </SelectContent>
+  </SelectRoot>
+</template>
+
 <script setup lang="ts">
 import type { SelectRootEmits, SelectRootProps } from 'radix-vue'
 import { SelectRoot, useForwardPropsEmits } from 'radix-vue'
@@ -51,27 +75,3 @@ const selectedOptionLabel = computed(() => {
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
 </script>
-
-<template>
-  <SelectRoot v-bind="forwarded" v-model="normalizedValue">
-    <SelectTrigger :class="cn(!modelValue ? 'text-muted-foreground' : '', props.class)">
-      <SelectValue :placeholder="placeholder">
-        <slot name="label" v-bind="{ option: selectedOption }">
-          {{ selectedOptionLabel }}
-        </slot>
-      </SelectValue>
-    </SelectTrigger>
-    <SelectContent :body-lock="false">
-      <SelectItem
-        v-for="(option, index) in preparedOptions"
-        :key="option[keys.id] || index"
-        :value="normalize(option[keys.value])"
-        :disabled="option[keys.disabled] || disabled"
-      >
-        <slot name="option" v-bind="{ option }">
-          {{ option[keys.label] || option }}
-        </slot>
-      </SelectItem>
-    </SelectContent>
-  </SelectRoot>
-</template>

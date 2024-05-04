@@ -1,19 +1,3 @@
-<script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
-import { cn } from '@/utils'
-import CardDescription from './CardDescription.vue'
-import CardContent from './CardContent.vue'
-import CardFooter from './CardFooter.vue'
-import CardTitle from './CardTitle.vue'
-import CardHeader from '@/components/ui/card/CardHeader.vue'
-
-const props = defineProps<{
-  class?: HTMLAttributes['class']
-  title?: string
-  description?: string
-}>()
-</script>
-
 <template>
   <div
     :class="
@@ -45,3 +29,19 @@ const props = defineProps<{
     </CardFooter>
   </div>
 </template>
+
+<script setup lang="ts">
+import type { HTMLAttributes } from 'vue'
+import { cn } from '@/utils'
+import CardDescription from './CardDescription.vue'
+import CardContent from './CardContent.vue'
+import CardFooter from './CardFooter.vue'
+import CardTitle from './CardTitle.vue'
+import CardHeader from '@/components/ui/card/CardHeader.vue'
+
+const props = defineProps<{
+  class?: HTMLAttributes['class']
+  title?: string
+  description?: string
+}>()
+</script>

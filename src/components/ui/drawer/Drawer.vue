@@ -1,35 +1,3 @@
-<script setup lang="ts">
-import {
-  DialogClose,
-  DialogRoot,
-  type DialogRootEmits,
-  type DialogRootProps,
-  useForwardPropsEmits
-} from 'radix-vue'
-import Button from '@/components/ui/button'
-import type { HTMLAttributes } from 'vue'
-import DrawerTrigger from './DrawerTrigger.vue'
-import DrawerContent from './DrawerContent.vue'
-import DrawerHeader from './DrawerHeader.vue'
-import DrawerFooter from './DrawerFooter.vue'
-import DrawerTitle from './DrawerTitle.vue'
-import DrawerDescription from './DrawerDescription.vue'
-import omit from 'lodash/omit'
-import { type DrawerVariants } from '@/components/ui/drawer'
-
-const props = withDefaults(defineProps<DialogRootProps & {
-  class?: HTMLAttributes['class']
-  title?: string
-  side?: DrawerVariants['side']
-  description?: string
-}>(), {
-  side: 'right'
-})
-const emits = defineEmits<DialogRootEmits>()
-
-const forwarded = useForwardPropsEmits(props, emits)
-</script>
-
 <template>
   <DialogRoot v-bind="omit(forwarded, ['title', 'description', 'side'])">
     <DrawerTrigger v-if="$slots.trigger" as-child>
@@ -71,3 +39,35 @@ const forwarded = useForwardPropsEmits(props, emits)
     </DrawerContent>
   </DialogRoot>
 </template>
+
+<script setup lang="ts">
+import {
+  DialogClose,
+  DialogRoot,
+  type DialogRootEmits,
+  type DialogRootProps,
+  useForwardPropsEmits
+} from 'radix-vue'
+import Button from '@/components/ui/button'
+import type { HTMLAttributes } from 'vue'
+import DrawerTrigger from './DrawerTrigger.vue'
+import DrawerContent from './DrawerContent.vue'
+import DrawerHeader from './DrawerHeader.vue'
+import DrawerFooter from './DrawerFooter.vue'
+import DrawerTitle from './DrawerTitle.vue'
+import DrawerDescription from './DrawerDescription.vue'
+import omit from 'lodash/omit'
+import { type DrawerVariants } from '@/components/ui/drawer'
+
+const props = withDefaults(defineProps<DialogRootProps & {
+  class?: HTMLAttributes['class']
+  title?: string
+  side?: DrawerVariants['side']
+  description?: string
+}>(), {
+  side: 'right'
+})
+const emits = defineEmits<DialogRootEmits>()
+
+const forwarded = useForwardPropsEmits(props, emits)
+</script>

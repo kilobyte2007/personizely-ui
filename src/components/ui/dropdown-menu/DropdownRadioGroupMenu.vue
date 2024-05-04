@@ -20,7 +20,12 @@
         <DropdownMenuSeparator />
       </template>
       <DropdownMenuRadioGroup v-model="modelValue">
-        <DropdownMenuRadioGroupItem v-for="item in items" :value="item.value" @select="$emit('select', item)">
+        <DropdownMenuRadioGroupItem
+          v-for="(item, index) in items"
+          :key="index"
+          :value="item.value"
+          @select="$emit('select', item)"
+        >
           <span>{{ item.label }}</span>
           <DropdownMenuShortcut v-if="item.help">
             {{ item.help }}

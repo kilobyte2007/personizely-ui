@@ -1,6 +1,7 @@
 <template>
   <AlertDialog
-    v-for="item in items"
+    v-for="(item, index) in items"
+    :key="index"
     :title="item.title"
     :description="item.description"
     :default-open="true"

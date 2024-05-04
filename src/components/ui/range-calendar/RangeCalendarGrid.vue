@@ -1,3 +1,12 @@
+<template>
+  <RangeCalendarGrid
+    :class="cn('w-full border-collapse space-y-1', props.class)"
+    v-bind="forwardedProps"
+  >
+    <slot />
+  </RangeCalendarGrid>
+</template>
+
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
 import { RangeCalendarGrid, type RangeCalendarGridProps, useForwardProps } from 'radix-vue'
@@ -13,12 +22,3 @@ const delegatedProps = computed(() => {
 
 const forwardedProps = useForwardProps(delegatedProps)
 </script>
-
-<template>
-  <RangeCalendarGrid
-    :class="cn('w-full border-collapse space-y-1', props.class)"
-    v-bind="forwardedProps"
-  >
-    <slot />
-  </RangeCalendarGrid>
-</template>

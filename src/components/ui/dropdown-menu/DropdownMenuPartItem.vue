@@ -8,7 +8,7 @@
     </DropdownMenuSubTrigger>
     <DropdownMenuPortal>
       <DropdownMenuSubContent>
-        <template v-for="(child, index) in item.children">
+        <template v-for="(child, index) in item.children" :key="index">
           <DropdownMenuPart :item="child" @select="$emit('select', $event)" />
           <DropdownMenuSeparator v-if="index !== item.children.length - 1 && ('items' in child || 'items' in item.children[index + 1])" />
         </template>
@@ -45,4 +45,6 @@ defineProps<{
 defineEmits<{
   select: [item: MenuItem]
 }>()
+</script>
+<script setup lang="ts">
 </script>

@@ -20,7 +20,7 @@
         <DropdownMenuSeparator />
       </template>
 
-      <template v-for="(item, index) in items">
+      <template v-for="(item, index) in items" :key="index">
         <DropdownMenuPart :item="item" @select="$emit('select', $event)" />
         <DropdownMenuSeparator v-if="index !== items.length - 1 && ('items' in item || 'items' in items[index + 1])" />
       </template>

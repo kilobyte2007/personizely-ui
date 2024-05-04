@@ -1,3 +1,19 @@
+<template>
+  <AccordionItem
+    v-bind="omit(forwardedProps, ['title'])"
+    :class="cn('[&:not(:last-child)]:border-b', props.class)"
+  >
+    <AccordionTrigger>
+      <slot name="title">
+        {{ title }}
+      </slot>
+    </AccordionTrigger>
+    <AccordionContent>
+      <slot />
+    </AccordionContent>
+  </AccordionItem>
+</template>
+
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { AccordionItem, type AccordionItemProps, useForwardProps } from 'radix-vue'
@@ -19,19 +35,3 @@ const delegatedProps = computed(() => {
 
 const forwardedProps = useForwardProps(delegatedProps)
 </script>
-
-<template>
-  <AccordionItem
-    v-bind="omit(forwardedProps, ['title'])"
-    :class="cn('[&:not(:last-child)]:border-b', props.class)"
-  >
-    <AccordionTrigger>
-      <slot name="title">
-        {{ title }}
-      </slot>
-    </AccordionTrigger>
-    <AccordionContent>
-      <slot />
-    </AccordionContent>
-  </AccordionItem>
-</template>
