@@ -26,7 +26,7 @@ import {
   DialogPortal,
   useForwardPropsEmits
 } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<DialogContentProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<DialogContentEmits>()

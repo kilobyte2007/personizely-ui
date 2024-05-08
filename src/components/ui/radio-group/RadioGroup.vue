@@ -45,7 +45,7 @@ import {
   useForwardPropsEmits,
   useId
 } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import { radioGroupVariants } from './'
 import RadioGroupItem from './RadioGroupItem.vue'
 import { Label } from '@/components/ui/label'

@@ -47,7 +47,7 @@ import DropdownMenuRadioGroupItem from './DropdownMenuRadioItem.vue'
 import DropdownMenuShortcut from './DropdownMenuShortcut.vue'
 import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import type { MenuRadioItem } from './'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
 
 const modelValue = defineModel<any>()

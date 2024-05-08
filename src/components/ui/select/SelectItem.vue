@@ -29,7 +29,7 @@ import {
   useForwardProps
 } from 'radix-vue'
 import { Check } from 'lucide-vue-next'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<SelectItemProps & { class?: HTMLAttributes['class'] }>()
 

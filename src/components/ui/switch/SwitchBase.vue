@@ -21,7 +21,7 @@ import {
   type SwitchRootProps,
   useForwardPropsEmits
 } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<SwitchRootProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<SwitchRootEmits>()

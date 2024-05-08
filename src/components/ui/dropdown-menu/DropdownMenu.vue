@@ -37,7 +37,7 @@ import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import DropdownMenuPart from './DropdownMenuPart.vue'
 import omit from 'lodash/omit'
 import type { MenuItem, MenuItemWithChildren, MenuGroupItem } from './'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
 
 const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps, 'side' | 'align'> & {

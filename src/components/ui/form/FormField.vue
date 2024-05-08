@@ -30,7 +30,7 @@ export const FORM_ITEM_INJECTION_KEY
 import { Field } from 'vee-validate'
 import { provide } from 'vue'
 import { useId } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import FormMessage from './FormMessage.vue'
 import FormDescription from './FormDescription.vue'
 import FormControl from './FormControl.vue'

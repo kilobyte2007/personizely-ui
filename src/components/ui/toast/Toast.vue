@@ -12,7 +12,7 @@
 import { computed } from 'vue'
 import { ToastRoot, type ToastRootEmits, useForwardPropsEmits } from 'radix-vue'
 import { type ToastProps, toastVariants } from '.'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<ToastProps>()
 

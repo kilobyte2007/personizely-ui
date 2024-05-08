@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes } from 'vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import vAutofocus from '@/directives/autofocus'
 import Icon from '@/components/ui/icon'
 import InputBase from '@/components/ui/input/InputBase.vue'

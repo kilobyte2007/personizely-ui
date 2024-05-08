@@ -45,7 +45,7 @@ import DropdownMenuShortcut from './DropdownMenuShortcut.vue'
 import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import type { MenuCheckboxItem } from './'
 import DropdownMenuCheckboxItem from '@/components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
 
 const modelValue = defineModel<any[]>({

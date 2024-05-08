@@ -26,7 +26,7 @@ import {
   type TooltipRootProps,
   useForwardPropsEmits
 } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
 
 const props = defineProps<TooltipRootProps & {

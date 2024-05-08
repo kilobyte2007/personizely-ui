@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { type HTMLAttributes, type Events } from 'vue'
 import { useId } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import CheckboxBase from './CheckboxBase.vue'
 
 const modelValue = defineModel<boolean | 'indeterminate'>()

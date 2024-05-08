@@ -27,7 +27,7 @@ import {
   SelectViewport,
   useForwardPropsEmits
 } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 defineOptions({
   inheritAttrs: false

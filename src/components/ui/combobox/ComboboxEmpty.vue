@@ -8,7 +8,7 @@
 import { type HTMLAttributes, computed } from 'vue'
 import type { ComboboxEmptyProps } from 'radix-vue'
 import { ComboboxEmpty } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<ComboboxEmptyProps & { class?: HTMLAttributes['class'] }>()
 

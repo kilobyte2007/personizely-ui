@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { DialogDescription, type DialogDescriptionProps, useForwardProps } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<DialogDescriptionProps & { class?: HTMLAttributes['class'] }>()
 

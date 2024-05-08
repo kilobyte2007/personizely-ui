@@ -21,7 +21,7 @@ import type { VariantProps } from 'class-variance-authority'
 import { type HTMLAttributes, computed } from 'vue'
 import { ToggleGroupItem, type ToggleGroupItemProps, useForwardProps } from 'radix-vue'
 import { toggleVariants } from '@/components/ui/toggle'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import { buttonIconVariants } from '@/components/ui/button'
 import Icon from '@/components/ui/icon'
 

@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const modelValue = defineModel<string | undefined | null>()
 const props = defineProps<{

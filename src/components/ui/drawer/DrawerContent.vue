@@ -23,7 +23,7 @@ import {
   useForwardPropsEmits
 } from 'radix-vue'
 import { type DrawerVariants, drawerVariants } from '.'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 interface SheetContentProps extends DialogContentProps {
   class?: HTMLAttributes['class']

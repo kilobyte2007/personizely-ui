@@ -26,7 +26,7 @@ import { type HTMLAttributes, computed } from 'vue'
 import { ToggleGroupRoot, type ToggleGroupRootProps, useForwardProps } from 'radix-vue'
 import type { toggleVariants } from '@/components/ui/toggle'
 import ToggleGroupItem from './ToggleGroupItem.vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import { useNormalizedTypes, normalize } from '@/composables/useNormalizedTypes'
 import { useEmpty } from '@/composables/useEmpty'
 

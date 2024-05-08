@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
 import { RangeCalendarCell, type RangeCalendarCellProps, useForwardProps } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<RangeCalendarCellProps & { class?: HTMLAttributes['class'] }>()
 

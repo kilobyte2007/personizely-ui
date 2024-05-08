@@ -34,7 +34,7 @@ import SelectItem from './SelectItem.vue'
 import omit from 'lodash/omit'
 import { useEmpty } from '@/composables/useEmpty'
 import { useNormalizedTypes, normalize } from '@/composables/useNormalizedTypes'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const modelValue = defineModel<string | number | null | true | false>()
 const normalizedValue = useNormalizedTypes(useEmpty(modelValue))

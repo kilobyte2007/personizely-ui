@@ -15,7 +15,7 @@ import { AvatarRoot } from 'radix-vue'
 import { type AvatarVariants, avatarVariant } from '.'
 import AvatarImage from './AvatarImage.vue'
 import AvatarFallback from './AvatarFallback.vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = withDefaults(defineProps<{
   class?: HTMLAttributes['class']

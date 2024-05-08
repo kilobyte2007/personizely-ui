@@ -1,5 +1,5 @@
 export default {
-  mounted (el, { value }) {
+  mounted (el: HTMLElement, { value }: { value: boolean }) {
     if (value) {
       el.focus()
     }

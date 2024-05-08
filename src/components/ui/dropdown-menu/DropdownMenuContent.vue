@@ -18,7 +18,7 @@ import {
   DropdownMenuPortal,
   useForwardPropsEmits
 } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = withDefaults(defineProps<DropdownMenuContentProps & { class?: HTMLAttributes['class'] }>(), {
   sideOffset: 4

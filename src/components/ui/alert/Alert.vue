@@ -32,7 +32,7 @@ import Icon from '@/components/ui/icon'
 import Button from '@/components/ui/button'
 import type { HTMLAttributes } from 'vue'
 import { type AlertVariants, alertVariants } from '.'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const emit = defineEmits(['update:visible', 'dismiss'])
 

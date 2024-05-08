@@ -1,6 +1,6 @@
 import { type VariantProps, cva } from 'class-variance-authority'
 
-export { default } from './Avatar.vue'
+export { default as Avatar } from './Avatar.vue'
 
 export const avatarVariant = cva('inline-flex items-center justify-center font-normal text-foreground select-none shrink-0 bg-secondary overflow-hidden', {
   variants: {

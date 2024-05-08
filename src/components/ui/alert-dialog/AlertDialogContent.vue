@@ -27,7 +27,7 @@ import {
   AlertDialogPortal,
   useForwardPropsEmits
 } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<AlertDialogContentProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<AlertDialogContentEmits>()

@@ -36,7 +36,7 @@ import type { TabsRootEmits, TabsRootProps } from 'radix-vue'
 import TabsTrigger from './TabsTrigger.vue'
 import Icon from '@/components/ui/icon'
 import Tooltip from '@/components/ui/tooltip'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import { tabsVariants, tabsListVariants } from '@/components/ui/tabs/index'
 import type { HTMLAttributes } from 'vue'
 

@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import AlertDialog from '@/components/ui/alert-dialog/AlertDialog.vue'
-import { useAlertDialog, type Item } from '@/components/ui/alert-dialog/use-alert-dialog'
+import { useAlertDialog, type Item } from '@/components/ui/alert-dialog/useAlertDialog'
 
 const { items } = useAlertDialog()
 

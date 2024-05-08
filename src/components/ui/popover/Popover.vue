@@ -36,7 +36,7 @@ import {
   useForwardPropsEmits
 } from 'radix-vue'
 import type { PopoverRootEmits, PopoverRootProps } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
 import omit from 'lodash/omit'
 

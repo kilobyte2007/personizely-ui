@@ -1,6 +1,5 @@
 import './bootstrap'
 import configure from './configure'
-import { startsWith } from './helpers/util'
 
 import UiAlert from './UiAlert.vue'
 import UiAutocomplete from './UiAutocomplete.vue'

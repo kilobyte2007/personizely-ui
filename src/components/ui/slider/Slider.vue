@@ -42,7 +42,7 @@
 import { type HTMLAttributes, computed, ref } from 'vue'
 import type { SliderRootProps } from 'radix-vue'
 import { SliderRange, SliderRoot, SliderThumb, SliderTrack, useForwardPropsEmits } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import omit from 'lodash/omit'
 
 const props = withDefaults(defineProps<Omit<SliderRootProps, 'modelValue'> & {

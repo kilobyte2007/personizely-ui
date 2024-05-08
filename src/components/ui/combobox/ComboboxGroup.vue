@@ -14,7 +14,7 @@
 import { type HTMLAttributes, computed } from 'vue'
 import type { ComboboxGroupProps } from 'radix-vue'
 import { SelectGroup, SelectLabel } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<ComboboxGroupProps & {
   class?: HTMLAttributes['class']

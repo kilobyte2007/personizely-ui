@@ -1,13 +1,25 @@
-import { defineConfig } from 'vitepress'
+import {defineConfig, postcssIsolateStyles} from 'vitepress'
 import { fileURLToPath, URL } from 'url'
 import { whyframe } from '@whyframe/core'
 import { whyframeVue } from '@whyframe/vue'
+import tailwind from "tailwindcss";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Personizely UI",
   description: "Personizely UI - Beautiful set of components.",
   vite: {
+    css: {
+      postcss: {
+        plugins: [
+          postcssIsolateStyles({
+            prefix: ":not(:where(.vp-raw, .vp-raw *), :where([data-radix-popper-content-wrapper], [data-radix-popper-content-wrapper] *))",
+            includeFiles: [/vp-doc\.css/, /base\.css/]
+          }),
+          tailwind()
+        ]
+      }
+    },
     plugins: [
       whyframe({
         defaultSrc: '/frames/default'

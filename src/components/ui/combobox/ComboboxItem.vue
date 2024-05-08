@@ -11,7 +11,7 @@
 import { type HTMLAttributes, computed } from 'vue'
 import type { ComboboxItemEmits, ComboboxItemProps } from 'radix-vue'
 import { ComboboxItem, useForwardPropsEmits } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<ComboboxItemProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<ComboboxItemEmits>()

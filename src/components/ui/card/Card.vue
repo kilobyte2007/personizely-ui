@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import CardDescription from './CardDescription.vue'
 import CardContent from './CardContent.vue'
 import CardFooter from './CardFooter.vue'

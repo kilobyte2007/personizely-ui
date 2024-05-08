@@ -72,7 +72,7 @@ import {
   ComboboxTrigger,
   ComboboxViewport
 } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import ComboboxRoot from './ComboboxRoot.vue'
 import ComboboxContent from './ComboboxContent.vue'
 import ComboboxItem from './ComboboxItem.vue'

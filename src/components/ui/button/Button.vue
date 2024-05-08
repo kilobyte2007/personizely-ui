@@ -59,7 +59,7 @@
 import type { HTMLAttributes, AnchorHTMLAttributes } from 'vue'
 import { Primitive } from 'radix-vue'
 import { buttonIconVariants, type ButtonVariants, buttonVariants } from '.'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import ProgressCircular from '@/components/ui/progress-circular'
 import Icon from '@/components/ui/icon'
 import { createReusableTemplate } from '@vueuse/core'

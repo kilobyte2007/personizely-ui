@@ -1,6 +1,6 @@
 import { type VariantProps, cva } from 'class-variance-authority'
 
-export { default } from './Alert.vue'
+export { default as Alert } from './Alert.vue'
 
 export const alertVariants = cva('relative w-full rounded-lg border p-3', {
   variants: {

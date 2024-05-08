@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { DialogClose, DialogRoot, type DialogRootEmits, type DialogRootProps, useForwardPropsEmits } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 import Button from '@/components/ui/button'
 import DialogTrigger from './DialogTrigger.vue'
 import DialogHeader from './DialogHeader.vue'

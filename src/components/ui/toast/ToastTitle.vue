@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { ToastTitle, type ToastTitleProps } from 'radix-vue'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = defineProps<ToastTitleProps & { class?: HTMLAttributes['class'] }>()
 

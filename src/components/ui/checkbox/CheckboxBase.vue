@@ -16,7 +16,7 @@ import { type HTMLAttributes } from 'vue'
 import { type CheckboxRootEmits, type CheckboxRootProps, useId } from 'radix-vue'
 import { CheckboxIndicator, CheckboxRoot, useForwardPropsEmits } from 'radix-vue'
 import { Check } from 'lucide-vue-next'
-import { cn } from '@/utils'
+import { cn } from '@/utils/tailwind'
 
 const props = withDefaults(defineProps<CheckboxRootProps & {
   class?: HTMLAttributes['class']

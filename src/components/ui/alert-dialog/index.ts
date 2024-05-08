@@ -1,3 +1,3 @@
-export { default } from './AlertDialog.vue'
-export { useAlertDialog } from './use-alert-dialog'
+export { default as AlertDialog } from './AlertDialog.vue'
+export { useAlertDialog } from './useAlertDialog'
 export { default as AlertDialogProvider } from './AlertDialogProvider.vue'
