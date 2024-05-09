@@ -7,10 +7,8 @@ import tailwind from 'tailwindcss'
 import options from './build/options'
 import { fileURLToPath, URL } from 'url'
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
+
 export default defineConfig(({ mode }) => {
-  const isProduction = mode === 'production'
   const outDir = options.paths.output.main
 
   return {
@@ -36,20 +34,17 @@ export default defineConfig(({ mode }) => {
         entry: options.paths.resolve('src/index.ts'),
         name: 'PersonizelyUI',
         formats: ['umd', 'es'],
-        fileName: (format) => {
-          const min = isProduction ? '.min' : ''
-          const ext = format !== 'es' ? `.${format}` : ''
-          return `${options.name}${min}${ext}.js`
-        }
+        fileName: options.name
       },
       rollupOptions: {
         external: [/^vue/],
         output: {
           globals: {
-            vue: 'Vue'
+            vue: 'Vue',
+            'vue-demi': 'VueDemi'
           },
           assetFileNames: assetInfo =>
-            assetInfo.name?.endsWith('.css') ? `${options.name}${isProduction ? '.min' : ''}.css` : assetInfo.name
+            assetInfo.name?.endsWith('.css') ? `${options.name}.css` : assetInfo.name
         }
       }
     }

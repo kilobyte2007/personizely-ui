@@ -81,10 +81,47 @@ export function install (app: App) {
 }
 
 export default {
-  install,
+  install
+}
+
+export {
   useAlertDialog,
   useToast,
-  ...PersonizelyUI
+  Accordion,
+  AccordionItem,
+  Alert,
+  Avatar,
+  AlertDialog,
+  Badge,
+  Button,
+  Card,
+  Checkbox,
+  CheckboxGroup,
+  Color,
+  ColorPicker,
+  Combobox,
+  DatePicker,
+  DateRangePicker,
+  Dialog,
+  Drawer,
+  DropdownMenu,
+  Input,
+  Icon,
+  Form,
+  Popover,
+  Progress,
+  ProgressCircular,
+  RadioGroup,
+  Select,
+  Slider,
+  Switch,
+  Tabs,
+  TabsContent,
+  Textarea,
+  Toaster,
+  Toggle,
+  ToggleGroup,
+  Tooltip
 }
 
 export type {

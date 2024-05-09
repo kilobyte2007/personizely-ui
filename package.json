@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "vite build --config vite.config.ts",
+    "build:types": "vue-tsc --project tsconfig.json --declaration --emitDeclarationOnly --outDir dist/types",
     "clean": "rimraf ./dist",
     "lint": "eslint --ext .ts,.vue . --no-ignore",
     "lint:fix": "eslint --fix --ext .ts,.vue . --no-ignore",
