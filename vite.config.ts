@@ -7,6 +7,8 @@ import tailwind from 'tailwindcss'
 import options from './build/options'
 import { fileURLToPath, URL } from 'url'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production'
   const outDir = options.paths.output.main
