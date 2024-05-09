@@ -11,7 +11,7 @@ const banner =
   '/*!\n' +
   ' * Personizely UI v' +
   version +
-  ' (https://github.com/kilo/keen-ui)\n' +
+  ' (https://github.com/kilobyte2007/personizely-ui)\n' +
   ' * (c) ' +
   new Date().getFullYear() +
   ' Sergiu Cazac\n' +
