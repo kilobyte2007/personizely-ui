@@ -37,11 +37,10 @@ export default defineConfig(({ mode }) => {
         fileName: options.name
       },
       rollupOptions: {
-        external: [/^vue/],
+        external: [/^vue$/],
         output: {
           globals: {
-            vue: 'Vue',
-            'vue-demi': 'VueDemi'
+            vue: 'Vue'
           },
           assetFileNames: assetInfo =>
             assetInfo.name?.endsWith('.css') ? `${options.name}.css` : assetInfo.name
