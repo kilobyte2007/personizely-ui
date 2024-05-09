@@ -4,7 +4,7 @@ import type { App, Component } from 'vue'
 import { Accordion, AccordionItem } from '@/components/ui/accordion'
 import { Alert } from '@/components/ui/alert'
 import { Avatar } from '@/components/ui/avatar'
-import { AlertDialog, useAlertDialog } from '@/components/ui/alert-dialog'
+import { AlertDialog, AlertDialogProvider, useAlertDialog } from '@/components/ui/alert-dialog'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -32,7 +32,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Toaster, useToast } from '@/components/ui/toast'
 import { Toggle } from '@/components/ui/toggle'
 import { ToggleGroup } from '@/components/ui/toggle-group'
-import { Tooltip } from '@/components/ui/tooltip'
+import { Tooltip, TooltipProvider } from '@/components/ui/tooltip'
 import { type Option } from '@/utils/options'
 
 const PersonizelyUI: { [key:string]: Component } = {
@@ -40,6 +40,7 @@ const PersonizelyUI: { [key:string]: Component } = {
   AccordionItem,
   Alert,
   Avatar,
+  AlertDialogProvider,
   AlertDialog,
   Badge,
   Button,
@@ -70,6 +71,7 @@ const PersonizelyUI: { [key:string]: Component } = {
   Toaster,
   Toggle,
   ToggleGroup,
+  TooltipProvider,
   Tooltip
 }
 
