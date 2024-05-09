@@ -8,7 +8,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import Combobox from '@/components/ui/combobox'
+import { Combobox } from '@/components/ui/combobox'
 
 const value = ref(null)
 const options = [

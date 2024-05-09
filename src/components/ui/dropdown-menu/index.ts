@@ -1,4 +1,4 @@
-export { default } from './DropdownMenu.vue'
+export { default as DropdownMenu } from './DropdownMenu.vue'
 export { default as DropdownRadioGroupMenu } from './DropdownRadioGroupMenu.vue'
 export { default as DropdownCheckboxGroupMenu } from './DropdownCheckboxGroupMenu.vue'
 

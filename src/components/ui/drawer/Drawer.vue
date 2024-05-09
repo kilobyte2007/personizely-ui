@@ -48,7 +48,7 @@ import {
   type DialogRootProps,
   useForwardPropsEmits
 } from 'radix-vue'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import type { HTMLAttributes } from 'vue'
 import DrawerTrigger from './DrawerTrigger.vue'
 import DrawerContent from './DrawerContent.vue'

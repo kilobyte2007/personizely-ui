@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-export { default } from './CheckboxGroup.vue'
+export { default as CheckboxGroup } from './CheckboxGroup.vue'
 
 export const checkboxGroupVariants = cva('flex ', {
   variants: {

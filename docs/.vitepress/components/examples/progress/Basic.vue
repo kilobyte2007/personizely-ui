@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import Progress from '@/components/ui/progress'
+import { Progress } from '@/components/ui/progress'
 </script>

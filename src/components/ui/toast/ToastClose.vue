@@ -13,7 +13,7 @@
 import { type HTMLAttributes, computed } from 'vue'
 import { ToastClose, type ToastCloseProps } from 'radix-vue'
 import { cn } from '@/utils/tailwind'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import type { ToastVariants } from './'
 
 const props = defineProps<ToastCloseProps & {

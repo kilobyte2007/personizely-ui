@@ -16,8 +16,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import DropdownMenu from '@/components/ui/dropdown-menu'
-import Button from '@/components/ui/button'
+import { DropdownMenu } from '@/components/ui/dropdown-menu'
+import { Button } from '@/components/ui/button'
 import { ref } from 'vue'
 
 const open = ref(false)

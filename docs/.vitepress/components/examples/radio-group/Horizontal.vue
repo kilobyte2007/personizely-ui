@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import RadioGroup from '@/components/ui/radio-group'
+import { RadioGroup } from '@/components/ui/radio-group'
 
 const value = ref(null)
 const options = [

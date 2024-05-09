@@ -15,6 +15,6 @@
   </Card>
 </template>
 <script setup lang="ts">
-import Card from '@/components/ui/card'
-import Button from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 </script>

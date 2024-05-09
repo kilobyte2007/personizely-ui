@@ -17,8 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { AccordionItem } from '@/components/ui/accordion'
-import Accordion from '@/components/ui/accordion'
+import { AccordionItem, Accordion } from '@/components/ui/accordion'
 import { ref } from 'vue'
 
 const value = ref('item-3')

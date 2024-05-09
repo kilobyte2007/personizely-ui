@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { useAlertDialog, AlertDialogProvider } from '@/components/ui/alert-dialog'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 
 const { confirm } = useAlertDialog()
 const action = () => {

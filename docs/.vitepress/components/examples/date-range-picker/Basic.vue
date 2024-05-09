@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import DateRangePicker from '@/components/ui/date-range-picker'
+import { DateRangePicker } from '@/components/ui/date-range-picker'
 import type { DateRange } from 'radix-vue'
 
 const value = ref<DateRange>({

@@ -11,7 +11,7 @@
 </template>
 <script setup lang="ts">
 import { DropdownRadioGroupMenu } from '@/components/ui/dropdown-menu'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { ref } from 'vue'
 
 const items = [

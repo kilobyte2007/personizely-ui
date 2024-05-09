@@ -9,7 +9,7 @@ export { default as ToastClose } from './ToastClose.vue'
 export { default as ToastTitle } from './ToastTitle.vue'
 export { default as ToastDescription } from './ToastDescription.vue'
 export { default as ToastProvider } from './ToastProvider.vue'
-export { toast, useToast } from './use-toast'
+export { toast, useToast } from './useToast'
 
 import { type VariantProps, cva } from 'class-variance-authority'
 

@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import Textarea from '@/components/ui/textarea'
 import { ref } from 'vue'
+import { Textarea } from '@/components/ui/textarea'
 
 const value = ref()
 </script>

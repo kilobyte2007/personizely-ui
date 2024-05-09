@@ -4,5 +4,5 @@
   />
 </template>
 <script setup lang="ts">
-import ProgressCircular from '@/components/ui/progress-circular'
+import { ProgressCircular } from '@/components/ui/progress-circular'
 </script>

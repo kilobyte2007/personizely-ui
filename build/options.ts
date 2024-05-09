@@ -5,6 +5,8 @@ import { version } from '../package.json'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
+const name = 'personizely-ui'
+
 const banner =
   '/*!\n' +
   ' * Personizely UI v' +
@@ -18,11 +20,11 @@ const banner =
 
 export default {
   banner,
+  name,
 
   paths: {
     output: {
       main: join(__dirname, '..', 'dist'),
-      docs: join(__dirname, '..', 'dist/docs')
     },
 
     resolve (location: string) {

@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import AlertDialog from '@/components/ui/alert-dialog'
-import Button from '@/components/ui/button'
+import { AlertDialog } from '@/components/ui/alert-dialog'
+import { Button } from '@/components/ui/button'
 
 const confirm = () => {
   alert('Action confirmed!')

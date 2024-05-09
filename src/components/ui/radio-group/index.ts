@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-export { default } from './RadioGroup.vue'
+export { default as RadioGroup } from './RadioGroup.vue'
 
 export const radioGroupVariants = cva('flex ', {
   variants: {

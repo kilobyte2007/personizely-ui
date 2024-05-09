@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import CheckboxGroup from '@/components/ui/checkbox-group'
+import { CheckboxGroup } from '@/components/ui/checkbox-group'
 
 const value = ref([])
 const options = [

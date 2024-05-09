@@ -16,8 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import Button from '@/components/ui/button'
-import Popover from '@/components/ui/popover'
+import { Button } from '@/components/ui/button'
+import { Popover } from '@/components/ui/popover'
 import Color from './Color.vue'
 import Checkboard from './Checkboard.vue'
 

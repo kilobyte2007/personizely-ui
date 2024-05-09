@@ -16,8 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { AccordionItem } from '@/components/ui/accordion'
-import Accordion from '@/components/ui/accordion'
+import { Accordion, AccordionItem } from '@/components/ui/accordion'
 
 const defaultValue = ['item-1']
 

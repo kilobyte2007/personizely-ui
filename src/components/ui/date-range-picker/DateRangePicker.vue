@@ -43,9 +43,9 @@ import {
 } from '@internationalized/date'
 import type { DateRange } from 'radix-vue'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
-import RangeCalendar from '@/components/ui/range-calendar'
-import Button from '@/components/ui/button'
-import Popover from '@/components/ui/popover'
+import { RangeCalendar } from '@/components/ui/range-calendar'
+import { Button } from '@/components/ui/button'
+import { Popover } from '@/components/ui/popover'
 import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
 

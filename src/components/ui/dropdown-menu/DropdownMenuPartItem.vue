@@ -35,7 +35,7 @@ import DropdownMenuSubContent from './DropdownMenuSubContent.vue'
 import DropdownMenuSubTrigger from './DropdownMenuSubTrigger.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
 import { DropdownMenuPortal } from 'radix-vue'
-import Icon from '@/components/ui/icon'
+import { Icon } from '@/components/ui/icon'
 import type { MenuItem, MenuItemWithChildren } from './'
 
 defineProps<{
@@ -45,6 +45,4 @@ defineProps<{
 defineEmits<{
   select: [item: MenuItem]
 }>()
-</script>
-<script setup lang="ts">
 </script>

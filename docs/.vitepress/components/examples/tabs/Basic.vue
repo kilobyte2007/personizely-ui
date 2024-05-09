@@ -13,5 +13,5 @@
   </Tabs>
 </template>
 <script setup lang="ts">
-import Tabs, { TabsContent } from '@/components/ui/tabs'
+import { Tabs, TabsContent } from '@/components/ui/tabs'
 </script>

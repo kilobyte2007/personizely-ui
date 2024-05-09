@@ -10,5 +10,5 @@
   </div>
 </template>
 <script setup lang="ts">
-import Icon from '@/components/ui/icon'
+import { Icon } from '@/components/ui/icon'
 </script>

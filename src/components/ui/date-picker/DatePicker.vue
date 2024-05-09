@@ -26,9 +26,9 @@ import {
 } from '@internationalized/date'
 
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
-import Calendar from '@/components/ui/calendar'
-import Button from '@/components/ui/button'
-import Popover from '@/components/ui/popover'
+import { Calendar } from '@/components/ui/calendar'
+import { Button } from '@/components/ui/button'
+import { Popover } from '@/components/ui/popover'
 import { cn } from '@/utils/tailwind'
 
 const modelValue = defineModel<DateValue>()

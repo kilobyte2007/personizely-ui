@@ -6,8 +6,8 @@
   </DropdownMenu>
 </template>
 <script setup lang="ts">
-import DropdownMenu, { type MenuItem } from '@/components/ui/dropdown-menu'
-import Button from '@/components/ui/button'
+import { DropdownMenu, type MenuItem } from '@/components/ui/dropdown-menu'
+import { Button } from '@/components/ui/button'
 
 const onSelect = (item: MenuItem) => {
   alert(item.label + ' menu item was selected.')

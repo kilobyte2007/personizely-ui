@@ -15,9 +15,9 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import Popover from '@/components/ui/popover'
-import Button from '@/components/ui/button'
-import Avatar from '@/components/ui/avatar'
+import { Popover } from '@/components/ui/popover'
+import { Button } from '@/components/ui/button'
+import { Avatar } from '@/components/ui/avatar'
 
 const open = ref(false)
 </script>

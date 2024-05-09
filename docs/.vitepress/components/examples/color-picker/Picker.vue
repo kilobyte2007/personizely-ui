@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import ColorPicker from '@/components/ui/color-picker'
+import { ColorPicker } from '@/components/ui/color-picker'
 import { ref } from 'vue'
 
 const value = ref('#FF9500')

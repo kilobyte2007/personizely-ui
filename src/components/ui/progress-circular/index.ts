@@ -1,1 +1,1 @@
-export { default } from './ProgressCircular.vue'
+export { default as ProgressCircular } from './ProgressCircular.vue'

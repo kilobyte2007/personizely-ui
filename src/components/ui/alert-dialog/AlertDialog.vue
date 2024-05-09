@@ -46,7 +46,7 @@ import {
 } from 'radix-vue'
 import AlertDialogContent from './AlertDialogContent.vue'
 import omit from 'lodash/omit'
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 
 const props = defineProps<AlertDialogProps & {
   title: string

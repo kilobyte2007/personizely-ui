@@ -18,7 +18,7 @@ import { type HTMLAttributes, computed } from 'vue'
 import { Toggle, type ToggleEmits, type ToggleProps, useForwardPropsEmits } from 'radix-vue'
 import { type ToggleVariants, toggleVariants } from '.'
 import { cn } from '@/utils/tailwind'
-import Icon from '@/components/ui/icon'
+import { Icon } from '@/components/ui/icon'
 import { buttonIconVariants } from '@/components/ui/button'
 
 const props = withDefaults(defineProps<ToggleProps & {

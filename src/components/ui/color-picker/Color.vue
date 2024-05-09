@@ -98,10 +98,13 @@
         </LabelInput>
       </div>
       <Button
-        icon="chevrons-up-down"
         variant="ghost"
         @click="toggleMode"
-      />
+      >
+        <template #icon>
+          <ChevronsUpDown />
+        </template>
+      </Button>
     </div>
   </div>
 </template>
@@ -113,8 +116,9 @@ import Saturation from './Saturation.vue'
 import Hue from './Hue.vue'
 import Alpha from './Alpha.vue'
 import LabelInput from './LabelInput.vue'
-import Input from '@/components/ui/input'
-import Button from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { ChevronsUpDown } from 'lucide-vue-next'
 
 const modelValue = defineModel<string>({
   default: 'transparent'

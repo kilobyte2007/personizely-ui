@@ -1,9 +1,9 @@
 <template>
   <div v-if="visible" :class="cn(alertVariants({ type }), dismissible ? 'pr-12' : '', props.class)" role="alert">
     <slot name="icon">
-      <Icon
+      <component
+        :is="icon"
         v-if="!removeIcon"
-        :icon="icon"
         class="w-4 h-4 absolute left-3.5 top-3.5"
       />
     </slot>
@@ -28,8 +28,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Icon from '@/components/ui/icon'
-import Button from '@/components/ui/button'
+import { Icon } from '@/components/ui/icon'
+import { Button } from '@/components/ui/button'
+import { Info, TriangleAlert, CircleCheck, CircleAlert } from 'lucide-vue-next'
 import type { HTMLAttributes } from 'vue'
 import { type AlertVariants, alertVariants } from '.'
 import { cn } from '@/utils/tailwind'
@@ -52,10 +53,10 @@ const props = withDefaults(defineProps<{
 
 const icon = computed(() => {
   return {
-    info: 'info',
-    warning: 'triangle-alert',
-    success: 'circle-check',
-    error: 'circle-alert'
+    info: Info,
+    warning: TriangleAlert,
+    success: CircleCheck,
+    error: CircleAlert
   }[props.type!]
 })
 

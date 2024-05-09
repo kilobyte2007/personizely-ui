@@ -11,17 +11,6 @@ export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production'
   const outDir = options.paths.output.main
 
-  const formatFileNames = {
-    es: {
-      development: 'personizely-ui.esm.js',
-      production: 'personizely-ui.esm.min.js'
-    },
-    umd: {
-      development: 'personizely-ui.js',
-      production: 'personizely-ui.min.js'
-    }
-  }
-
   return {
     plugins: [vue(), banner({ content: options.banner, outDir })],
     resolve: {
@@ -38,15 +27,17 @@ export default defineConfig(({ mode }) => {
     build: {
       minify: mode === 'production' ? 'esbuild' : false,
       outDir,
-      emptyOutDir: false,
+      emptyOutDir: true,
       chunkSizeWarningLimit: 600,
       cssCodeSplit: false,
       lib: {
-        entry: options.paths.resolve('src/index.js'),
+        entry: options.paths.resolve('src/index.ts'),
         name: 'PersonizelyUI',
-        formats: isProduction ? ['umd'] : ['umd', 'es'],
+        formats: ['umd', 'es'],
         fileName: (format) => {
-          return formatFileNames[format][mode]
+          const min = isProduction ? '.min' : ''
+          const ext = format !== 'es' ? `.${format}` : ''
+          return `${options.name}${min}${ext}.js`
         }
       },
       rollupOptions: {
@@ -56,7 +47,7 @@ export default defineConfig(({ mode }) => {
             vue: 'Vue'
           },
           assetFileNames: assetInfo =>
-            assetInfo.name === 'style.css' ? `keen-ui${isProduction ? '.min' : ''}.css` : assetInfo.name
+            assetInfo.name?.endsWith('.css') ? `${options.name}${isProduction ? '.min' : ''}.css` : assetInfo.name
         }
       }
     }

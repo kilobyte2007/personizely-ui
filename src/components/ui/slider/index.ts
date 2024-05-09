@@ -1,1 +1,1 @@
-export { default } from './Slider.vue'
+export { default as Slider } from './Slider.vue'

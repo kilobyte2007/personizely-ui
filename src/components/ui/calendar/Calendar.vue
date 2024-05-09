@@ -44,7 +44,17 @@
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
 import { CalendarRoot, type CalendarRootEmits, type CalendarRootProps, useForwardPropsEmits } from 'radix-vue'
-import { CalendarCell, CalendarCellTrigger, CalendarGrid, CalendarGridBody, CalendarGridHead, CalendarGridRow, CalendarHeadCell, CalendarHeader, CalendarHeading, CalendarNextButton, CalendarPrevButton } from '.'
+import CalendarCell from './CalendarCell.vue'
+import CalendarCellTrigger from './CalendarCellTrigger.vue'
+import CalendarGrid from './CalendarGrid.vue'
+import CalendarGridBody from './CalendarGridBody.vue'
+import CalendarGridHead from './CalendarGridHead.vue'
+import CalendarGridRow from './CalendarGridRow.vue'
+import CalendarHeadCell from './CalendarHeadCell.vue'
+import CalendarHeader from './CalendarHeader.vue'
+import CalendarHeading from './CalendarHeading.vue'
+import CalendarNextButton from './CalendarNextButton.vue'
+import CalendarPrevButton from './CalendarPrevButton.vue'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<CalendarRootProps & { class?: HTMLAttributes['class'] }>()

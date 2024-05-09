@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import ToggleGroup from '@/components/ui/toggle-group'
+import { ToggleGroup } from '@/components/ui/toggle-group'
 import { ref } from 'vue'
 
 const value = ref(null)

@@ -14,7 +14,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import Select from '@/components/ui/select'
+import { Select } from '@/components/ui/select'
 
 const value = ref(null)
 const options = [

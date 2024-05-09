@@ -15,6 +15,6 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import Dialog from '@/components/ui/dialog'
-import Button from '@/components/ui/button'
+import { Dialog } from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
 </script>

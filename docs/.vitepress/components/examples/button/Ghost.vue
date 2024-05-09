@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 
 const sizes = ['lg', 'md', 'sm', 'xs', 'xxs']
 </script>

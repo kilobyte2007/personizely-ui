@@ -44,7 +44,17 @@
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
 import { RangeCalendarRoot, type RangeCalendarRootEmits, type RangeCalendarRootProps, useForwardPropsEmits } from 'radix-vue'
-import { RangeCalendarCell, RangeCalendarCellTrigger, RangeCalendarGrid, RangeCalendarGridBody, RangeCalendarGridHead, RangeCalendarGridRow, RangeCalendarHeadCell, RangeCalendarHeader, RangeCalendarHeading, RangeCalendarNextButton, RangeCalendarPrevButton } from '.'
+import RangeCalendarCell from './RangeCalendarCell.vue'
+import RangeCalendarCellTrigger from './RangeCalendarCellTrigger.vue'
+import RangeCalendarGrid from './RangeCalendarGrid.vue'
+import RangeCalendarGridBody from './RangeCalendarGridBody.vue'
+import RangeCalendarGridHead from './RangeCalendarGridHead.vue'
+import RangeCalendarGridRow from './RangeCalendarGridRow.vue'
+import RangeCalendarHeadCell from './RangeCalendarHeadCell.vue'
+import RangeCalendarHeader from './RangeCalendarHeader.vue'
+import RangeCalendarHeading from './RangeCalendarHeading.vue'
+import RangeCalendarNextButton from './RangeCalendarNextButton.vue'
+import RangeCalendarPrevButton from './RangeCalendarPrevButton.vue'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<RangeCalendarRootProps & { class?: HTMLAttributes['class'] }>()

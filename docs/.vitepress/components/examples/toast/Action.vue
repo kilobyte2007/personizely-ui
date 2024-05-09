@@ -20,7 +20,7 @@
   </Button>
 </template>
 <script setup lang="ts">
-import Button from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Toaster, ToastAction, useToast } from '@/components/ui/toast'
 import { h } from 'vue'
 

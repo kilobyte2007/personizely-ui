@@ -11,6 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import Tooltip, { TooltipProvider } from '@/components/ui/tooltip'
-import Button from '@/components/ui/button'
+import { Tooltip, TooltipProvider } from '@/components/ui/tooltip'
+import { Button } from '@/components/ui/button'
 </script>

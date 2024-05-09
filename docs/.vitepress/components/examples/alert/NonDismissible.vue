@@ -8,7 +8,7 @@
   </Alert>
 </template>
 <script setup lang="ts">
-import Alert from '@/components/ui/alert'
+import { Alert } from '@/components/ui/alert'
 import { ref } from 'vue'
 
 const visible = ref(true)

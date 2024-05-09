@@ -60,10 +60,10 @@ import type { HTMLAttributes, AnchorHTMLAttributes } from 'vue'
 import { Primitive } from 'radix-vue'
 import { buttonIconVariants, type ButtonVariants, buttonVariants } from '.'
 import { cn } from '@/utils/tailwind'
-import ProgressCircular from '@/components/ui/progress-circular'
-import Icon from '@/components/ui/icon'
+import { ProgressCircular } from '@/components/ui/progress-circular'
+import { Icon } from '@/components/ui/icon'
+import { Tooltip } from '@/components/ui/tooltip'
 import { createReusableTemplate } from '@vueuse/core'
-import Tooltip from '@/components/ui/tooltip'
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
 

@@ -1,1 +1,1 @@
-export { default } from './ToggleGroup.vue'
+export { default as ToggleGroup } from './ToggleGroup.vue'

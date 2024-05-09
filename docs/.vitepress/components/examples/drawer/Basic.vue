@@ -15,6 +15,6 @@
   </Drawer>
 </template>
 <script setup lang="ts">
-import Button from '@/components/ui/button'
-import Drawer from '@/components/ui/drawer'
+import { Button } from '@/components/ui/button'
+import { Drawer } from '@/components/ui/drawer'
 </script>

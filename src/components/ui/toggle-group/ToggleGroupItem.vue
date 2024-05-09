@@ -23,7 +23,7 @@ import { ToggleGroupItem, type ToggleGroupItemProps, useForwardProps } from 'rad
 import { toggleVariants } from '@/components/ui/toggle'
 import { cn } from '@/utils/tailwind'
 import { buttonIconVariants } from '@/components/ui/button'
-import Icon from '@/components/ui/icon'
+import { Icon } from '@/components/ui/icon'
 
 type ToggleGroupVariants = VariantProps<typeof toggleVariants>
 
