@@ -16,10 +16,10 @@ import { DatePicker } from '@/components/ui/date-picker'
 import { DateRangePicker } from '@/components/ui/date-range-picker'
 import { Dialog } from '@/components/ui/dialog'
 import { Drawer } from '@/components/ui/drawer'
-import { DropdownMenu, type MenuItem } from '@/components/ui/dropdown-menu'
+import { DropdownMenu, DropdownCheckboxGroupMenu, DropdownRadioGroupMenu, type MenuItem } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
 import { Icon } from '@/components/ui/icon'
-import { Form } from '@/components/ui/form'
+import { Form, FormField } from '@/components/ui/form'
 import { Popover } from '@/components/ui/popover'
 import { Progress } from '@/components/ui/progress'
 import { ProgressCircular } from '@/components/ui/progress-circular'
@@ -55,9 +55,12 @@ const PersonizelyUI: { [key:string]: Component } = {
   Dialog,
   Drawer,
   DropdownMenu,
+  DropdownCheckboxGroupMenu,
+  DropdownRadioGroupMenu,
   Input,
   Icon,
   Form,
+  FormField,
   Popover,
   Progress,
   ProgressCircular,
@@ -94,6 +97,7 @@ export {
   Alert,
   Avatar,
   AlertDialog,
+  AlertDialogProvider,
   Badge,
   Button,
   Card,
@@ -107,9 +111,12 @@ export {
   Dialog,
   Drawer,
   DropdownMenu,
+  DropdownCheckboxGroupMenu,
+  DropdownRadioGroupMenu,
   Input,
   Icon,
   Form,
+  FormField,
   Popover,
   Progress,
   ProgressCircular,
@@ -123,7 +130,8 @@ export {
   Toaster,
   Toggle,
   ToggleGroup,
-  Tooltip
+  Tooltip,
+  TooltipProvider
 }
 
 export type {
