@@ -1,6 +1,6 @@
 {
   "name": "personizely-ui",
-  "version": "0.1",
+  "version": "0.0.1",
   "description": "Personizely UI is a Vue.js UI library with a simple API, based on Radix Vue, inspired by shadcn-vue and Keen UI.",
   "type": "module",
   "main": "./dist/personizely-ui.js",
@@ -12,10 +12,6 @@
     "./personizely-ui.css": "./dist/personizely-ui.min.css",
     "./src/*": {
       "import": "./src/*"
-    },
-    "./*": {
-      "import": "./dist/*.esm.js",
-      "require": "./dist/*.js"
     }
   },
   "scripts": {
