@@ -24,7 +24,7 @@ export default {
 
   paths: {
     output: {
-      main: join(__dirname, '..', 'dist'),
+      main: join(__dirname, '..', 'dist')
     },
 
     resolve (location: string) {

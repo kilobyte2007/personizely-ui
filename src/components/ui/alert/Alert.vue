@@ -28,7 +28,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Icon } from '@/components/ui/icon'
 import { Button } from '@/components/ui/button'
 import { Info, TriangleAlert, CircleCheck, CircleAlert } from 'lucide-vue-next'
 import type { HTMLAttributes } from 'vue'
