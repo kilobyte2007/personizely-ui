@@ -102,7 +102,7 @@
         @click="toggleMode"
       >
         <template #icon>
-          <ChevronsUpDown />
+          <ChevronsUpDown class="w-4 h-4" />
         </template>
       </Button>
     </div>
