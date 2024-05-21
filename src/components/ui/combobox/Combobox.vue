@@ -34,7 +34,7 @@
 
     <ComboboxPortal>
       <ComboboxContent :side-offset="5">
-        <ComboboxInput :placeholder="searchPlaceholder" />
+        <ComboboxInput :placeholder="searchPlaceholder" @keydown.tab.prevent />
         <ComboboxViewport class="p-1">
           <ComboboxEmpty>No matching options.</ComboboxEmpty>
           <ComboboxGroup>
