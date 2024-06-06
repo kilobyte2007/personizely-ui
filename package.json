@@ -98,5 +98,8 @@
     "vitepress": "^1.0.2",
     "vue": "^3.4.23",
     "vue-tsc": "^1.8.27"
+  },
+  "peerDependencies": {
+    "vee-validate": "^4.12.6"
   }
 }

@@ -37,10 +37,11 @@ export default defineConfig(({ mode }) => {
         fileName: options.name
       },
       rollupOptions: {
-        external: [/^vue$/],
+        external: [/^vue$/, 'vee-validate'],
         output: {
           globals: {
-            vue: 'Vue'
+            vue: 'Vue',
+            'vee-validate': 'veeValidate'
           },
           assetFileNames: assetInfo =>
             assetInfo.name?.endsWith('.css') ? `${options.name}.css` : assetInfo.name
