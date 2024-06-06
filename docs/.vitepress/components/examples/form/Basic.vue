@@ -46,7 +46,11 @@ defineRule('required', required)
 defineRule('email', email)
 defineRule('min', min)
 
-const { handleSubmit } = useForm()
+const { handleSubmit } = useForm({
+  initialValues: {
+    name: 'Sergiu'
+  }
+})
 
 const submit = handleSubmit((values) => {
   console.log('Form submitted!', values)
