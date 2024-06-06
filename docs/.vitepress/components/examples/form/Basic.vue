@@ -24,7 +24,8 @@
     <FormField
       v-slot="{ componentField }"
       required
-      rules="required"
+      error-label="Term of use"
+      rules="checked"
       name="accept"
     >
       <Checkbox label="I accept the terms of use." v-bind="componentField" />
@@ -42,6 +43,9 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { defineRule, useForm } from 'vee-validate'
 import { required, email, min } from '@vee-validate/rules'
 
+defineRule('checked', (value: boolean) => {
+  return !value ? 'This value should be checked.' : true
+})
 defineRule('required', required)
 defineRule('email', email)
 defineRule('min', min)

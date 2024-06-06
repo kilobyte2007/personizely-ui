@@ -1,5 +1,10 @@
 <template>
-  <Field v-slot="{ componentField, errors }" :name="name" :rules="rules">
+  <Field
+    v-slot="{ componentField, errors }"
+    :name="name"
+    :rules="rules"
+    :label="errorLabel || label"
+  >
     <div :class="cn('flex flex-col gap-2 group', props.class)">
       <FormLabel v-if="$slots.label || label" :class="required ? 'after:content-[\'*\'] after:ms-0.5 after:text-red-500 dark:after:text-red-40' : ''">
         <slot name="label">
@@ -41,6 +46,7 @@ const props = withDefaults(defineProps<{
   name: string
   description?: string
   label?: string
+  errorLabel?: string
   required?: boolean
   rules?: string
 }>(), {
