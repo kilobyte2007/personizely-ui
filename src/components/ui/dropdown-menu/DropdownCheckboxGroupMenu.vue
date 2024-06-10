@@ -23,7 +23,7 @@
         :key="index"
         :value="item.value"
         :checked="modelValue.includes(item.value)"
-        @update:checked="$event ? modelValue.push(item.value) : modelValue.splice(modelValue.indexOf(item.value), 1)"
+        @update:checked="updateValue(item, $event)"
         @select="$emit('select', item)"
       >
         <span>{{ item.label }}</span>
@@ -62,4 +62,14 @@ const emits = defineEmits<DropdownMenuRootEmits & {
 }>()
 
 const forwarded = useForwardPropsEmits(props, emits)
+
+const updateValue = (item: MenuCheckboxItem, checked: boolean) => {
+  const value = [...modelValue.value]
+  if (checked) {
+    value.push(item.value)
+  } else {
+    value.splice(value.indexOf(item.value), 1)
+  }
+  modelValue.value = value
+}
 </script>

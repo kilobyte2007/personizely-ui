@@ -4,6 +4,7 @@
     v-model="normalizedValue"
     v-model:search-term="searchTerm"
     v-model:open="open"
+    :filter-function="filterFunction"
     @update:open="onToggle"
   >
     <ComboboxAnchor as-child>
@@ -13,7 +14,7 @@
         :aria-disabled="disabled"
         :aria-expanded="open"
         :tabindex="null"
-        :class="cn('flex h-8 items-center justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]',
+        :class="cn('flex h-8 items-center w-full justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
                    !modelValue ? 'text-muted-foreground' : '',
                    props.class
         )"
@@ -35,7 +36,7 @@
     <ComboboxPortal>
       <ComboboxContent :side-offset="5">
         <ComboboxInput :placeholder="searchPlaceholder" @keydown.tab.prevent />
-        <ComboboxViewport class="p-1">
+        <ComboboxViewport class="p-1 max-h-[300px] overflow-y-auto overflow-x-hidden">
           <ComboboxEmpty>No matching options.</ComboboxEmpty>
           <ComboboxGroup>
             <ComboboxItem
@@ -43,7 +44,7 @@
               :key="option[keys.id] || index"
               :value="option[keys.value]"
               :disabled="option[keys.disabled] || disabled"
-              @select="onSelect"
+              @select="onSelect($event, option)"
             >
               <slot name="option" v-bind="{ option }">
                 {{ option[keys.label] || option }}
@@ -107,19 +108,21 @@ const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue'> & {
 })
 
 const emits = defineEmits<ComboboxRootEmits & {
-  blur: [option: Option[] | CustomOption[]]
-  focus: [option: Option[] | CustomOption[]]
+  blur: [event: MouseEvent]
+  focus: [event: MouseEvent]
+  select: [option: Option | CustomOption]
 }>()
 
 const button = ref<ComponentInstance<typeof ComboboxTrigger>>()
 const open = ref(false)
 const searchTerm = ref()
 
-const onSelect = (event: ComboboxItemEmits['select'][0]) => {
+const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | CustomOption) => {
   modelValue.value = event.detail.value
   requestAnimationFrame(() => {
     searchTerm.value = null
   })
+  emits('select', option)
 }
 
 const onToggle = (open: boolean) => {
@@ -128,6 +131,13 @@ const onToggle = (open: boolean) => {
       button.value!.$el.focus()
     }
     searchTerm.value = null
+  })
+}
+
+const filterFunction = (options: any, searchTerm: string) => {
+  return options.filter((option: any) => {
+    const label = preparedOptions.value.find((o: Option | CustomOption) => o[props.keys.value] === option)[props.keys.label]
+    return label.toLowerCase().includes(searchTerm.toLowerCase())
   })
 }
 

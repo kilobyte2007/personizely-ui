@@ -4,9 +4,9 @@ interface CustomOption {
 
 interface Option extends CustomOption {
   label: string
-  value: string
+  value: string | number | boolean | Record<string, any>
   id?: any
-  help: string
+  help?: string
   disabled?: boolean
 }
 

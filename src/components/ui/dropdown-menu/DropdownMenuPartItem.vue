@@ -4,25 +4,41 @@
       <slot name="icon" v-bind="{ item }">
         <Icon v-if="item.icon" :icon="item.icon" class="mr-2 h-4 w-4" />
       </slot>
-      <span>{{ item.label }}</span>
+      <span>
+        <slot name="label" v-bind="{ item }">{{ item.label }}</slot>
+      </span>
     </DropdownMenuSubTrigger>
     <DropdownMenuPortal>
       <DropdownMenuSubContent>
         <template v-for="(child, index) in item.children" :key="index">
-          <DropdownMenuPart :item="child" @select="$emit('select', $event)" />
+          <DropdownMenuPart :item="child" @select="$emit('select', $event)">
+            <template v-if="$slots.icon" #item-icon="{ item }">
+              <slot name="icon" v-bind="{ item }" />
+            </template>
+            <template v-if="$slots.label" #item-label="{ item }">
+              <slot name="label" v-bind="{ item }" />
+            </template>
+            <template v-if="$slots.help" #item-help="{ item }">
+              <slot name="help" v-bind="{ item }" />
+            </template>
+          </DropdownMenuPart>
           <DropdownMenuSeparator v-if="index !== item.children.length - 1 && ('items' in child || 'items' in item.children[index + 1])" />
         </template>
       </DropdownMenuSubContent>
     </DropdownMenuPortal>
   </DropdownMenuSub>
-  <DropdownMenuItem v-else @select="$emit('select', item)">
+  <DropdownMenuItem v-else :disabled="item.disabled" @select="$emit('select', item)">
     <slot name="icon" v-bind="{ item }">
       <Icon v-if="item.icon" :icon="item.icon" class="mr-2 h-4 w-4" />
     </slot>
-    <span>{{ item.label }}</span>
-    <DropdownMenuShortcut v-if="item.help">
-      {{ item.help }}
-    </DropdownMenuShortcut>
+    <span>
+      <slot name="label" v-bind="{ item }">{{ item.label }}</slot>
+    </span>
+    <slot name="help" v-bind="{ item }">
+      <DropdownMenuShortcut v-if="item.help">
+        {{ item.help }}
+      </DropdownMenuShortcut>
+    </slot>
   </DropdownMenuItem>
 </template>
 

@@ -1,12 +1,19 @@
 <template>
   <DefineTemplate>
-    <Primitive
-      v-bind="$attrs"
-      :as="href ? 'a' : 'button'"
+    <component
+      v-bind="buildAttrs($attrs)"
+      :is="to ? 'router-link' : Primitive"
+      :as="!to ? (href ? 'a' : 'button') : null"
       :class="cn(buttonVariants({ variant, size, icon: Boolean(icon || $slots.icon) && !$slots.default }), props.class)"
       :disabled="!href ? disabled || loading : null"
-      :href="href && !(disabled || loading) ? href : null"
+      :to="to || null"
     >
+      <Icon
+        v-if="iconPosition === 'right' && hasDropdown && $slots.default"
+        icon="chevron-down"
+        :class="buttonIconVariants({ size })"
+      />
+
       <template v-if="iconPosition === 'left' && (icon || $slots.icon || loading)">
         <template v-if="loading">
           <ProgressCircular
@@ -40,7 +47,13 @@
           />
         </slot>
       </template>
-    </Primitive>
+
+      <Icon
+        v-if="iconPosition === 'left' && hasDropdown && $slots.default"
+        icon="chevron-down"
+        :class="buttonIconVariants({ size })"
+      />
+    </component>
   </DefineTemplate>
 
   <Tooltip v-if="tooltip || $slots.tooltip">
@@ -56,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import type { HTMLAttributes, AnchorHTMLAttributes } from 'vue'
+import { type HTMLAttributes, type AnchorHTMLAttributes, inject } from 'vue'
 import { Primitive } from 'radix-vue'
 import { buttonIconVariants, type ButtonVariants, buttonVariants } from '.'
 import { cn } from '@/utils/tailwind'
@@ -71,9 +84,21 @@ defineOptions({
   inheritAttrs: false
 })
 
+const hasDropdown = inject('hasDropdown', false)
+
+const buildAttrs = (attrs: { [key: string]: any }) => {
+  attrs = { ...attrs }
+  if (!props.to) {
+    attrs.href = props.href && !(props.disabled || props.loading) ? props.href : null
+  }
+
+  return attrs
+}
+
 const props = withDefaults(defineProps<{
   variant?: ButtonVariants['variant']
   tooltip?: string
+  to?: any
   icon?: string
   iconPosition?: string
   size?: ButtonVariants['size']

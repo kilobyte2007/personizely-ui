@@ -16,7 +16,8 @@ const onSelect = (item: MenuItem) => {
 const items = [
   {
     label: 'This is a simple menu item',
-    icon: 'save'
+    icon: 'save',
+    help: 'Help'
   },
   {
     label: 'Account',
@@ -24,7 +25,8 @@ const items = [
       {
         label: 'Edit settings',
         icon: 'cog',
-        help: '⇧⌘P'
+        help: '⇧⌘P',
+        disabled: true
       },
       {
         label: 'Team',

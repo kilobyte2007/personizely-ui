@@ -14,10 +14,30 @@
         :key="index"
         :item="groupItem"
         @select="$emit('select', $event)"
-      />
+      >
+        <template v-if="$slots['item-icon']" #icon="{ item }">
+          <slot name="item-icon" v-bind="{ item }" />
+        </template>
+        <template v-if="$slots['item-label']" #label="{ item }">
+          <slot name="item-label" v-bind="{ item }" />
+        </template>
+        <template v-if="$slots['item-help']" #help="{ item }">
+          <slot name="item-help" v-bind="{ item }" />
+        </template>
+      </DropdownMenuPartItem>
     </DropdownMenuGroup>
   </template>
-  <DropdownMenuPartItem v-else :item="item" @select="$emit('select', $event)" />
+  <DropdownMenuPartItem v-else :item="item" @select="$emit('select', $event)">
+    <template v-if="$slots['item-icon']" #icon="{ item }">
+      <slot name="item-icon" v-bind="{ item }" />
+    </template>
+    <template v-if="$slots['item-label']" #label="{ item }">
+      <slot name="item-label" v-bind="{ item }" />
+    </template>
+    <template v-if="$slots['item-help']" #help="{ item }">
+      <slot name="item-help" v-bind="{ item }" />
+    </template>
+  </DropdownMenuPartItem>
 </template>
 
 <script setup lang="ts">

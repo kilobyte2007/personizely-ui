@@ -6,17 +6,20 @@ export interface MenuItem {
   label: string
   icon?: string
   help?: string
+  disabled?: boolean
 }
 
 export interface MenuRadioItem {
   label: string
   help?: string
+  disabled?: boolean
   value: any
 }
 
 export interface MenuCheckboxItem {
   label: string
   help?: string
+  disabled?: boolean
   value: any
 }
 

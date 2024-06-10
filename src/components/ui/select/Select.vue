@@ -36,7 +36,7 @@ import { useEmpty } from '@/composables/useEmpty'
 import { useNormalizedTypes, normalize } from '@/composables/useNormalizedTypes'
 import { cn } from '@/utils/tailwind'
 
-const modelValue = defineModel<string | number | null | true | false>()
+const modelValue = defineModel<string | number | boolean | Record<string, any>>()
 const normalizedValue = useNormalizedTypes(useEmpty(modelValue))
 const props = withDefaults(defineProps<Omit<SelectRootProps, 'modelValue'> & {
   class?: HTMLAttributes['class']

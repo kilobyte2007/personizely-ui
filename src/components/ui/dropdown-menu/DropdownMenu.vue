@@ -5,7 +5,7 @@
     </DropdownMenuTrigger>
 
     <DropdownMenuContent
-      :class="cn('min-w-56', props.class)"
+      :class="props.class"
       :side-offset="4"
       :align-offset="4"
       :align="align"
@@ -21,7 +21,17 @@
       </template>
 
       <template v-for="(item, index) in items" :key="index">
-        <DropdownMenuPart :item="item" @select="$emit('select', $event)" />
+        <DropdownMenuPart :item="item" @select="$emit('select', $event)">
+          <template v-if="$slots['item-icon']" #item-icon="{ item }">
+            <slot name="item-icon" v-bind="{ item }" />
+          </template>
+          <template v-if="$slots['item-label']" #item-label="{ item }">
+            <slot name="item-label" v-bind="{ item }" />
+          </template>
+          <template v-if="$slots['item-help']" #item-help="{ item }">
+            <slot name="item-help" v-bind="{ item }" />
+          </template>
+        </DropdownMenuPart>
         <DropdownMenuSeparator v-if="index !== items.length - 1 && ('items' in item || 'items' in items[index + 1])" />
       </template>
     </DropdownMenuContent>
@@ -38,7 +48,7 @@ import DropdownMenuPart from './DropdownMenuPart.vue'
 import omit from 'lodash/omit'
 import type { MenuItem, MenuItemWithChildren, MenuGroupItem } from './'
 import { cn } from '@/utils/tailwind'
-import type { HTMLAttributes } from 'vue'
+import { type HTMLAttributes, provide } from 'vue'
 
 const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps, 'side' | 'align'> & {
   items:(MenuItem | MenuItemWithChildren | MenuGroupItem)[]
@@ -48,6 +58,8 @@ const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps,
 const emits = defineEmits<DropdownMenuRootEmits & {
   select: [item: MenuItem]
 }>()
+
+provide('hasDropdown', true)
 
 const forwarded = useForwardPropsEmits(props, emits)
 </script>
