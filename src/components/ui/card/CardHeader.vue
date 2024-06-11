@@ -1,5 +1,5 @@
 <template>
-  <div :class="cn('flex flex-col gap-y-1.5 px-2 py-2', props.class)">
+  <div :class="cn('flex flex-col gap-y-1.5', props.class)">
     <slot />
   </div>
 </template>

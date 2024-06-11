@@ -41,7 +41,7 @@ import {
   type DateValue,
   getLocalTimeZone
 } from '@internationalized/date'
-import type { DateRange } from 'radix-vue'
+import type { DateRange, RangeCalendarRootProps } from 'radix-vue'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
 import { RangeCalendar } from '@/components/ui/range-calendar'
 import { Button } from '@/components/ui/button'
@@ -56,7 +56,7 @@ withDefaults(defineProps<{
   placeholder?: string
   formatter?: DateFormatter
   class?: HTMLAttributes['class']
-}>(), {
+} & RangeCalendarRootProps>(), {
   placeholder: 'Pick a date range',
   formatter: () => new DateFormatter('en-US', {
     dateStyle: 'long'

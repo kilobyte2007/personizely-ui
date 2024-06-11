@@ -1,5 +1,5 @@
 <template>
-  <div :class="cn('px-2 py-2', props.class)">
+  <div :class="cn(props.class)">
     <slot />
   </div>
 </template>

@@ -30,12 +30,13 @@ import { Calendar } from '@/components/ui/calendar'
 import { Button } from '@/components/ui/button'
 import { Popover } from '@/components/ui/popover'
 import { cn } from '@/utils/tailwind'
+import type { CalendarRootProps } from 'radix-vue'
 
 const modelValue = defineModel<DateValue>()
 withDefaults(defineProps<{
   placeholder?: string
   formatter?: DateFormatter
-}>(), {
+} & CalendarRootProps>(), {
   placeholder: 'Pick a date',
   formatter: () => new DateFormatter('en-US', {
     dateStyle: 'long'

@@ -2,7 +2,7 @@
   <DropdownMenuSub v-if="'children' in item">
     <DropdownMenuSubTrigger>
       <slot name="icon" v-bind="{ item }">
-        <Icon v-if="item.icon" :icon="item.icon" class="mr-2 h-4 w-4" />
+        <Icon v-if="item.icon" :icon="item.icon" class="h-4 w-4" />
       </slot>
       <span>
         <slot name="label" v-bind="{ item }">{{ item.label }}</slot>
@@ -29,7 +29,7 @@
   </DropdownMenuSub>
   <DropdownMenuItem v-else :disabled="item.disabled" @select="$emit('select', item)">
     <slot name="icon" v-bind="{ item }">
-      <Icon v-if="item.icon" :icon="item.icon" class="mr-2 h-4 w-4" />
+      <Icon v-if="item.icon" :icon="item.icon" class="h-4 w-4" />
     </slot>
     <span>
       <slot name="label" v-bind="{ item }">{{ item.label }}</slot>

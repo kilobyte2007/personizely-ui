@@ -68,10 +68,30 @@
   <ReuseTemplate v-else />
 </template>
 
+<script lang="ts">
+import type { ButtonVariants } from '@/components/ui/button'
+import type { AnchorHTMLAttributes, HTMLAttributes } from 'vue'
+
+type ButtonProps = {
+  variant?: ButtonVariants['variant']
+  tooltip?: string
+  to?: any
+  icon?: string
+  iconPosition?: string
+  size?: ButtonVariants['size']
+  class?: HTMLAttributes['class']
+  disabled?: boolean
+  href?: AnchorHTMLAttributes['href']
+  loading?: boolean
+}
+
+export { type ButtonProps }
+</script>
+
 <script setup lang="ts">
-import { type HTMLAttributes, type AnchorHTMLAttributes, inject } from 'vue'
+import { inject } from 'vue'
 import { Primitive } from 'radix-vue'
-import { buttonIconVariants, type ButtonVariants, buttonVariants } from '.'
+import { buttonIconVariants, buttonVariants } from '.'
 import { cn } from '@/utils/tailwind'
 import { ProgressCircular } from '@/components/ui/progress-circular'
 import { Icon } from '@/components/ui/icon'
@@ -95,18 +115,7 @@ const buildAttrs = (attrs: { [key: string]: any }) => {
   return attrs
 }
 
-const props = withDefaults(defineProps<{
-  variant?: ButtonVariants['variant']
-  tooltip?: string
-  to?: any
-  icon?: string
-  iconPosition?: string
-  size?: ButtonVariants['size']
-  class?: HTMLAttributes['class']
-  disabled?: boolean
-  href?: AnchorHTMLAttributes['href']
-  loading?: boolean
-}>(), {
+const props = withDefaults(defineProps<ButtonProps>(), {
   loading: false,
   disabled: false,
   iconPosition: 'left'

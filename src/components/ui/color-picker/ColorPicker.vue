@@ -5,7 +5,7 @@
         <template #icon>
           <span class="relative size-4">
             <Checkboard :size="4" class="absolute size-4 rounded-full inset-0" />
-            <span class="size-4 rounded-full absolute inset-0" :style="{ backgroundColor: modelValue }" />
+            <span class="size-4 rounded-full absolute inset-0 shadow-[0_0_1px_1px_rgba(0,0,0,0.05)]" :style="{ backgroundColor: modelValue }" />
           </span>
         </template>
       </Button>

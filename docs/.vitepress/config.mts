@@ -68,6 +68,7 @@ export default defineConfig({
           { text: 'Dialog', link: '/components/dialog' },
           { text: 'Drawer', link: '/components/drawer' },
           { text: 'Dropdown menu', link: '/components/dropdown-menu' },
+          { text: 'File upload button', link: '/components/file-upload-button' },
           { text: 'Input', link: '/components/input' },
           { text: 'Icon', link: '/components/icon' },
           { text: 'Form', link: '/components/form' },

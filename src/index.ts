@@ -18,6 +18,7 @@ import { Dialog } from '@/components/ui/dialog'
 import { Drawer } from '@/components/ui/drawer'
 import { DropdownMenu, DropdownCheckboxGroupMenu, DropdownRadioGroupMenu, type MenuItem } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
+import { FileUploadButton } from '@/components/ui/file-upload-button'
 import { Icon } from '@/components/ui/icon'
 import { Form, FormField } from '@/components/ui/form'
 import { Popover } from '@/components/ui/popover'
@@ -115,6 +116,7 @@ export {
   DropdownRadioGroupMenu,
   Input,
   Icon,
+  FileUploadButton,
   Form,
   FormField,
   Popover,
