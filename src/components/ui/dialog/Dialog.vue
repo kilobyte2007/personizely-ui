@@ -4,7 +4,7 @@
       <slot name="trigger" />
     </DialogTrigger>
 
-    <DialogContent :class="cn('max-h-[90dvh]', $attrs.class)">
+    <DialogContent :class="cn('max-h-[90dvh]', $attrs.class)" :trap-focus="false" @hide="$emit('hide')">
       <DialogHeader>
         <DialogTitle v-if="title || $slots.title">
           <slot name="title">
@@ -18,7 +18,7 @@
         </DialogDescription>
       </DialogHeader>
 
-      <div class="text-sm overflow-auto">
+      <div class="text-sm overflow-auto p-2">
         <slot />
       </div>
 
@@ -59,7 +59,9 @@ const props = withDefaults(defineProps<DialogRootProps & {
 }>(), {
   removeCloseButton: false
 })
-const emits = defineEmits<DialogRootEmits>()
+const emits = defineEmits<DialogRootEmits & {
+  hide: []
+}>()
 
 const forwarded = useForwardPropsEmits(props, emits)
 </script>

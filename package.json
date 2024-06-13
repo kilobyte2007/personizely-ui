@@ -63,7 +63,7 @@
     "lodash.debounce": "^4.0.8",
     "lucide-vue-next": "^0.364.0",
     "patch-package": "^8.0.0",
-    "radix-vue": "^1.7.3",
+    "radix-vue": "^1.8.3",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "tippy.js": "^6.3.7",

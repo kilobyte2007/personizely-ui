@@ -2,6 +2,7 @@
   <DialogPortal>
     <DialogOverlay
       class="fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
+      @after-leave="$emit('hide')"
     />
     <DialogContent
       v-bind="forwarded"
@@ -29,7 +30,9 @@ import {
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<DialogContentProps & { class?: HTMLAttributes['class'] }>()
-const emits = defineEmits<DialogContentEmits>()
+const emits = defineEmits<DialogContentEmits & {
+  hide: []
+}>()
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props

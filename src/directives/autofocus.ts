@@ -1,7 +1,7 @@
 export default {
   mounted (el: HTMLElement, { value }: { value: boolean }) {
     if (value) {
-      el.focus()
+      requestAnimationFrame(() => el.focus())
     }
   }
 }

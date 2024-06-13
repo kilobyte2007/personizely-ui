@@ -1,5 +1,5 @@
 <template>
-  <SelectRoot v-bind="forwarded" v-model="normalizedValue">
+  <SelectRoot v-bind="omit(forwarded, ['class', 'placeholder', 'keys', 'options'])" v-model="normalizedValue">
     <SelectTrigger :class="cn(!modelValue ? 'text-muted-foreground' : '', props.class)">
       <SelectValue :placeholder="placeholder">
         <slot name="label" v-bind="{ option: selectedOption }">
@@ -55,7 +55,7 @@ const props = withDefaults(defineProps<Omit<SelectRootProps, 'modelValue'> & {
 })
 const emits = defineEmits<Omit<SelectRootEmits, 'update:modelValue'>>()
 
-const forwarded = useForwardPropsEmits(omit(props, ['class', 'placeholder', 'keys', 'options']), emits)
+const forwarded = useForwardPropsEmits(props, emits)
 
 const selectedOption = computed(() => {
   if (modelValue.value) {

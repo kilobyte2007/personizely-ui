@@ -6,6 +6,7 @@
     :aria-valuemax="100"
     :aria-valuemin="0"
     :aria-valuenow="modelValue"
+    class="max-w-full max-h-full"
   >
     <circle
       fill="none"
@@ -22,7 +23,7 @@
 
   <svg
     v-else
-    class="animate-spin"
+    class="animate-spin max-w-full max-h-full"
     role="progressbar"
     viewBox="25 25 50 50"
     :aria-valuemax="100"

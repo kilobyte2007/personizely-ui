@@ -1,6 +1,6 @@
 <template>
   <ComboboxRoot
-    v-bind="forwarded"
+    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options'])"
     v-model="normalizedValue"
     v-model:search-term="searchTerm"
     v-model:open="open"
@@ -41,7 +41,7 @@
           <ComboboxGroup>
             <ComboboxItem
               v-for="(option, index) in preparedOptions"
-              :key="option[keys.id] || index"
+              :key="option[keys.id] || option[keys.value] || index"
               :value="option[keys.value]"
               :disabled="option[keys.disabled] || disabled"
               @select="onSelect($event, option)"
@@ -136,8 +136,11 @@ const onToggle = (open: boolean) => {
 
 const filterFunction = (options: any, searchTerm: string) => {
   return options.filter((option: any) => {
-    const label = preparedOptions.value.find((o: Option | CustomOption) => o[props.keys.value] === option)[props.keys.label]
-    return label.toLowerCase().includes(searchTerm.toLowerCase())
+    const result = preparedOptions.value.find((o: Option | CustomOption) => {
+      return o[props.keys.value] === option
+    })
+
+    return result ? result[props.keys.label]?.toLowerCase().includes(searchTerm.toLowerCase()) : false
   })
 }
 
@@ -157,7 +160,7 @@ const selectedOptionLabel = computed(() => {
   return null
 })
 
-const forwarded = useForwardPropsEmits(omit(props, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options']), emits)
+const forwarded = useForwardPropsEmits(props, emits)
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
 </script>

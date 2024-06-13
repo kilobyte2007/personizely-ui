@@ -4,7 +4,7 @@
       <slot name="trigger" />
     </DrawerTrigger>
 
-    <DrawerContent :side="side">
+    <DrawerContent :side="side" @hide="$emit('hide')">
       <DrawerHeader v-if="$slots.header || $slots.title || title">
         <slot name="header">
           <DrawerTitle
@@ -67,7 +67,9 @@ const props = withDefaults(defineProps<DialogRootProps & {
 }>(), {
   side: 'right'
 })
-const emits = defineEmits<DialogRootEmits>()
+const emits = defineEmits<DialogRootEmits & {
+  hide: []
+}>()
 
 const forwarded = useForwardPropsEmits(props, emits)
 </script>

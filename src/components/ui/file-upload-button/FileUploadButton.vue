@@ -32,7 +32,7 @@ import { type ButtonProps } from '@/components/ui/button/Button.vue'
 import omit from 'lodash/omit'
 import { ref } from 'vue'
 
-const input = ref<HTMLElement>(null)
+const input = ref<HTMLElement | null>(null)
 
 withDefaults(defineProps<{
   accept?: string

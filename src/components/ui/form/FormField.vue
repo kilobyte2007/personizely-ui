@@ -1,8 +1,9 @@
 <template>
   <Field
-    v-slot="{ componentField, errors }"
+    v-slot="slotProps"
     :name="name"
     :rules="rules"
+    :model-modifiers="modelModifiers"
     :label="errorLabel || label"
   >
     <div :class="cn('flex flex-col gap-2 group', props.class)">
@@ -12,9 +13,9 @@
         </slot>
       </FormLabel>
       <FormControl>
-        <slot v-bind="{ componentField }" />
+        <slot v-bind="slotProps" />
       </FormControl>
-      <FormDescription v-if="($slots.description || description) && !errors.length">
+      <FormDescription v-if="($slots.description || description) && !slotProps.errors.length">
         <slot name="description">
           {{ description }}
         </slot>
@@ -49,6 +50,7 @@ const props = withDefaults(defineProps<{
   errorLabel?: string
   required?: boolean
   rules?: string
+  modelModifiers: { [key:string]: any }
 }>(), {
   required: false
 })
