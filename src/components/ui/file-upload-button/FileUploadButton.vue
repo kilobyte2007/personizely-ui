@@ -2,7 +2,7 @@
   <div class="inline-flex">
     <Button
       v-bind="omit($props, ['accept', 'name'])"
-      @click="$refs.input!.click()"
+      @click="input!.click()"
     >
       <template v-if="$slots.default" #default>
         <slot />

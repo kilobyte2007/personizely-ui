@@ -8,6 +8,7 @@
         ((icon && iconPosition === 'left') || $slots.leading) && 'ps-8',
         ((icon && iconPosition === 'right') || $slots.trailing) && 'pe-8'
       ]"
+      @change="$emit('change', $event)"
     />
     <span v-if="$slots.leading || (icon && iconPosition === 'left')" class="absolute start-0 inset-y-0 flex items-center justify-center px-2 pointer-events-none">
       <slot name="leading">
@@ -34,6 +35,10 @@ defineOptions({
 })
 
 const modelValue = defineModel<string | number | null>()
+defineEmits<{
+  change: [value: InputEvent]
+}>()
+
 const props = withDefaults(defineProps<{
   autofocus?: boolean
   icon?: string

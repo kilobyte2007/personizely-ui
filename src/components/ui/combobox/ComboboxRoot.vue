@@ -2,6 +2,7 @@
   <ComboboxRoot
     v-bind="forwarded"
     :class="cn(props.class)"
+    as-child
   >
     <slot />
   </ComboboxRoot>
