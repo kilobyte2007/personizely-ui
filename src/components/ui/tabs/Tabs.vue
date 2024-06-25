@@ -1,7 +1,7 @@
 <template>
   <TabsRoot v-bind="forwarded" :class="cn(tabsVariants({ orientation }), props.class)">
     <TabsList :class="cn(tabsListVariants({ orientation }), 'rounded-md bg-muted p-1 text-muted-foreground')">
-      <template v-for="tab in $slots.default?.()">
+      <template v-for="tab in getTabs($slots.default?.())">
         <Tooltip v-if="tab.props?.tooltip" :key="'tooltip-' + tab.props?.value">
           <template #trigger>
             <TabsTrigger :value="tab.props?.value" :disabled="tab.props?.disabled">
@@ -38,12 +38,26 @@ import { Icon } from '@/components/ui/icon'
 import { Tooltip } from '@/components/ui/tooltip'
 import { cn } from '@/utils/tailwind'
 import { tabsVariants, tabsListVariants } from '@/components/ui/tabs/index'
-import type { HTMLAttributes } from 'vue'
-
+import type { HTMLAttributes, VNode } from 'vue'
 const props = defineProps<TabsRootProps & {
   class?: HTMLAttributes['class']
 }>()
 const emits = defineEmits<TabsRootEmits>()
+
+const isFragment = (vNode: VNode) => vNode.type === Symbol.for('v-fgt')
+
+const getTabs = (nodes: VNode[]) => {
+  const tabs = []
+  nodes.forEach((node) => {
+    if (isFragment(node) && node.children) {
+      tabs.push(...getTabs(<VNode[]>node.children))
+    } else {
+      tabs.push(node)
+    }
+  })
+
+  return tabs
+}
 
 const forwarded = useForwardPropsEmits(props, emits)
 </script>
