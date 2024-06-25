@@ -21,6 +21,7 @@
       variant="ghost"
       size="xxs"
       class="absolute right-2 top-2"
+      type="button"
       @click="dismiss"
     />
   </div>

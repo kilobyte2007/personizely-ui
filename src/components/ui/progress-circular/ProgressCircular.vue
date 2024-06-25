@@ -1,46 +1,48 @@
 <template>
-  <svg
-    v-if="modelValue !== null"
-    role="progressbar"
-    viewBox="25 25 50 50"
-    :aria-valuemax="100"
-    :aria-valuemin="0"
-    :aria-valuenow="modelValue"
-    class="max-w-full max-h-full text-muted-foreground"
-  >
-    <circle
-      fill="none"
-      stroke-dashoffset="0"
-      :cx="size / 2"
-      :cy="size / 2"
-      :r="radius"
-      :stroke-dasharray="strokeDashArray"
-      :stroke-width="stroke"
-      :style="{ 'stroke-dashoffset': strokeDashOffset }"
-      class="stroke-current transition-all"
-    />
-  </svg>
+  <div>
+    <svg
+      v-if="modelValue !== null"
+      role="progressbar"
+      viewBox="25 25 50 50"
+      :aria-valuemax="100"
+      :aria-valuemin="0"
+      :aria-valuenow="modelValue"
+      class="max-w-full max-h-full text-muted-foreground"
+    >
+      <circle
+        fill="none"
+        stroke-dashoffset="0"
+        :cx="size / 2"
+        :cy="size / 2"
+        :r="radius"
+        :stroke-dasharray="strokeDashArray"
+        :stroke-width="stroke"
+        :style="{ 'stroke-dashoffset': strokeDashOffset }"
+        class="stroke-current transition-all"
+      />
+    </svg>
 
-  <svg
-    v-else
-    class="animate-spin max-w-full max-h-full text-muted-foreground"
-    role="progressbar"
-    viewBox="25 25 50 50"
-    :aria-valuemax="100"
-    :aria-valuemin="0"
-  >
-    <circle
-      :cx="size / 2"
-      :cy="size / 2"
-      fill="none"
-      :r="radius"
-      stroke-miterlimit="10"
-      stroke-dasharray="89, 200"
-      stroke-dashoffset="-35px"
-      :stroke-width="stroke"
-      class="stroke-current"
-    />
-  </svg>
+    <svg
+      v-else
+      class="animate-spin max-w-full max-h-full text-muted-foreground"
+      role="progressbar"
+      viewBox="25 25 50 50"
+      :aria-valuemax="100"
+      :aria-valuemin="0"
+    >
+      <circle
+        :cx="size / 2"
+        :cy="size / 2"
+        fill="none"
+        :r="radius"
+        stroke-miterlimit="10"
+        stroke-dasharray="89, 200"
+        stroke-dashoffset="-35px"
+        :stroke-width="stroke"
+        class="stroke-current"
+      />
+    </svg>
+  </div>
 </template>
 
 <script lang="ts" setup>
