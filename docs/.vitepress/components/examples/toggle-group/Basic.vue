@@ -1,5 +1,5 @@
 <template>
-  <ToggleGroup v-model="value" :items="items" />
+  <ToggleGroup v-model="value" :items="items" type="single" />
 </template>
 
 <script setup lang="ts">

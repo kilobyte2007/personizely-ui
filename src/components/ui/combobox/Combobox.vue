@@ -5,6 +5,7 @@
     v-model:search-term="searchTerm"
     v-model:open="open"
     :filter-function="filterFunction"
+    :reset-search-term-on-blur="false"
     @update:open="onToggle"
   >
     <ComboboxAnchor as-child>
@@ -35,7 +36,7 @@
 
     <ComboboxPortal>
       <ComboboxContent :side-offset="5">
-        <ComboboxInput :placeholder="searchPlaceholder" @keydown.tab.prevent />
+        <ComboboxInput :placeholder="searchPlaceholder" :loading="loading" @keydown.tab.prevent />
         <ComboboxViewport class="p-1 max-h-[300px] overflow-y-auto overflow-x-hidden">
           <ComboboxEmpty>No matching options.</ComboboxEmpty>
           <ComboboxGroup>
@@ -89,13 +90,17 @@ import { useEmpty } from '@/composables/useEmpty'
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
 const normalizedValue = useEmpty(modelValue)
 
-const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue'> & {
+const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'resetSearchTermOnBlur'> & {
   class?: HTMLAttributes['class']
   placeholder?: string
+  loading?: boolean
+  disableFilter?: boolean
   searchPlaceholder?: string
   keys?: Keys
   options: string[] | Option[] | CustomOption[] | { [key:string]: string }
 }>(), {
+  disableFilter: false,
+  loading: false,
   placeholder: 'Select a value...',
   searchPlaceholder: 'Search...',
   keys: () => ({
@@ -135,6 +140,8 @@ const onToggle = (open: boolean) => {
 }
 
 const filterFunction = (options: any, searchTerm: string) => {
+  if (props.disableFilter) return options
+
   return options.filter((option: any) => {
     const result = preparedOptions.value.find((o: Option | CustomOption) => {
       return o[props.keys.value] === option

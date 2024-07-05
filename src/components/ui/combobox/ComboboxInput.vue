@@ -9,8 +9,15 @@
       role="searchbox"
       :aria-expanded="null"
       size="10"
-      :class="cn('flex h-8 w-full ps-8 pe-2 rounded-md bg-transparent py-1 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50', props.class)"
+      :class="cn(
+        'flex h-8 w-full ps-8 rounded-md bg-transparent py-1 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
+        props.class,
+        loading ? 'pe-8' : 'pe-2'
+      )"
     />
+    <span v-if="loading" class="absolute end-0 inset-y-0 flex items-center justify-center px-2 pointer-events-none">
+      <ProgressCircular class="size-4 text-muted-foreground" />
+    </span>
   </div>
 </template>
 
@@ -19,14 +26,18 @@ import { type HTMLAttributes, computed } from 'vue'
 import { Search } from 'lucide-vue-next'
 import { ComboboxInput, type ComboboxInputProps, useForwardProps } from 'radix-vue'
 import { cn } from '@/utils/tailwind'
+import { ProgressCircular } from '@/components/ui/progress-circular'
 
 defineOptions({
   inheritAttrs: false
 })
 
-const props = defineProps<ComboboxInputProps & {
-  class?: HTMLAttributes['class']
-}>()
+const props = withDefaults(defineProps<ComboboxInputProps & {
+  class?: HTMLAttributes['class'],
+  loading: boolean
+}>(), {
+  loading: false
+})
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
