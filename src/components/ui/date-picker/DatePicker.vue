@@ -6,12 +6,18 @@
         :class="cn(
           'justify-start text-left font-normal',
           !modelValue && 'text-muted-foreground',
+          $props.class
         )"
       >
         <template #icon>
-          <CalendarIcon class="size-4" />
+          <CalendarIcon class="size-3" />
         </template>
-        {{ modelValue ? formatter.format(modelValue.toDate(getLocalTimeZone())) : placeholder }}
+        <slot v-if="modelValue" name="label">
+          {{ formatter.format(modelValue.toDate(getLocalTimeZone())) }}
+        </slot>
+        <template v-else>
+          {{ placeholder }}
+        </template>
       </Button>
     </template>
     <Calendar v-model="modelValue" initial-focus />
@@ -31,12 +37,14 @@ import { Button } from '@/components/ui/button'
 import { Popover } from '@/components/ui/popover'
 import { cn } from '@/utils/tailwind'
 import type { CalendarRootProps } from 'radix-vue'
+import { type HTMLAttributes } from 'vue'
 
 const modelValue = defineModel<DateValue>()
 withDefaults(defineProps<{
   placeholder?: string
+  class?: HTMLAttributes['class']
   formatter?: DateFormatter
-} & CalendarRootProps>(), {
+} & Omit<CalendarRootProps, 'placeholder' | 'modelValue'>>(), {
   placeholder: 'Pick a date',
   formatter: () => new DateFormatter('en-US', {
     dateStyle: 'long'

@@ -10,7 +10,7 @@
         )"
       >
         <template #icon>
-          <CalendarIcon class="size-4" />
+          <CalendarIcon class="size-3" />
         </template>
         <template v-if="modelValue.start">
           <template v-if="modelValue.end">
@@ -56,7 +56,7 @@ withDefaults(defineProps<{
   placeholder?: string
   formatter?: DateFormatter
   class?: HTMLAttributes['class']
-} & RangeCalendarRootProps>(), {
+} & Omit<RangeCalendarRootProps, 'placeholder', 'modelValue'>>(), {
   placeholder: 'Pick a date range',
   formatter: () => new DateFormatter('en-US', {
     dateStyle: 'long'
