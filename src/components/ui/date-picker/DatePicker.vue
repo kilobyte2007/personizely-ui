@@ -20,7 +20,7 @@
         </template>
       </Button>
     </template>
-    <Calendar v-model="modelValue" initial-focus />
+    <Calendar v-bind="omit(forwarded, ['class', 'placeholder', 'formatter'])" v-model="modelValue" initial-focus />
   </Popover>
 </template>
 
@@ -36,11 +36,12 @@ import { Calendar } from '@/components/ui/calendar'
 import { Button } from '@/components/ui/button'
 import { Popover } from '@/components/ui/popover'
 import { cn } from '@/utils/tailwind'
-import type { CalendarRootProps } from 'radix-vue'
+import { type CalendarRootProps, useForwardProps } from 'radix-vue'
 import { type HTMLAttributes } from 'vue'
+import omit from 'lodash/omit'
 
 const modelValue = defineModel<DateValue>()
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   placeholder?: string
   class?: HTMLAttributes['class']
   formatter?: DateFormatter
@@ -50,4 +51,6 @@ withDefaults(defineProps<{
     dateStyle: 'long'
   })
 })
+
+const forwarded = useForwardProps(props)
 </script>

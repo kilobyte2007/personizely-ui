@@ -1,10 +1,10 @@
 <template>
-  <DialogRoot v-bind="omit(forwarded, ['title', 'description', 'side'])">
+  <DialogRoot v-bind="omit(forwarded, ['title', 'description', 'side', 'class', 'onHide'])">
     <DrawerTrigger v-if="$slots.trigger" as-child>
       <slot name="trigger" />
     </DrawerTrigger>
 
-    <DrawerContent :side="side" @hide="$emit('hide')">
+    <DrawerContent :side="side" :class="$props.class" @hide="$emit('hide')">
       <DrawerHeader v-if="$slots.header || $slots.title || title">
         <slot name="header">
           <DrawerTitle
@@ -25,7 +25,7 @@
         </slot>
       </DrawerHeader>
 
-      <div class="text-sm max-h-[90dvh] overflow-auto">
+      <div class="text-sm max-h-[90dvh] overflow-auto px-6 py-1">
         <slot />
       </div>
 
