@@ -6,8 +6,6 @@
 
     This is the dialog's body.
 
-    <Combobox v-model="value" :options="options" class="w-64" />
-
     <template #footer>
       <Button variant="secondary">
         Cancel
@@ -19,22 +17,4 @@
 <script setup lang="ts">
 import { Dialog } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import { ref } from 'vue'
-import { Combobox } from '@/components/ui/combobox'
-
-const value = ref(null)
-const options = [
-  {
-    label: 'Red',
-    value: 'red'
-  },
-  {
-    label: 'Green',
-    value: 'green'
-  },
-  {
-    label: 'Blue',
-    value: 'blue'
-  }
-]
 </script>

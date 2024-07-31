@@ -1,6 +1,6 @@
 <template>
   <ComboboxRoot
-    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options'])"
+    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'disableFilter', 'disablePortal'])"
     v-model="normalizedValue"
     v-model:search-term="searchTerm"
     v-model:open="open"
@@ -34,7 +34,7 @@
       </ComboboxTrigger>
     </ComboboxAnchor>
 
-    <ComboboxPortal>
+    <ComboboxPortal :disabled="disablePortal">
       <ComboboxContent :side-offset="5">
         <ComboboxInput :placeholder="searchPlaceholder" :loading="loading" @keydown.tab.prevent />
         <ComboboxViewport class="p-1 max-h-[300px] overflow-y-auto overflow-x-hidden">
@@ -94,12 +94,14 @@ const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'r
   class?: HTMLAttributes['class']
   placeholder?: string
   loading?: boolean
+  disablePortal?: boolean
   disableFilter?: boolean
   searchPlaceholder?: string
   keys?: Keys
   options: string[] | Option[] | CustomOption[] | { [key:string]: string }
 }>(), {
   disableFilter: false,
+  disablePortal: false,
   loading: false,
   placeholder: 'Select a value...',
   searchPlaceholder: 'Search...',

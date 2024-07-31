@@ -53,8 +53,7 @@
 import {
   DateFormatter,
   type DateValue,
-  getLocalTimeZone,
-  CalendarDateTime
+  getLocalTimeZone
 } from '@internationalized/date'
 import { type DateRange, type RangeCalendarRootProps, useForwardProps } from 'radix-vue'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
@@ -73,7 +72,7 @@ const props = withDefaults(defineProps<{
   formatter?: DateFormatter
   class?: HTMLAttributes['class']
   presets?: Array<{ label: string, value: DateRange }>
-} & Omit<RangeCalendarRootProps, 'placeholder', 'modelValue'>>(), {
+} & Omit<RangeCalendarRootProps, 'placeholder' | 'modelValue'>>(), {
   placeholder: 'Pick a date range',
   presets: () => [],
   formatter: () => new DateFormatter('en-US', {

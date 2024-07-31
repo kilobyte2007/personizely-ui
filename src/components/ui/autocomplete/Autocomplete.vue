@@ -1,6 +1,6 @@
 <template>
   <AutocompleteRoot
-    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'autofocus'])"
+    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'disableFilter', 'disablePortal', 'keys', 'options', 'autofocus'])"
     v-model="normalizedValue"
     v-model:search-term="searchTerm"
     v-model:open="open"
@@ -35,7 +35,7 @@
       </Primitive>
     </ComboboxAnchor>
 
-    <ComboboxPortal v-if="(disableFilter && preparedOptions.length > 0) || filterFunction(preparedOptions.map(o => o[keys.value]), searchTerm).length > 0">
+    <ComboboxPortal v-if="(disableFilter && preparedOptions.length > 0) || filterFunction(preparedOptions.map(o => o[keys.value]), searchTerm).length > 0" :disabled="disablePortal">
       <AutocompleteContent :side-offset="5">
         <ComboboxViewport class="p-1 max-h-[300px] overflow-y-auto overflow-x-hidden">
           <AutocompleteGroup>
@@ -94,12 +94,14 @@ const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 's
   placeholder?: string
   loading?: boolean
   disableFilter?: boolean
+  disablePortal?: boolean
   autofocus?: boolean
   searchPlaceholder?: string
   keys?: Keys
   options: string[] | Option[] | CustomOption[] | { [key:string]: string }
 }>(), {
   disableFilter: false,
+  disablePortal: false,
   loading: false,
   autofocus: false,
   placeholder: 'Select a value...',
@@ -129,9 +131,9 @@ const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | Custom
 }
 
 const reset = () => {
-  modelValue.value = null
+  normalizedValue.value = null
   searchTerm.value = null
-  input.value.$el.focus()
+  input.value?.$el.focus()
 }
 
 const filterFunction = (options: any, searchTerm: string) => {

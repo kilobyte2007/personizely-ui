@@ -1,5 +1,5 @@
 <template>
-  <SelectRoot v-bind="omit(forwarded, ['class', 'placeholder', 'keys', 'options'])" v-model="normalizedValue">
+  <SelectRoot v-bind="omit(forwarded, ['class', 'placeholder', 'keys', 'options', 'disablePortal'])" v-model="normalizedValue">
     <SelectTrigger :class="cn(!modelValue ? 'text-muted-foreground' : '', props.class)">
       <SelectValue :placeholder="placeholder">
         <slot name="label" v-bind="{ option: selectedOption }">
@@ -7,23 +7,25 @@
         </slot>
       </SelectValue>
     </SelectTrigger>
-    <SelectContent :body-lock="false">
-      <SelectItem
-        v-for="(option, index) in preparedOptions"
-        :key="option[keys.id] || index"
-        :value="normalize(option[keys.value])"
-        :disabled="option[keys.disabled] || disabled"
-      >
-        <slot name="option" v-bind="{ option }">
-          {{ option[keys.label] || option }}
-        </slot>
-      </SelectItem>
-    </SelectContent>
+    <SelectPortal :disabled="disablePortal">
+      <SelectContent :body-lock="false">
+        <SelectItem
+          v-for="(option, index) in preparedOptions"
+          :key="option[keys.id] || index"
+          :value="normalize(option[keys.value])"
+          :disabled="option[keys.disabled] || disabled"
+        >
+          <slot name="option" v-bind="{ option }">
+            {{ option[keys.label] || option }}
+          </slot>
+        </SelectItem>
+      </SelectContent>
+    </SelectPortal>
   </SelectRoot>
 </template>
 
 <script setup lang="ts">
-import type { SelectRootEmits, SelectRootProps } from 'radix-vue'
+import { SelectPortal, type SelectRootEmits, type SelectRootProps } from 'radix-vue'
 import { SelectRoot, useForwardPropsEmits } from 'radix-vue'
 import { computed, type HTMLAttributes } from 'vue'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
@@ -41,9 +43,11 @@ const normalizedValue = useNormalizedTypes(useEmpty(modelValue))
 const props = withDefaults(defineProps<Omit<SelectRootProps, 'modelValue'> & {
   class?: HTMLAttributes['class']
   placeholder?: string
+  disablePortal?: boolean
   keys?: Keys
   options: string[] | Option[] | CustomOption[] | { [key:string]: string }
 }>(), {
+  disablePortal: false,
   placeholder: 'Select a value...',
   keys: () => ({
     id: 'id',

@@ -1,7 +1,7 @@
 <template>
   <TabsRoot v-bind="forwarded" :class="cn(tabsVariants({ orientation }), props.class)">
     <TabsList :class="cn(tabsListVariants({ orientation }), 'rounded-md bg-muted p-1 text-muted-foreground')">
-      <template v-for="tab in getTabs($slots.default?.())">
+      <template v-for="tab in getTabs($slots.default ? $slots.default() : [])">
         <Tooltip v-if="tab.props?.tooltip" :key="'tooltip-' + tab.props?.value">
           <template #trigger>
             <TabsTrigger :value="tab.props?.value" :disabled="tab.props?.disabled">
@@ -47,7 +47,7 @@ const emits = defineEmits<TabsRootEmits>()
 const isFragment = (vNode: VNode) => vNode.type === Symbol.for('v-fgt')
 
 const getTabs = (nodes: VNode[]) => {
-  const tabs = []
+  const tabs = <VNode[]>[]
   nodes.forEach((node) => {
     if (isFragment(node) && node.children) {
       tabs.push(...getTabs(<VNode[]>node.children))
