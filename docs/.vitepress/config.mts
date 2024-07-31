@@ -56,6 +56,7 @@ export default defineConfig({
           { text: 'Avatar', link: '/components/avatar' },
           { text: 'Alert', link: '/components/alert' },
           { text: 'Alert dialog', link: '/components/alert-dialog' },
+          { text: 'Autocomplete', link: '/components/autocomplete' },
           { text: 'Badge', link: '/components/badge' },
           { text: 'Button', link: '/components/button' },
           { text: 'Card', link: '/components/card' },
