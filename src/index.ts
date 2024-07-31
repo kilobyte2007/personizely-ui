@@ -5,6 +5,7 @@ import { Accordion, AccordionItem } from '@/components/ui/accordion'
 import { Alert } from '@/components/ui/alert'
 import { Avatar } from '@/components/ui/avatar'
 import { AlertDialog, AlertDialogProvider, useAlertDialog } from '@/components/ui/alert-dialog'
+import { Autocomplete } from '@/components/ui/autocomplete'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -43,6 +44,7 @@ const PersonizelyUI: { [key:string]: Component } = {
   Avatar,
   AlertDialogProvider,
   AlertDialog,
+  Autocomplete,
   Badge,
   Button,
   Card,
@@ -99,6 +101,7 @@ export {
   Avatar,
   AlertDialog,
   AlertDialogProvider,
+  Autocomplete,
   Badge,
   Button,
   Card,

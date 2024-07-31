@@ -89,7 +89,7 @@ import { ProgressCircular } from '@/components/ui/progress-circular'
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
 const normalizedValue = useEmpty(modelValue)
 
-const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'resetSearchTermOnBlur'> & {
+const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'searchTerm' | 'resetSearchTermOnBlur'> & {
   class?: HTMLAttributes['class']
   placeholder?: string
   loading?: boolean
