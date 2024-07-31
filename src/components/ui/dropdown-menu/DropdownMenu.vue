@@ -7,7 +7,6 @@
     <DropdownMenuContent
       :class="props.class"
       :side-offset="4"
-      :align-offset="4"
       :align="align"
       :side="side"
     >
