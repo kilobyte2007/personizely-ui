@@ -1,5 +1,5 @@
 <template>
-  <DropdownMenuRoot v-bind="omit(forwarded, ['align', 'side', 'label', 'items', 'onSelect'])">
+  <DropdownMenuRoot v-bind="omit(forwarded, ['align', 'side', 'label', 'items', 'onSelect', 'class'])">
     <DropdownMenuTrigger as-child>
       <slot name="trigger" />
     </DropdownMenuTrigger>

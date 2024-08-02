@@ -51,7 +51,7 @@
       <Icon
         v-if="iconPosition === 'left' && hasDropdown && $slots.default"
         icon="chevron-down"
-        :class="buttonIconVariants({ size })"
+        :class="cn('ml-auto', buttonIconVariants({ size }))"
       />
     </component>
   </DefineTemplate>
