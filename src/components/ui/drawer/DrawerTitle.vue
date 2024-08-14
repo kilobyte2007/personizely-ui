@@ -1,6 +1,6 @@
 <template>
   <DialogTitle
-    :class="cn('text-lg font-semibold text-foreground', props.class)"
+    :class="cn('text-lg font-medium text-foreground', props.class)"
     v-bind="delegatedProps"
   >
     <slot />

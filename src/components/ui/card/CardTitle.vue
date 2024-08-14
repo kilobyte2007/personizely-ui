@@ -1,7 +1,7 @@
 <template>
   <h3
     :class="
-      cn('text-lg font-medium leading-none tracking-tight', props.class)
+      cn('text-base font-medium leading-none tracking-tight', props.class)
     "
   >
     <slot />

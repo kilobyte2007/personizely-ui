@@ -1,10 +1,16 @@
 <template>
-  <DialogRoot v-bind="omit(forwarded, ['title', 'description', 'side', 'class', 'onHide'])">
+  <DialogRoot v-bind="omit(forwarded, ['title', 'description', 'side', 'class', 'disableOverlay', 'onHide'])">
     <DrawerTrigger v-if="$slots.trigger" as-child>
       <slot name="trigger" />
     </DrawerTrigger>
 
-    <DrawerContent :side="side" :class="$props.class" @hide="$emit('hide')">
+    <DrawerContent
+      :side="side"
+      :class="$props.class"
+      :disable-overlay="disableOverlay"
+      :disable-outside-pointer-events="disableOutsidePointerEvents"
+      @hide="$emit('hide')"
+    >
       <DrawerHeader v-if="$slots.header || $slots.title || title">
         <slot name="header">
           <DrawerTitle
@@ -64,8 +70,12 @@ const props = withDefaults(defineProps<DialogRootProps & {
   title?: string
   side?: DrawerVariants['side']
   description?: string
+  disableOverlay?: boolean
+  disableOutsidePointerEvents?: boolean
 }>(), {
-  side: 'right'
+  side: 'right',
+  disableOverlay: false,
+  disableOutsidePointerEvents: true
 })
 const emits = defineEmits<DialogRootEmits & {
   hide: []

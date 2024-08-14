@@ -5,7 +5,7 @@
     </AlertDialogTrigger>
     <AlertDialogContent>
       <div class="flex flex-col gap-y-2 text-center sm:text-left">
-        <AlertDialogTitle class="text-lg font-semibold">
+        <AlertDialogTitle class="text-lg font-medium">
           <slot name="title">
             {{ title }}
           </slot>
