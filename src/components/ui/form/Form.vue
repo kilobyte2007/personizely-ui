@@ -5,10 +5,9 @@
 </template>
 <script setup lang="ts">
 import { cn } from '@/utils/tailwind'
-import type { SelectRootProps } from 'radix-vue'
 import type { HTMLAttributes } from 'vue'
 
-const props = defineProps<Omit<SelectRootProps, 'modelValue'> & {
+const props = defineProps<{
   class? : HTMLAttributes['class']
 }>()
 </script>

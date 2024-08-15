@@ -1,5 +1,5 @@
 <template>
-  <DialogRoot v-bind="omit(forwarded, ['title', 'description', 'side', 'class', 'disableOverlay', 'onHide'])">
+  <DialogRoot v-bind="omit(forwarded, ['title', 'description', 'side', 'class', 'disableOverlay', 'disableOutsidePointerEvents', 'onHide'])">
     <DrawerTrigger v-if="$slots.trigger" as-child>
       <slot name="trigger" />
     </DrawerTrigger>

@@ -17,7 +17,6 @@
         :placeholder="placeholder"
         :class="cn(
           'flex h-8 w-full bg-transparent py-1 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
-          props.class,
           loading ? 'pe-8' : 'pe-2'
         )"
       />
