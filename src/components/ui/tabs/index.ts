@@ -7,7 +7,7 @@ export const tabsVariants = cva('', {
   variants: {
     orientation: {
       vertical: 'flex',
-      horizontal: 'grid'
+      horizontal: ''
     }
   },
   defaultVariants: {
@@ -19,7 +19,7 @@ export const tabsListVariants = cva('[&>*]:h-8', {
   variants: {
     orientation: {
       vertical: 'flex flex-col items-start [&>*]:w-full',
-      horizontal: 'grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] h-10 grid w-full items-center justify-center [&>*]:justify-center'
+      horizontal: 'grid auto-cols-[1fr] grid-flow-col h-10 inline-grid items-center justify-center [&>*]:justify-center'
     }
   },
   defaultVariants: {
