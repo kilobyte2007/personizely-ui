@@ -60,7 +60,7 @@ const handleTouchStart = (e: TouchEvent) => {
 }
 
 const handleMouseDown = (e: MouseEvent) => {
-  if (!container.value!.contains(<HTMLElement>e.target)) return
+  if (!container.value!.contains(e.target as HTMLElement)) return
 
   handleMove(e, true)
   const offset = calculateOffset(e)

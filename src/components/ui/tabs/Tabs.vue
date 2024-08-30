@@ -47,10 +47,10 @@ const emits = defineEmits<TabsRootEmits>()
 const isFragment = (vNode: VNode) => vNode.type === Symbol.for('v-fgt')
 
 const getTabs = (nodes: VNode[]) => {
-  const tabs = <VNode[]>[]
+  const tabs = [] as VNode[]
   nodes.forEach((node) => {
     if (isFragment(node) && node.children) {
-      tabs.push(...getTabs(<VNode[]>node.children))
+      tabs.push(...getTabs(node.children as VNode[]))
     } else {
       tabs.push(node)
     }

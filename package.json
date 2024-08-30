@@ -1,5 +1,6 @@
 {
   "name": "personizely-ui",
+  "web-types": "./web-types.json",
   "version": "0.0.15",
   "description": "Personizely UI is a Vue.js UI library with a simple API, based on Radix Vue, inspired by shadcn-vue and Keen UI.",
   "type": "module",
@@ -14,6 +15,7 @@
   "scripts": {
     "build": "vite build --config vite.config.ts",
     "build:types": "vue-tsc --project tsconfig.json --declaration --emitDeclarationOnly --outDir dist/types",
+    "build:web-types": "node scripts/generate.js",
     "clean": "rimraf ./dist",
     "lint": "eslint --ext .ts,.vue . --no-ignore",
     "lint:fix": "eslint --fix --ext .ts,.vue . --no-ignore",
@@ -40,6 +42,7 @@
     "src",
     "LICENSE.md",
     "README.md",
+    "web-types.json",
     "package-lock.json"
   ],
   "author": {
@@ -67,12 +70,15 @@
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "tippy.js": "^6.3.7",
+    "vue-component-meta": "^2.1.2",
     "zod": "^3.23.5"
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
     "@stylistic/eslint-plugin-js": "^1.2.0",
     "@stylistic/eslint-plugin-ts": "^1.6.3",
+    "@vee-validate/rules": "^4.12.6",
+    "@vee-validate/zod": "^4.12.6",
     "@vitejs/plugin-vue": "5.0.4",
     "@vue/tsconfig": "^0.5.1",
     "@whyframe/core": "^0.1.11",
@@ -90,14 +96,14 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.1.0",
+    "vee-validate": "^4.12.6",
     "vite": "^5.2.11",
     "vite-plugin-banner": "^0.7.0",
     "vitepress": "^1.0.2",
     "vue": "^3.4.27",
-    "vue-tsc": "^1.8.27",
-    "vee-validate": "^4.12.6",
-    "@vee-validate/rules": "^4.12.6",
-    "@vee-validate/zod": "^4.12.6"
+    "vue-docgen-api": "^4.79.2",
+    "vue-docgen-web-types": "^0.1.8",
+    "vue-tsc": "^1.8.27"
   },
   "peerDependencies": {
     "vee-validate": "^4.12.6"

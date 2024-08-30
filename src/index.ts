@@ -37,7 +37,7 @@ import { ToggleGroup } from '@/components/ui/toggle-group'
 import { Tooltip, TooltipProvider } from '@/components/ui/tooltip'
 import { type Option } from '@/utils/options'
 
-const PersonizelyUI: { [key:string]: Component } = {
+const components: { [key:string]: Component } = {
   Accordion,
   AccordionItem,
   Alert,
@@ -82,8 +82,8 @@ const PersonizelyUI: { [key:string]: Component } = {
 }
 
 export function install (app: App) {
-  Object.keys(PersonizelyUI).forEach((key) => {
-    const Component = PersonizelyUI[key]
+  Object.keys(components).forEach((key) => {
+    const Component = components[key]
     app.component(`Ui${key}`, Component)
   })
 }
@@ -93,6 +93,7 @@ export default {
 }
 
 export {
+  components,
   useAlertDialog,
   useToast,
   Accordion,

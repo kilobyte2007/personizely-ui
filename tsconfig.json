@@ -1,10 +1,7 @@
 {
   "extends": "@vue/tsconfig",
-  "include": [
-    "./src/*"
-  ],
   "compilerOptions": {
-    "lib": ["dom"],
+    "lib": ["dom", "esnext"],
     "rootDir": "./",
     "outDir": "./dist",
     "paths": {
@@ -13,15 +10,13 @@
     "types": [
       "node"
     ],
-    "allowJs": true,
+    "noImplicitThis": true,
+    "strict": true,
     "module": "ESNext",
+    "skipLibCheck": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "target": "ESNext",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": false
+    "esModuleInterop": true
   }
 }
