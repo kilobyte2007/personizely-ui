@@ -40,8 +40,8 @@ import CardDescription from './CardDescription.vue'
 import CardContent from './CardContent.vue'
 import CardFooter from './CardFooter.vue'
 import CardTitle from './CardTitle.vue'
-import CardHeader from '@/components/ui/card/CardHeader.vue'
-import CardTray from '@/components/ui/card/CardTray.vue'
+import CardHeader from './CardHeader.vue'
+import CardTray from './CardTray.vue'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']

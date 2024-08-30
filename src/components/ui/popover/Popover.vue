@@ -1,6 +1,6 @@
 <template>
   <PopoverRoot v-bind="omit(forwarded, ['side', 'align', 'class'])">
-    <PopoverTrigger v-if="$slots.trigger" as-child>
+    <PopoverTrigger v-if="$slots.trigger">
       <slot name="trigger" />
     </PopoverTrigger>
 
@@ -31,14 +31,14 @@ import {
   type PopoverContentProps,
   PopoverPortal,
   PopoverRoot,
-  PopoverTrigger,
   PopoverContent,
   useForwardPropsEmits
 } from 'radix-vue'
 import type { PopoverRootEmits, PopoverRootProps } from 'radix-vue'
 import { cn } from '@/utils/tailwind'
-import type { HTMLAttributes } from 'vue'
+import { type HTMLAttributes } from 'vue'
 import omit from 'lodash/omit'
+import PopoverTrigger from './PopoverTrigger.vue'
 
 const props = withDefaults(defineProps<PopoverRootProps & Pick<PopoverContentProps, 'side' | 'align'> & {
   class?: HTMLAttributes['class']
