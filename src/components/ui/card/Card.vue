@@ -19,9 +19,12 @@
             {{ description }}
           </slot>
         </CardDescription>
+        <CardTray v-if="$slots.tray">
+          <slot name="tray" />
+        </CardTray>
       </slot>
     </CardHeader>
-    <CardContent>
+    <CardContent v-if="$slots.default">
       <slot />
     </CardContent>
     <CardFooter v-if="$slots.footer">
@@ -38,6 +41,7 @@ import CardContent from './CardContent.vue'
 import CardFooter from './CardFooter.vue'
 import CardTitle from './CardTitle.vue'
 import CardHeader from '@/components/ui/card/CardHeader.vue'
+import CardTray from '@/components/ui/card/CardTray.vue'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']

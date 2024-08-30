@@ -1,5 +1,9 @@
 <template>
-  <Card title="This is a card" description="A card can have a description" class="w-72">
+  <Card title="This is a card" description="A card can have a description" class="w-96">
+    <template #tray>
+      <Button icon="ellipsis-vertical" variant="ghost" size="sm" />
+    </template>
+
     <div class="text-sm">
       This is the card body.
     </div>
