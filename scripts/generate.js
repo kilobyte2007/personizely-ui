@@ -40,11 +40,8 @@ const generateTagForComponent = (component, prefix = 'Ui', pascal = true) => {
     props: meta.props.map(prop => ({
       name: camelToKebab(prop.name),
       description: prop.description,
-      value: {
-        kind: 'expression',
-        type: prop.type || 'any',
-        required: prop.required
-      },
+      type: prop.type || 'any',
+      required: prop.required,
       default: prop.default
     })),
     js: {
