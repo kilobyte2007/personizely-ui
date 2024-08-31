@@ -70,9 +70,9 @@
 
 <script lang="ts">
 import type { ButtonVariants } from '@/components/ui/button'
-import type { AnchorHTMLAttributes, HTMLAttributes, ButtonHTMLAttributes } from 'vue'
+import type { AnchorHTMLAttributes, HTMLAttributes } from 'vue'
 
-type ButtonProps = ButtonHTMLAttributes & {
+type ButtonProps = {
   variant?: ButtonVariants['variant']
   tooltip?: string
   to?: any
