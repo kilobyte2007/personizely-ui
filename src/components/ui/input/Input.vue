@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { type HTMLAttributes } from 'vue'
+import { type HTMLAttributes, type InputHTMLAttributes } from 'vue'
 import { cn } from '@/utils/tailwind'
 import vAutofocus from '@/directives/autofocus'
 import { Icon } from '@/components/ui/icon'
@@ -39,7 +39,7 @@ defineEmits<{
   change: [value: InputEvent]
 }>()
 
-const props = withDefaults(defineProps<{
+const props = withDefaults(defineProps<InputHTMLAttributes & {
   autofocus?: boolean
   icon?: string
   iconPosition?: string

@@ -23,21 +23,22 @@ const webTypes = {
   'js-types-syntax': 'typescript',
   contributions: {
     html: {
-      elements: []
+      'vue-components': []
     }
   }
 }
 
 const pascalToKebab = string => string.replace(/([a-z0–9])([A-Z])/g, '$1-$2').toLowerCase()
+const camelToKebab = string => string.replace(/([a-z0–9])([A-Z])/g, '$1-$2').toLowerCase()
 
-const generateTagForComponent = (file, prefix = 'Ui', camel = true) => {
-  const name = file.split('/').pop().split('.')[0]
-  const meta = tsconfigChecker.getComponentMeta(file)
+const generateTagForComponent = (component, prefix = 'Ui', pascal = true) => {
+  const name = component.split('/').pop().split('.')[0]
+  const meta = tsconfigChecker.getComponentMeta(path.join(__dirname, `../src/components/ui/${component}.vue`))
   return {
-    name: camel ? prefix + name : pascalToKebab(prefix + name),
+    name: pascal ? prefix + name : pascalToKebab(prefix + name),
     description: '',
-    attributes: meta.props.map(prop => ({
-      name: prop.name,
+    props: meta.props.map(prop => ({
+      name: camelToKebab(prop.name),
       description: prop.description,
       value: {
         kind: 'expression',
@@ -57,63 +58,63 @@ const generateTagForComponent = (file, prefix = 'Ui', camel = true) => {
       description: slot.description
     })),
     source: {
-      module: file,
+      module: `./src/components/ui/${component}.vue`,
       symbol: 'default'
     }
   }
 }
 
 const components = [
-  'ui/accordion/Accordion.vue',
-  'ui/accordion/AccordionItem.vue',
-  'ui/alert/Alert.vue',
-  'ui/alert-dialog/AlertDialog.vue',
-  'ui/alert-dialog/AlertDialogProvider.vue',
-  'ui/autocomplete/Autocomplete.vue',
-  'ui/avatar/Avatar.vue',
-  'ui/badge/Badge.vue',
-  'ui/button/Button.vue',
-  'ui/calendar/Calendar.vue',
-  'ui/card/Card.vue',
-  'ui/checkbox/Checkbox.vue',
-  'ui/checkbox-group/CheckboxGroup.vue',
-  'ui/color-picker/Color.vue',
-  'ui/color-picker/ColorPicker.vue',
-  'ui/combobox/Combobox.vue',
-  'ui/date-picker/DatePicker.vue',
-  'ui/dialog/Dialog.vue',
-  'ui/drawer/Drawer.vue',
-  'ui/dropdown-menu/DropdownMenu.vue',
-  'ui/dropdown-menu/DropdownCheckboxGroupMenu.vue',
-  'ui/dropdown-menu/DropdownRadioGroupMenu.vue',
-  'ui/file-upload-button/FileUploadButton.vue',
-  'ui/form/Form.vue',
-  'ui/form/FormField.vue',
-  'ui/icon/Icon.vue',
-  'ui/input/Input.vue',
-  'ui/label/Label.vue',
-  'ui/popover/Popover.vue',
-  'ui/progress/Progress.vue',
-  'ui/progress-circular/ProgressCircular.vue',
-  'ui/radio-group/RadioGroup.vue',
-  'ui/range-calendar/RangeCalendar.vue',
-  'ui/select/Select.vue',
-  'ui/slider/Slider.vue',
-  'ui/switch/Switch.vue',
-  'ui/tabs/Tabs.vue',
-  'ui/tabs/TabsContent.vue',
-  'ui/textarea/Textarea.vue',
-  'ui/toast/Toaster.vue',
-  'ui/toast/ToastAction.vue',
-  'ui/toggle/Toggle.vue',
-  'ui/toggle-group/ToggleGroup.vue',
-  'ui/tooltip/Tooltip.vue',
-  'ui/tooltip/TooltipProvider.vue'
+  'accordion/Accordion',
+  'accordion/AccordionItem',
+  'alert/Alert',
+  'alert-dialog/AlertDialog',
+  'alert-dialog/AlertDialogProvider',
+  'autocomplete/Autocomplete',
+  'avatar/Avatar',
+  'badge/Badge',
+  'button/Button',
+  'calendar/Calendar',
+  'card/Card',
+  'checkbox/Checkbox',
+  'checkbox-group/CheckboxGroup',
+  'color-picker/Color',
+  'color-picker/ColorPicker',
+  'combobox/Combobox',
+  'date-picker/DatePicker',
+  'dialog/Dialog',
+  'drawer/Drawer',
+  'dropdown-menu/DropdownMenu',
+  'dropdown-menu/DropdownCheckboxGroupMenu',
+  'dropdown-menu/DropdownRadioGroupMenu',
+  'file-upload-button/FileUploadButton',
+  'form/Form',
+  'form/FormField',
+  'icon/Icon',
+  'input/Input',
+  'label/Label',
+  'popover/Popover',
+  'progress/Progress',
+  'progress-circular/ProgressCircular',
+  'radio-group/RadioGroup',
+  'range-calendar/RangeCalendar',
+  'select/Select',
+  'slider/Slider',
+  'switch/Switch',
+  'tabs/Tabs',
+  'tabs/TabsContent',
+  'textarea/Textarea',
+  'toast/Toaster',
+  'toast/ToastAction',
+  'toggle/Toggle',
+  'toggle-group/ToggleGroup',
+  'tooltip/Tooltip',
+  'tooltip/TooltipProvider'
 ]
 
 components.forEach((component) => {
-  webTypes.contributions.html.elements.push(generateTagForComponent(path.join(__dirname, `../src/components/${component}`), 'Ui', true))
-  webTypes.contributions.html.elements.push(generateTagForComponent(path.join(__dirname, `../src/components/${component}`), 'Ui', false))
+  webTypes.contributions.html['vue-components'].push(generateTagForComponent(component, 'Ui', true))
+  webTypes.contributions.html['vue-components'].push(generateTagForComponent(component, 'Ui', false))
 })
 
 writeFileSync(path.join(__dirname, '../web-types.json'), JSON.stringify(webTypes, null, 2))

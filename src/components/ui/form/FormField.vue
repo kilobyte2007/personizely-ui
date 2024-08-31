@@ -52,6 +52,7 @@ const props = withDefaults(defineProps<{
   rules?: string
   modelModifiers: { [key:string]: any }
 }>(), {
+  default: () => {},
   required: false
 })
 
