@@ -16,9 +16,9 @@ export const buttonVariants = cva('inline-flex items-center justify-center white
       link: 'text-primary underline-offset-4 hover:underline'
     },
     size: {
-      xxs: 'px-2 h-5 rounded-sm font-normal text-xxs',
-      xs: 'px-1.5 h-6 rounded-sm font-normal',
-      sm: 'px-2 h-7 rounded-sm font-normal',
+      xxs: 'px-1.5 h-5 rounded-sm font-normal text-xxs',
+      xs: 'px-2 h-6 rounded-sm font-normal',
+      sm: 'px-2.5 h-7 rounded-sm font-normal',
       md: 'px-3 h-8',
       lg: 'px-4 h-9 text-sm gap-2'
     },

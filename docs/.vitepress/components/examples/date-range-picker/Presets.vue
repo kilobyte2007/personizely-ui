@@ -1,43 +1,37 @@
 <template>
-  <DateRangePicker v-model="value" :presets="presets" />
+  <DateRangePicker v-model="value" :presets="presets" :max-value="now(getLocalTimeZone())" />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
 import { DateRangePicker } from '@/components/ui/date-range-picker'
 import type { DateRange } from 'radix-vue'
-import { CalendarDateTime } from '@internationalized/date'
+import { now, getLocalTimeZone } from '@internationalized/date'
 
 const value = ref<DateRange>({
   start: undefined,
   end: undefined
 })
 
-const now = () => new CalendarDateTime(new Date().getFullYear(), new Date().getMonth(), new Date().getDay(), new Date().getHours(), new Date().getMinutes())
-
 const presets = [
   {
     label: '24 hours',
-    value: { start: now().subtract({ hours: 24 }), end: now() }
+    value: { start: now(getLocalTimeZone()).subtract({ hours: 24 }), end: now(getLocalTimeZone()) }
   },
   {
     label: 'Last week',
-    value: { start: now().subtract({ days: 7 }), end: now() }
+    value: { start: now(getLocalTimeZone()).subtract({ days: 7 }), end: now(getLocalTimeZone()) }
   },
   {
     label: 'Last month',
-    value: { start: now().subtract({ days: 31 }), end: now() }
+    value: { start: now(getLocalTimeZone()).subtract({ days: 31 }), end: now(getLocalTimeZone()) }
   },
   {
     label: 'Last quarter',
-    value: { start: now().subtract({ months: 4 }), end: now() }
+    value: { start: now(getLocalTimeZone()).subtract({ months: 4 }), end: now(getLocalTimeZone()) }
   },
   {
     label: 'Last year',
-    value: { start: now().subtract({ years: 1 }), end: now() }
-  },
-  {
-    label: 'Overall',
-    value: { start: undefined, end: undefined }
+    value: { start: now(getLocalTimeZone()).subtract({ years: 1 }), end: now(getLocalTimeZone()) }
   }
 ]
 </script>
