@@ -48,7 +48,7 @@ import DropdownMenuShortcut from './DropdownMenuShortcut.vue'
 import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import type { MenuRadioItem } from './'
 import { cn } from '@/utils/tailwind'
-import type { HTMLAttributes } from 'vue'
+import { type HTMLAttributes, provide } from 'vue'
 
 const modelValue = defineModel<any>()
 const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps, 'side' | 'align'> & {
@@ -59,6 +59,8 @@ const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps,
 const emits = defineEmits<DropdownMenuRootEmits & {
   select: [item: MenuRadioItem]
 }>()
+
+provide('hasDropdown', true)
 
 const forwarded = useForwardPropsEmits(props, emits)
 </script>

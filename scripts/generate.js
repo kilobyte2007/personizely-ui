@@ -79,6 +79,7 @@ const components = [
   'color-picker/ColorPicker',
   'combobox/Combobox',
   'date-picker/DatePicker',
+  'date-range-picker/DateRangePicker',
   'dialog/Dialog',
   'drawer/Drawer',
   'dropdown-menu/DropdownMenu',

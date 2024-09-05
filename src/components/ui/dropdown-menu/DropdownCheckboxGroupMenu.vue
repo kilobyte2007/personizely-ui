@@ -3,6 +3,7 @@
     <DropdownMenuTrigger as-child>
       <slot name="trigger" />
     </DropdownMenuTrigger>
+
     <DropdownMenuContent
       :class="cn('min-w-56', props.class)"
       :side-offset="4"
@@ -46,7 +47,7 @@ import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import type { MenuCheckboxItem } from './'
 import DropdownMenuCheckboxItem from '@/components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue'
 import { cn } from '@/utils/tailwind'
-import type { HTMLAttributes } from 'vue'
+import { type HTMLAttributes, provide } from 'vue'
 
 const modelValue = defineModel<any[]>({
   required: true
@@ -62,6 +63,8 @@ const emits = defineEmits<DropdownMenuRootEmits & {
 }>()
 
 const forwarded = useForwardPropsEmits(props, emits)
+
+provide('hasDropdown', true)
 
 const updateValue = (item: MenuCheckboxItem, checked: boolean) => {
   const value = [...modelValue.value]
