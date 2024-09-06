@@ -24,8 +24,9 @@
         </CardTray>
       </slot>
     </CardHeader>
-    <CardContent v-if="$slots.default">
+    <CardContent v-if="$slots.default" :class="loading && 'relative [&>*:not(:last-child)]:opacity-20'">
       <slot />
+      <ProgressCircular v-if="loading" class="size-5 top-1/2 left-1/2 absolute -translate-x-1/2 -translate-y-1/2" />
     </CardContent>
     <CardFooter v-if="$slots.footer">
       <slot name="footer" />
@@ -42,10 +43,12 @@ import CardFooter from './CardFooter.vue'
 import CardTitle from './CardTitle.vue'
 import CardHeader from './CardHeader.vue'
 import CardTray from './CardTray.vue'
+import ProgressCircular from '@/components/ui/progress-circular/ProgressCircular.vue'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']
   title?: string
-  description?: string
+  description?: string,
+  loading?: boolean
 }>()
 </script>
