@@ -1,5 +1,5 @@
 <template>
-  <SelectRoot v-bind="omit(forwarded, ['class', 'placeholder', 'keys', 'options', 'disablePortal'])" v-model="normalizedValue">
+  <SelectRoot v-bind="omit(forwarded, ['class', 'placeholder', 'keys', 'options', 'disablePortal', 'modelValue', 'onUpdate:modelValue'])" v-model="normalizedValue">
     <SelectTrigger :class="cn(!modelValue ? 'text-muted-foreground' : '', props.class)">
       <SelectValue :placeholder="placeholder">
         <slot name="label" v-bind="{ option: selectedOption }">

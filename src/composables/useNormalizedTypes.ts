@@ -10,21 +10,29 @@ const isEncodedString = (value: string) => {
   }
 }
 
-export function normalize (value: any | undefined) {
-  return !Array.isArray(value) && value !== undefined && !isString(value) ? JSON.stringify(value) : value
+export function normalize (value: any | undefined): string {
+  return value !== undefined && !isString(value) ? JSON.stringify(value) : value
 }
 
-export function denormalize (value: string | undefined) {
-  return !Array.isArray(value) && value !== undefined && !isEncodedString(value) ? JSON.parse(value) : value
+export function denormalize (value: any | undefined): any {
+  return value !== undefined && !isEncodedString(value) ? JSON.parse(value) : value
+}
+
+export function normalizeValue (value: any | undefined): string | string[] {
+  return Array.isArray(value) ? value.map(normalize) : normalize(value)
+}
+
+export function denormalizeValue (value: any | undefined): any | any[] {
+  return Array.isArray(value) ? value.map(denormalize) : denormalize(value)
 }
 
 export function useNormalizedTypes (modelValue: Ref) {
   return computed({
     get () {
-      return normalize(modelValue.value)
+      return normalizeValue(modelValue.value)
     },
     set (value) {
-      modelValue.value = denormalize(value)
+      modelValue.value = denormalizeValue(value)
     }
   })
 }

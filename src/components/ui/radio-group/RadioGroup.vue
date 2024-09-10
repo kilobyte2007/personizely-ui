@@ -1,6 +1,6 @@
 <template>
   <RadioGroupRoot
-    v-bind="omit(forwarded, ['options', 'keys'])"
+    v-bind="omit(forwarded, ['options', 'keys', 'modelValue', 'onUpdate:modelValue'])"
     v-model="normalizedValue"
     :class="cn(radioGroupVariants({ orientation }), props.class)"
   >
@@ -71,7 +71,7 @@ const props = withDefaults(defineProps<Omit<RadioGroupRootProps, 'modelValue'> &
   orientation: 'vertical',
   name: () => useId()
 })
-const emits = defineEmits<RadioGroupRootEmits & {
+const emits = defineEmits<Omit<RadioGroupRootEmits, 'update:modelValue'> & {
   blur: [option: Option | CustomOption]
   focus: [option: Option | CustomOption]
 }>()

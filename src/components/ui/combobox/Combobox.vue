@@ -1,6 +1,6 @@
 <template>
   <ComboboxRoot
-    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'disableFilter', 'disablePortal'])"
+    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'disableFilter', 'disablePortal', 'modelValue', 'onUpdate:modelValue'])"
     v-model="normalizedValue"
     v-model:search-term="searchTerm"
     v-model:open="open"
@@ -114,7 +114,7 @@ const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'r
   })
 })
 
-const emits = defineEmits<ComboboxRootEmits & {
+const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
   blur: [event: MouseEvent]
   focus: [event: MouseEvent]
   select: [option: Option | CustomOption]
@@ -122,12 +122,12 @@ const emits = defineEmits<ComboboxRootEmits & {
 
 const button = ref<ComponentInstance<typeof ComboboxTrigger>>()
 const open = ref(false)
-const searchTerm = ref()
+const searchTerm = ref('')
 
 const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | CustomOption) => {
   modelValue.value = event.detail.value
   requestAnimationFrame(() => {
-    searchTerm.value = null
+    searchTerm.value = ''
   })
   emits('select', option)
 }
@@ -137,7 +137,7 @@ const onToggle = (open: boolean) => {
     if (!open) {
       button.value!.$el.focus()
     }
-    searchTerm.value = null
+    searchTerm.value = ''
   })
 }
 

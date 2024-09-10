@@ -1,6 +1,6 @@
 <template>
   <AutocompleteRoot
-    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'disableFilter', 'disablePortal', 'keys', 'options', 'autofocus'])"
+    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'disableFilter', 'disablePortal', 'keys', 'options', 'autofocus', 'modelValue', 'onUpdate:modelValue'])"
     v-model="normalizedValue"
     v-model:search-term="searchTerm"
     v-model:open="open"
@@ -114,14 +114,14 @@ const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 's
   })
 })
 
-const emits = defineEmits<ComboboxRootEmits & {
+const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
   blur: [event: MouseEvent]
   focus: [event: MouseEvent]
   select: [option: Option | CustomOption]
 }>()
 
 const open = ref(false)
-const searchTerm = ref()
+const searchTerm = ref('')
 const input = ref<typeof ComboboxInput | undefined>(undefined)
 
 const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | CustomOption) => {
@@ -131,7 +131,7 @@ const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | Custom
 
 const reset = () => {
   normalizedValue.value = null
-  searchTerm.value = null
+  searchTerm.value = ''
   input.value?.$el.focus()
 }
 

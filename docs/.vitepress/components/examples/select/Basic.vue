@@ -9,15 +9,15 @@ const value = ref(null)
 const options = [
   {
     label: 'Red',
-    value: 'red'
+    value: 1
   },
   {
     label: 'Green',
-    value: 'green'
+    value: 2
   },
   {
     label: 'Blue',
-    value: 'blue'
+    value: 3
   }
 ]
 </script>

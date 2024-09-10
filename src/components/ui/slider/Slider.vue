@@ -1,6 +1,6 @@
 <template>
   <SliderRoot
-    v-bind="omit(forwarded, ['showMarker', 'modelValue', 'onUpdateModelValue'])"
+    v-bind="omit(forwarded, ['showMarker', 'modelValue', 'onUpdate:modelValue'])"
     v-model="value"
     :class="cn(
       'relative flex touch-none select-none data-[disabled]:opacity-50',
@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed, ref } from 'vue'
-import type { SliderRootProps } from 'radix-vue'
+import type { SliderRootProps, SliderRootEmits } from 'radix-vue'
 import { SliderRange, SliderRoot, SliderThumb, SliderTrack, useForwardPropsEmits } from 'radix-vue'
 import { cn } from '@/utils/tailwind'
 import omit from 'lodash/omit'
@@ -56,7 +56,8 @@ const props = withDefaults(defineProps<Omit<SliderRootProps, 'modelValue'> & {
   orientation: 'horizontal',
   showMarker: false
 })
-const emits = defineEmits<{
+
+const emits = defineEmits<Omit<SliderRootEmits, 'update:modelValue'> & {
   focus: [payload: number, event: FocusEvent]
   blur: [payload: number, event: FocusEvent]
   dragstart: [payload: number]
@@ -71,6 +72,7 @@ const delegatedProps = computed(() => {
 })
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
+
 const visibleMarker = ref<number | null>(null)
 
 const value = computed({

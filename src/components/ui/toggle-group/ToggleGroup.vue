@@ -1,6 +1,6 @@
 <template>
   <ToggleGroupRoot
-    v-bind="forwarded"
+    v-bind="omit(forwarded, ['modelValue', 'onUpdate:modelValue'])"
     v-model="normalizedValue"
     :class="cn('flex items-center justify-center gap-1', props.class)"
   >
@@ -29,6 +29,7 @@ import ToggleGroupItem from './ToggleGroupItem.vue'
 import { cn } from '@/utils/tailwind'
 import { useNormalizedTypes, normalize } from '@/composables/useNormalizedTypes'
 import { useEmpty } from '@/composables/useEmpty'
+import omit from 'lodash/omit'
 
 type ToggleGroupVariants = VariantProps<typeof toggleVariants>
 
