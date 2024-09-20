@@ -128,7 +128,8 @@ function useToast () {
 
 type Toast = Omit<ToasterToast, 'id'>
 
-function toast (props: Toast) {
+function toast (payload: Toast | string) {
+  const props = typeof payload === 'string' ? { description: payload } : payload
   const id = genId()
 
   const update = (props: ToasterToast) =>

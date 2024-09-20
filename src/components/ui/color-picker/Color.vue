@@ -144,7 +144,7 @@ const onPasteHex = (e: ClipboardEvent) => {
   hex.value = value.startsWith('#') ? value.slice(1) : value
 }
 
-const c = new TinyColor(modelValue.value)
+const c = new TinyColor(modelValue.value || 'transparent')
 const rgb = c.toRgb()
 
 const r = ref(rgb.r)

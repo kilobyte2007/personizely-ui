@@ -64,6 +64,7 @@ const components: { [key:string]: Component } = {
   Icon,
   Form,
   FormField,
+  FileUploadButton,
   Popover,
   Progress,
   ProgressCircular,
