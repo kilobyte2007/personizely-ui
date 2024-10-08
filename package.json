@@ -1,7 +1,7 @@
 {
   "name": "personizely-ui",
   "web-types": "./web-types.json",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Personizely UI is a Vue.js UI library with a simple API, based on Radix Vue, inspired by shadcn-vue and Keen UI.",
   "type": "module",
   "main": "./dist/personizely-ui.js",
@@ -66,7 +66,7 @@
     "lodash.debounce": "^4.0.8",
     "lucide-vue-next": "^0.364.0",
     "patch-package": "^8.0.0",
-    "radix-vue": "^1.9.5",
+    "radix-vue": "^1.9.7",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "tippy.js": "^6.3.7",
