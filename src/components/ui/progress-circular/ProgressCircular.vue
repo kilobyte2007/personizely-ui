@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="cn('text-muted-foreground', $attrs.class)">
     <svg
       v-if="modelValue !== null"
       role="progressbar"
@@ -7,7 +7,7 @@
       :aria-valuemax="100"
       :aria-valuemin="0"
       :aria-valuenow="modelValue"
-      class="max-w-full max-h-full text-muted-foreground"
+      class="max-w-full max-h-full"
     >
       <circle
         fill="none"
@@ -24,7 +24,7 @@
 
     <svg
       v-else
-      class="animate-spin max-w-full max-h-full text-muted-foreground"
+      class="animate-spin max-w-full max-h-full"
       role="progressbar"
       viewBox="25 25 50 50"
       :aria-valuemax="100"
@@ -47,6 +47,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { cn } from '@/utils/tailwind'
 
 const props = withDefaults(defineProps<{
   modelValue?: number | null
