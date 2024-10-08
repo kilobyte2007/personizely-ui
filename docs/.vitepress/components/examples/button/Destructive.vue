@@ -5,7 +5,6 @@
       :key="size"
       :size="size"
       variant="destructive"
-      loading
     >
       Delete
     </Button>

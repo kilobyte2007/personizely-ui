@@ -1,7 +1,7 @@
 {
   "name": "personizely-ui",
   "web-types": "./web-types.json",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Personizely UI is a Vue.js UI library with a simple API, based on Radix Vue, inspired by shadcn-vue and Keen UI.",
   "type": "module",
   "main": "./dist/personizely-ui.js",
@@ -97,7 +97,7 @@
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.1.0",
     "vee-validate": "^4.12.6",
-    "vite": "^5.4.3",
+    "vite": "^5.4.8",
     "vite-plugin-banner": "^0.7.0",
     "vitepress": "^1.0.2",
     "vue": "^3.5.4",

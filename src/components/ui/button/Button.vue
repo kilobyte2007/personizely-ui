@@ -18,7 +18,7 @@
         <template v-if="loading">
           <ProgressCircular
             v-if="loading"
-            class="h-4 w-4 text-inherit"
+            class="text-inherit"
             :class="buttonIconVariants({ size })"
           />
         </template>
@@ -36,7 +36,7 @@
         <template v-if="loading">
           <ProgressCircular
             v-if="loading"
-            class="h-4 w-4 text-inherit"
+            class="text-inherit"
             :class="buttonIconVariants({ size })"
           />
         </template>
