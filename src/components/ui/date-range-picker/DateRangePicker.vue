@@ -35,17 +35,13 @@
           :aria-selected="isSelectedPreset(preset.value)"
           :variant="isSelectedPreset(preset.value) ? 'secondary' : 'ghost'"
           class="justify-start min-w-28"
-          @click="() => {
-            dateRange = preset.value
-            id += 1
-          }"
+          @click="dateRange = preset.value"
         >
           {{ preset.label }}
         </Button>
       </div>
       <RangeCalendar
         v-bind="omit(forwarded, ['class', 'placeholder', 'formatter', 'presets', 'modelValue'])"
-        :key="id"
         v-model="dateRange"
         :number-of-months="2"
         :prevent-deselect="true"
@@ -95,7 +91,6 @@ const props = withDefaults(defineProps<{
 })
 
 const isOpen = ref(false)
-const id = ref(1)
 
 const dateRange = ref<DateRange>({
   start: props.modelValue.start,
