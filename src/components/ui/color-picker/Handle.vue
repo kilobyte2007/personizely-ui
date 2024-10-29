@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { cn } from '@/utils/tailwind'
 
 defineEmits(['up', 'down'])
