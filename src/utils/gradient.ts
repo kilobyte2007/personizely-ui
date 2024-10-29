@@ -109,17 +109,17 @@ const toColor = (point: Point) => {
 }
 
 const toLinearGradient = (properties: Gradient) => {
-  const { angle = 0, points = [], interpolation = 'hsl', precision = 1 } = properties
+  const { angle = 0, points = [], interpolation = 'hsl', precision = 0 } = properties
   return `linear-gradient(${angle}deg, ${preparePoints(points, interpolation, precision).map(point => toColor(point)).join(', ')})`
 }
 
 const toRadialGradient = (properties: Gradient) => {
-  const { shape = 'circle', xAxis = '50%', yAxis = '50%', points = [], interpolation = 'hsl', precision = 1 } = properties
+  const { shape = 'circle', xAxis = '50%', yAxis = '50%', points = [], interpolation = 'hsl', precision = 0 } = properties
   return `radial-gradient(${shape} at ${xAxis} ${yAxis}, ${preparePoints(points, interpolation, precision).map(point => toColor(point)).join(', ')})`
 }
 
 const toConicGradient = (properties: Gradient) => {
-  const { angle = '0deg', xAxis = '50%', yAxis = '50%', points = [], interpolation = 'hsl', precision = 1 } = properties
+  const { angle = '0deg', xAxis = '50%', yAxis = '50%', points = [], interpolation = 'hsl', precision = 0 } = properties
   return `conic-gradient(from ${angle}deg at ${xAxis} ${yAxis}, ${preparePoints(points, interpolation, precision).map(point => toColor(point)).join(', ')})`
 }
 
@@ -147,7 +147,7 @@ export const parse = (declaration: string) => {
   return { image, gradient }
 }
 
-export const compile = ({ points, interpolation = 'hsl', precision = 1, type = 'linear', angle = 90 }: Gradient) => {
+export const compile = ({ points, interpolation = 'hsl', precision = 0, type = 'linear', angle = 90 }: Gradient) => {
   switch (type) {
   case 'linear': return toLinearGradient({ points, interpolation, precision, type, angle })
   case 'radial': return toRadialGradient({ points, interpolation, precision, type, angle })

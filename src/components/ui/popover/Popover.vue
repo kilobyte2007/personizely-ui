@@ -45,8 +45,8 @@ const props = withDefaults(defineProps<PopoverRootProps & Pick<PopoverContentPro
 }>(), {
   align: 'center',
   alignOffset: 4,
-  sideOffset: 4,
-  side: 'bottom'
+  side: 'bottom',
+  sideOffset: 4
 })
 const emits = defineEmits<PopoverRootEmits>()
 
