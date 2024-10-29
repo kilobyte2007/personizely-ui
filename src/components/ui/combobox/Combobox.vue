@@ -6,6 +6,7 @@
     v-model:open="open"
     :filter-function="filterFunction"
     :reset-search-term-on-blur="false"
+    :display-value="(value) => preparedOptions.find(o => o[keys.value] === value)?.[keys.label]"
     @update:open="onToggle"
   >
     <ComboboxAnchor as-child>
@@ -23,7 +24,7 @@
         @blur="$emit('blur', $event)"
       >
         <span class="pointer-events-none">
-          <slot v-if="selectedOption" name="label" v-bind="{ option: selectedOption }">
+          <slot v-if="selectedOption || $slots.label" name="label" v-bind="{ option: selectedOption }">
             {{ selectedOptionLabel }}
           </slot>
           <template v-else>
@@ -155,7 +156,9 @@ const filterFunction = (options: any, searchTerm: string) => {
 
 const selectedOption = computed(() => {
   if (modelValue.value) {
-    return preparedOptions.value.find(o => o.value === modelValue.value)
+    return preparedOptions.value.find((o) => {
+      return o[props.keys.value] === modelValue.value
+    })
   }
 
   return null

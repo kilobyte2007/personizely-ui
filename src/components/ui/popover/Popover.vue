@@ -1,5 +1,5 @@
 <template>
-  <PopoverRoot v-bind="omit(forwarded, ['side', 'align', 'class'])">
+  <PopoverRoot v-bind="omit(forwarded, ['side', 'align', 'alignOffset', 'sideOffset', 'class'])">
     <PopoverTrigger v-if="$slots.trigger">
       <slot name="trigger" />
     </PopoverTrigger>
@@ -7,9 +7,9 @@
     <PopoverPortal>
       <PopoverContent
         :align="align"
-        :align-offset="4"
+        :align-offset="alignOffset"
         :side="side"
-        :side-offset="4"
+        :side-offset="alignOffset"
         v-bind="$attrs"
         :class="
           cn(
@@ -40,10 +40,12 @@ import { type HTMLAttributes } from 'vue'
 import omit from 'lodash/omit'
 import PopoverTrigger from './PopoverTrigger.vue'
 
-const props = withDefaults(defineProps<PopoverRootProps & Pick<PopoverContentProps, 'side' | 'align'> & {
+const props = withDefaults(defineProps<PopoverRootProps & Pick<PopoverContentProps, 'side' | 'align' | 'alignOffset' | 'sideOffset'> & {
   class?: HTMLAttributes['class']
 }>(), {
   align: 'center',
+  alignOffset: 4,
+  sideOffset: 4,
   side: 'bottom'
 })
 const emits = defineEmits<PopoverRootEmits>()

@@ -18,7 +18,7 @@
         </DialogDescription>
       </DialogHeader>
 
-      <div class="text-sm overflow-auto p-2">
+      <div v-if="$slots.default" class="text-sm overflow-auto p-2">
         <slot />
       </div>
 
