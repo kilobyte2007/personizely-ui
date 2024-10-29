@@ -58,6 +58,7 @@
     "@types/lodash": "^4.17.0",
     "@vueuse/core": "^10.9.0",
     "autosize": "^3.0.20",
+    "chroma-js": "^3.1.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "deepmerge": "^2.0.1",

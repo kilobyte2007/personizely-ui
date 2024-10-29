@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute rounded-md cursor-pointer border-2 border-gray-300 shadow-sm scale-[1.2] ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+    :class="cn('absolute rounded-md cursor-pointer border-2 border-gray-300 shadow-sm scale-[1.2] ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2', $attrs.class)"
     role="presentation"
     tabindex="0"
     @keydown.up.prevent="$emit('up', $event)"
@@ -13,5 +13,7 @@
 </template>
 
 <script setup>
+import { cn } from '@/utils/tailwind'
+
 defineEmits(['up', 'down'])
 </script>

@@ -19,8 +19,8 @@
       :class="orientation === 'horizontal' ? 'h-full w-full' : 'w-full h-full'"
       role="slider"
       @mousedown="handleMouseDown"
-      @touchmove="handleMove"
-      @touchstart="handleTouchStart"
+      @touchmove.passive="handleMove"
+      @touchstart.passive="handleTouchStart"
       @touchend="$emit('drag-end')"
     >
       <slot />

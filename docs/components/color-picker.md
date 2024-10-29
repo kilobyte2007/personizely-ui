@@ -2,6 +2,7 @@
 import Basic from '../.vitepress/components/examples/color-picker/Basic.vue'
 import Vertical from '../.vitepress/components/examples/color-picker/Vertical.vue'
 import Picker from '../.vitepress/components/examples/color-picker/Picker.vue'
+import Gradient from '../.vitepress/components/examples/color-picker/Gradient.vue'
 </script>
 
 # Color picker
@@ -36,3 +37,12 @@ Shows a select component.
 **Code**
 
 <<< @/.vitepress/components/examples/color-picker/Picker.vue
+
+### Gradient
+<Example class="py-20">
+  <Gradient />
+</Example>
+
+**Code**
+
+<<< @/.vitepress/components/examples/color-picker/Gradient.vue

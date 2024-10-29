@@ -4,8 +4,8 @@
     class="relative cursor-pointer w-full aspect-[4/2.5] rounded-md"
     :style="{ background }"
     @mousedown="handleMouseDown"
-    @touchmove="handleMove"
-    @touchstart="handleTouchStart"
+    @touchmove.passive="handleMove"
+    @touchstart.passive="handleTouchStart"
     @touchend="isDragging = false"
   >
     <div class="overflow-hidden">
