@@ -3,6 +3,7 @@ import Basic from '../.vitepress/components/examples/combobox/Basic.vue'
 import Disabled from '../.vitepress/components/examples/combobox/Disabled.vue'
 import Label from '../.vitepress/components/examples/combobox/Label.vue'
 import Async from '../.vitepress/components/examples/combobox/Async.vue'
+import Multiple from '../.vitepress/components/examples/combobox/Multiple.vue'
 </script>
 
 # Combobox
@@ -46,3 +47,12 @@ Shows a combobox component.
 **Code**
 
 <<< @/.vitepress/components/examples/combobox/Async.vue
+
+### Combobox with multiple values
+<Example>
+  <Multiple />
+</Example>
+
+**Code**
+
+<<< @/.vitepress/components/examples/combobox/Multiple.vue

@@ -17,14 +17,17 @@
         :aria-expanded="open"
         :tabindex="null"
         :class="cn('flex gap-1.5 h-8 text-left items-center w-full justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
-                   !modelValue ? 'text-muted-foreground' : '',
+                   (multiple && Array.isArray(modelValue) && modelValue.length === 0) || !modelValue ? 'text-muted-foreground' : '',
                    props.class
         )"
         @focus="$emit('focus', $event)"
         @blur="$emit('blur', $event)"
       >
         <span class="pointer-events-none">
-          <slot v-if="selectedOption || $slots.label" name="label" v-bind="{ option: selectedOption }">
+          <slot v-if="multiple && ($slots.label || selectedOptions.length)" name="label" v-bind="{ options: selectedOptions }">
+            {{ selectedOptionsLabel }}
+          </slot>
+          <slot v-else-if="!multiple && ($slots.label || selectedOption)" name="label" v-bind="{ option: selectedOptions }">
             {{ selectedOptionLabel }}
           </slot>
           <template v-else>
@@ -164,9 +167,27 @@ const selectedOption = computed(() => {
   return null
 })
 
+const selectedOptions = computed(() => {
+  if (Array.isArray(modelValue.value)) {
+    return preparedOptions.value.filter((o) => {
+      return (<Array<unknown>>modelValue.value).includes(o[props.keys.value])
+    })
+  }
+
+  return []
+})
+
 const selectedOptionLabel = computed(() => {
   if (selectedOption.value) {
     return selectedOption.value[props.keys.label]
+  }
+
+  return null
+})
+
+const selectedOptionsLabel = computed(() => {
+  if (selectedOptions.value) {
+    return selectedOptions.value.map(o => o[props.keys.label]).join(', ')
   }
 
   return null
