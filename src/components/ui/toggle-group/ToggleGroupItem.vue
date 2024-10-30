@@ -1,21 +1,28 @@
 <template>
-  <ToggleGroupItem
-    v-bind="forwardedProps"
-    :class="cn(toggleVariants({
-      variant: variant,
-      size: size,
-      icon: Boolean(icon)
-    }), props.class)"
-  >
-    <slot>
-      <component
-        :is="typeof icon === 'string' ? Icon : icon"
-        v-if="icon"
-        :class="buttonIconVariants({ size })"
-        :icon="icon!"
-      />
-    </slot>
-  </ToggleGroupItem>
+  <Tooltip :disabled="!icon || !label">
+    <template #trigger>
+      <ToggleGroupItem
+        v-bind="forwardedProps"
+        :aria-label="label"
+        :class="cn(toggleVariants({
+          variant: variant,
+          size: size,
+          icon: Boolean(icon)
+        }), props.class)"
+      >
+        <slot>
+          <component
+            :is="typeof icon === 'string' ? Icon : icon"
+            v-if="icon"
+            :class="buttonIconVariants({ size })"
+            :icon="icon!"
+          />
+        </slot>
+      </ToggleGroupItem>
+    </template>
+
+    {{ label }}
+  </Tooltip>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +32,7 @@ import { ToggleGroupItem, type ToggleGroupItemProps, useForwardProps } from 'rad
 import { toggleVariants } from '@/components/ui/toggle'
 import { cn } from '@/utils/tailwind'
 import { buttonIconVariants } from '@/components/ui/button'
+import { Tooltip } from '@/components/ui/tooltip'
 import { Icon } from '@/components/ui/icon'
 
 type ToggleGroupVariants = VariantProps<typeof toggleVariants>
@@ -32,6 +40,7 @@ type ToggleGroupVariants = VariantProps<typeof toggleVariants>
 const props = defineProps<ToggleGroupItemProps & {
   class?: HTMLAttributes['class']
   variant?: ToggleGroupVariants['variant']
+  label?: string
   size?: ToggleGroupVariants['size']
   icon?: string | Component
 }>()

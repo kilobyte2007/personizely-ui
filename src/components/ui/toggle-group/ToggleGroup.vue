@@ -7,7 +7,7 @@
     <ToggleGroupItem
       v-for="item in items"
       :key="item.value"
-      :aria-label="item.label"
+      :label="item.label"
       :icon="item.icon"
       :size="size"
       :variant="variant"

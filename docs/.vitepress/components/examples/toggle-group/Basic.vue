@@ -1,10 +1,13 @@
 <template>
-  <ToggleGroup v-model="value" :items="items" type="single" />
+  <TooltipProvider :delay-duration="100">
+    <ToggleGroup v-model="value" :items="items" type="single" />
+  </TooltipProvider>
 </template>
 
 <script setup lang="ts">
 import { ToggleGroup } from '@/components/ui/toggle-group'
 import { ref } from 'vue'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 const value = ref(null)
 
