@@ -8,7 +8,9 @@
     }), props.class)"
   >
     <slot>
-      <Icon
+      <component
+        :is="typeof icon === 'string' ? Icon : icon"
+        v-if="icon"
         :class="buttonIconVariants({ size })"
         :icon="icon!"
       />
@@ -18,7 +20,7 @@
 
 <script setup lang="ts">
 import type { VariantProps } from 'class-variance-authority'
-import { type HTMLAttributes, computed } from 'vue'
+import { type HTMLAttributes, type Component, computed } from 'vue'
 import { ToggleGroupItem, type ToggleGroupItemProps, useForwardProps } from 'radix-vue'
 import { toggleVariants } from '@/components/ui/toggle'
 import { cn } from '@/utils/tailwind'
@@ -31,7 +33,7 @@ const props = defineProps<ToggleGroupItemProps & {
   class?: HTMLAttributes['class']
   variant?: ToggleGroupVariants['variant']
   size?: ToggleGroupVariants['size']
-  icon?: string
+  icon?: string | Component
 }>()
 
 const delegatedProps = computed(() => {

@@ -244,7 +244,7 @@ const isSafeRgba = (color: TinyColor) => {
 const update = (value: TinyColor) => {
   value.setAlpha(a.value)
 
-  if (isSafeHex(value)) {
+  if (isSafeHex(value) && a.value === 1) {
     modelValue.value = value.toHexString()
   } else if (isSafeRgba(value)) {
     modelValue.value = value.toRgbString()

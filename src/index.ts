@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { CheckboxGroup } from '@/components/ui/checkbox-group'
-import { Color, ColorPicker, Gradient } from '@/components/ui/color-picker'
+import { Color, ColorPicker, Gradient, Checkboard } from '@/components/ui/color-picker'
 import { Combobox } from '@/components/ui/combobox'
 import { DatePicker } from '@/components/ui/date-picker'
 import { DateRangePicker } from '@/components/ui/date-range-picker'
@@ -53,6 +53,7 @@ const components: { [key:string]: Component } = {
   Color,
   ColorPicker,
   Gradient,
+  Checkboard,
   Combobox,
   DatePicker,
   DateRangePicker,
