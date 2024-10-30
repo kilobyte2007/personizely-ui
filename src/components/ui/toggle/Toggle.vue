@@ -1,16 +1,25 @@
 <template>
-  <Toggle
-    v-bind="forwarded"
-    :class="cn(toggleVariants({ variant, size, icon: Boolean(icon) }), props.class)"
-  >
-    <slot>
-      <Icon
-        v-if="icon"
-        :class="buttonIconVariants({ size })"
-        :icon="icon"
-      />
-    </slot>
-  </Toggle>
+  <Tooltip :disabled="!icon || !label">
+    <template #trigger>
+      <div>
+        <Toggle
+          v-bind="forwarded"
+          :aria-label="label"
+          :class="cn(toggleVariants({ variant, size, icon: Boolean(icon) }), props.class)"
+        >
+          <slot>
+            <Icon
+              v-if="icon"
+              :class="buttonIconVariants({ size })"
+              :icon="icon"
+            />
+          </slot>
+        </Toggle>
+      </div>
+    </template>
+
+    {{ label }}
+  </Tooltip>
 </template>
 
 <script setup lang="ts">
@@ -19,6 +28,7 @@ import { Toggle, type ToggleEmits, type ToggleProps, useForwardPropsEmits } from
 import { type ToggleVariants, toggleVariants } from '.'
 import { cn } from '@/utils/tailwind'
 import { Icon } from '@/components/ui/icon'
+import { Tooltip } from '@/components/ui/tooltip'
 import { buttonIconVariants } from '@/components/ui/button'
 
 const props = withDefaults(defineProps<ToggleProps & {
@@ -26,6 +36,7 @@ const props = withDefaults(defineProps<ToggleProps & {
   variant?: ToggleVariants['variant']
   size?: ToggleVariants['size']
   icon?: string
+  label?: string
 }>(), {
   variant: 'default',
   size: 'md',

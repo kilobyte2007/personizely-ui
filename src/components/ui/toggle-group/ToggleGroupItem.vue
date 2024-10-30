@@ -1,24 +1,26 @@
 <template>
-  <Tooltip :disabled="!icon || !label">
+  <Tooltip>
     <template #trigger>
-      <ToggleGroupItem
-        v-bind="forwardedProps"
-        :aria-label="label"
-        :class="cn(toggleVariants({
-          variant: variant,
-          size: size,
-          icon: Boolean(icon)
-        }), props.class)"
-      >
-        <slot>
-          <component
-            :is="typeof icon === 'string' ? Icon : icon"
-            v-if="icon"
-            :class="buttonIconVariants({ size })"
-            :icon="icon!"
-          />
-        </slot>
-      </ToggleGroupItem>
+      <div>
+        <ToggleGroupItem
+          v-bind="forwardedProps"
+          :aria-label="label"
+          :class="cn(toggleVariants({
+            variant: variant,
+            size: size,
+            icon: Boolean(icon)
+          }), props.class)"
+        >
+          <slot>
+            <component
+              :is="typeof icon === 'string' ? Icon : icon"
+              v-if="icon"
+              :class="buttonIconVariants({ size })"
+              :icon="icon!"
+            />
+          </slot>
+        </ToggleGroupItem>
+      </div>
     </template>
 
     {{ label }}
