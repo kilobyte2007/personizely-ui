@@ -1,5 +1,5 @@
 <template>
-  <Tooltip>
+  <Tooltip :disabled="!label || !icon">
     <template #trigger>
       <div>
         <ToggleGroupItem
