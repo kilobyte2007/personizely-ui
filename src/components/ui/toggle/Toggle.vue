@@ -8,10 +8,11 @@
           :class="cn(toggleVariants({ variant, size, icon: Boolean(icon) }), props.class)"
         >
           <slot>
-            <Icon
+            <component
+              :is="typeof icon === 'string' ? Icon : icon"
               v-if="icon"
               :class="buttonIconVariants({ size })"
-              :icon="icon"
+              :icon="icon!"
             />
           </slot>
         </Toggle>
@@ -23,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { type HTMLAttributes, computed } from 'vue'
+import { type HTMLAttributes, computed, type Component } from 'vue'
 import { Toggle, type ToggleEmits, type ToggleProps, useForwardPropsEmits } from 'radix-vue'
 import { type ToggleVariants, toggleVariants } from '.'
 import { cn } from '@/utils/tailwind'
@@ -35,7 +36,7 @@ const props = withDefaults(defineProps<ToggleProps & {
   class?: HTMLAttributes['class']
   variant?: ToggleVariants['variant']
   size?: ToggleVariants['size']
-  icon?: string
+  icon?: string | Component
   label?: string
 }>(), {
   variant: 'default',
