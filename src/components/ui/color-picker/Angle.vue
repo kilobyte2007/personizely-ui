@@ -1,7 +1,7 @@
 <template>
   <div
     ref="container"
-    class="relative rounded-full w-8 h-8 cursor-pointer border dark:border-gray-700 border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+    class="relative select-none rounded-full w-8 h-8 cursor-pointer border dark:border-gray-700 border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
     tabindex="0"
     @focus="beginKeyboardInput"
     @blur="endKeyboardInput"

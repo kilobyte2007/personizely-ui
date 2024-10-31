@@ -1,7 +1,7 @@
 <template>
   <div
     ref="container"
-    class="relative cursor-pointer w-full aspect-[4/2.5] rounded-md"
+    class="relative cursor-pointer w-full aspect-[4/2.5] rounded-md select-none"
     :style="{ background }"
     @mousedown="handleMouseDown"
     @touchmove.passive="handleMove"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative rounded-md user-select-none"
+    class="relative rounded-md select-none"
     :class="orientation === 'horizontal' ? 'h-8' : 'min-w-8'"
   >
     <div class="overflow-hidden">
