@@ -41,18 +41,19 @@ const extractAxis = (definition: string, type: string) => {
 
 const extractColors = (gradient: string) => {
   const rgba = gradient.match(/(rgba?\(\s?\d+,\s+?\d+,\s+?\d+(,\s+?\d+\.?\d*)?\)\s\d+%)/gm)
-  const hex = gradient.match(/(#[a-fA-F\d+]{3,6}\s\d+%)/gm)
+  const hsla = gradient.match(/(hsla?\(\s?\d+,\s+?\d+%,\s+?\d+%(,\s+?\d+\.?\d*)?\)\s\d+%)/gm)
+  const hex = gradient.match(/(#[a-fA-F\d+]{3,6}\s\d+%|#([A-Fa-f0-9]{4}){1,2}\s\d+%)/gm)
 
-  if (!rgba && !hex) {
-    console.error('Extract error ', gradient, 'colors [', rgba, '], hex [', hex, ']')
+  if (!rgba && !hex && !hsla) {
+    console.error('Extract error ', gradient, 'colors [', rgba, '], hex [', hex, '], hsla [', hsla, ']')
     return []
   }
 
-  return [...rgba || [], ...hex || []]
+  return [...rgba || [], ...hex || [], ...hsla || []]
     .reduce((buffer: Array<{ left: number, color: string}>, entry) => {
       const regexp = entry.startsWith('#')
-        ? /(?<color>#[a-fA-F\d+]{3,6})\s(?<left>\d+)%/i
-        : /(?<color>rgba?\(\s?\d+,\s+?\d+,\s+?\d+(,\s+?\d+\.?\d*)?\))\s(?<left>\d+)%/i
+        ? /(?<color>#[a-fA-F\d+]{3,6}|#([A-Fa-f0-9]{4}){1,2})\s(?<left>\d+)%/i
+        : /(?<color>rgba?\(\s?\d+,\s+?\d+,\s+?\d+(,\s+?\d+\.?\d*)?\)|hsla?\(\s?\d+,\s+?\d+%,\s+?\d+%(,\s+?\d+\.?\d*)?\))\s(?<left>\d+)%/i
 
       const extracted = regexp.exec(entry)
       if (extracted) {
@@ -64,7 +65,6 @@ const extractColors = (gradient: string) => {
           })
         }
       }
-
       return buffer
     }, [])
 }
