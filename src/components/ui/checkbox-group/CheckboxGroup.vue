@@ -8,7 +8,7 @@
       :help="disabled || option[keys.help]"
       :name="`${name}[${option[keys.value]}]`"
       :model-value="modelValue.includes(option[keys.value])"
-      @update:model-value="$event ? modelValue.push(option[keys.value]) : modelValue.splice(modelValue.indexOf(option[keys.value]), 1)"
+      @update:model-value="onUpdate(option, $event)"
       @blur="$emit('blur', option, $event)"
       @focus="$emit('focus', option, $event)"
     >
@@ -59,4 +59,15 @@ defineEmits<{
 }>()
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
+
+const onUpdate = (option: Option | CustomOption, checked: boolean) => {
+  const value = [...modelValue.value]
+  if (checked) {
+    value.push(option[props.keys.value])
+  } else {
+    value.splice(value.indexOf(option[props.keys.value]), 1)
+  }
+
+  modelValue.value = value
+}
 </script>
