@@ -10,19 +10,21 @@
         )"
       >
         <template #icon>
-          <CalendarIcon class="size-3" />
+          <CalendarIcon class="size-3 min-w-3" />
         </template>
         <template v-if="modelValue.start">
-          <template v-if="modelValue.end">
-            {{ formatter.format(modelValue.start.toDate(getLocalTimeZone())) }} - {{ formatter.format(modelValue.end.toDate(getLocalTimeZone())) }}
-          </template>
+          <span class="truncate">
+            <template v-if="modelValue.end">
+              {{ formatter.format(modelValue.start.toDate(getLocalTimeZone())) }} - {{ formatter.format(modelValue.end.toDate(getLocalTimeZone())) }}
+            </template>
 
-          <template v-else>
-            {{ formatter.format(modelValue.start.toDate(getLocalTimeZone())) }}
-          </template>
+            <template v-else>
+              {{ formatter.format(modelValue.start.toDate(getLocalTimeZone())) }}
+            </template>
+          </span>
         </template>
         <template v-else>
-          {{ placeholder }}
+          <span class="truncate">{{ placeholder }}</span>
         </template>
       </Button>
     </template>

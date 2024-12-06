@@ -10,13 +10,13 @@
         )"
       >
         <template #icon>
-          <CalendarIcon class="size-3" />
+          <CalendarIcon class="size-3 min-w-3" />
         </template>
         <slot v-if="modelValue" name="label">
-          {{ formatter.format(modelValue.toDate(getLocalTimeZone())) }}
+          <span class="truncate">{{ formatter.format(modelValue.toDate(getLocalTimeZone())) }}</span>
         </slot>
         <template v-else>
-          {{ placeholder }}
+          <span class="truncate">{{ placeholder }}</span>
         </template>
       </Button>
     </template>

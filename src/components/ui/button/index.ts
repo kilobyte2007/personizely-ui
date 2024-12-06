@@ -63,11 +63,11 @@ export const buttonVariants = cva('inline-flex items-center justify-center white
 export const buttonIconVariants = cva('', {
   variants: {
     size: {
-      xxs: 'w-3 h-3',
-      xs: 'w-3 h-3',
-      sm: 'w-3 h-3',
-      md: 'w-3 h-3',
-      lg: 'w-4 h-4'
+      xxs: 'w-3 h-3 min-w-3',
+      xs: 'w-3 h-3 min-w-3',
+      sm: 'w-3 h-3 min-w-3',
+      md: 'w-3 h-3 min-w-3',
+      lg: 'w-4 h-4 min-w-4'
     }
   },
   defaultVariants: {
