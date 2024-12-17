@@ -35,9 +35,12 @@
       <slot name="label" v-bind="{ item }">{{ item.label }}</slot>
     </span>
     <slot name="help" v-bind="{ item }">
-      <DropdownMenuShortcut v-if="item.help">
+      <DropdownMenuShortcut v-if="item.shortcut">
         {{ item.help }}
       </DropdownMenuShortcut>
+      <DropdownMenuHelp v-else-if="item.help">
+        {{ item.help }}
+      </DropdownMenuHelp>
     </slot>
   </DropdownMenuItem>
 </template>
@@ -46,6 +49,7 @@
 import DropdownMenuPart from './DropdownMenuPart.vue'
 import DropdownMenuItem from './DropdownMenuItem.vue'
 import DropdownMenuShortcut from './DropdownMenuShortcut.vue'
+import DropdownMenuHelp from './DropdownMenuHelp.vue'
 import DropdownMenuSub from './DropdownMenuSub.vue'
 import DropdownMenuSubContent from './DropdownMenuSubContent.vue'
 import DropdownMenuSubTrigger from './DropdownMenuSubTrigger.vue'

@@ -3,13 +3,13 @@
     <DropdownMenuTrigger as-child>
       <slot name="trigger" />
     </DropdownMenuTrigger>
+
     <DropdownMenuContent
-      class="min-w-56"
+      :class="cn('min-w-32', props.class)"
       :side-offset="4"
       :align-offset="4"
       :align="align"
       :side="side"
-      :class="cn('min-w-56', props.class)"
     >
       <template v-if="label || $slots.label">
         <DropdownMenuLabel>
@@ -27,9 +27,9 @@
           @select="$emit('select', item)"
         >
           <span>{{ item.label }}</span>
-          <DropdownMenuShortcut v-if="item.help">
+          <DropdownMenuHelp v-if="item.help">
             {{ item.help }}
-          </DropdownMenuShortcut>
+          </DropdownMenuHelp>
         </DropdownMenuRadioGroupItem>
       </DropdownMenuRadioGroup>
     </DropdownMenuContent>
@@ -44,7 +44,7 @@ import DropdownMenuContent from './DropdownMenuContent.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
 import DropdownMenuRadioGroup from './DropdownMenuRadioGroup.vue'
 import DropdownMenuRadioGroupItem from './DropdownMenuRadioItem.vue'
-import DropdownMenuShortcut from './DropdownMenuShortcut.vue'
+import DropdownMenuHelp from './DropdownMenuHelp.vue'
 import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import type { MenuRadioItem } from './'
 import { cn } from '@/utils/tailwind'

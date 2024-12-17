@@ -6,6 +6,7 @@ export interface MenuItem {
   label: string
   icon?: string
   help?: string
+  shortcut?: string
   disabled?: boolean
 }
 

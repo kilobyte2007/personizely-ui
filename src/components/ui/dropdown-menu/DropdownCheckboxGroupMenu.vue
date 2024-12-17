@@ -5,7 +5,7 @@
     </DropdownMenuTrigger>
 
     <DropdownMenuContent
-      :class="cn('min-w-56', props.class)"
+      :class="cn('min-w-32', props.class)"
       :side-offset="4"
       :align-offset="4"
       :align="align"
@@ -28,9 +28,9 @@
         @select="$emit('select', item)"
       >
         <span>{{ item.label }}</span>
-        <DropdownMenuShortcut v-if="item.help">
+        <DropdownMenuHelp v-if="item.help">
           {{ item.help }}
-        </DropdownMenuShortcut>
+        </DropdownMenuHelp>
       </DropdownMenuCheckboxItem>
     </DropdownMenuContent>
   </DropdownMenuRoot>
@@ -42,10 +42,10 @@ import { DropdownMenuRoot, type DropdownMenuRootEmits, type DropdownMenuRootProp
 import DropdownMenuTrigger from './DropdownMenuTrigger.vue'
 import DropdownMenuContent from './DropdownMenuContent.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
-import DropdownMenuShortcut from './DropdownMenuShortcut.vue'
+import DropdownMenuHelp from './DropdownMenuHelp.vue'
 import DropdownMenuLabel from './DropdownMenuLabel.vue'
+import DropdownMenuCheckboxItem from './DropdownMenuCheckboxItem.vue'
 import type { MenuCheckboxItem } from './'
-import DropdownMenuCheckboxItem from '@/components/ui/dropdown-menu/DropdownMenuCheckboxItem.vue'
 import { cn } from '@/utils/tailwind'
 import { type HTMLAttributes, provide } from 'vue'
 
