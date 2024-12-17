@@ -16,11 +16,11 @@ export const buttonVariants = cva('inline-flex items-center justify-center white
       link: 'text-primary underline-offset-4 hover:underline'
     },
     size: {
-      xxs: 'px-1.5 h-5 rounded-sm font-normal text-xxs',
+      xxs: 'px-1.5 h-5 rounded-sm font-normal text-xxs gap-0.5',
       xs: 'px-2 h-6 rounded-sm font-normal',
       sm: 'px-2.5 h-7 rounded-sm font-normal',
       md: 'px-3 h-8',
-      lg: 'px-4 h-9 text-sm gap-2'
+      lg: 'px-4 h-9 text-sm gap-1.5'
     },
     icon: {
       true: '',
@@ -63,10 +63,10 @@ export const buttonVariants = cva('inline-flex items-center justify-center white
 export const buttonIconVariants = cva('', {
   variants: {
     size: {
-      xxs: 'w-3 h-3 min-w-3',
+      xxs: 'w-2.5 h-2.5 min-w-2.5',
       xs: 'w-3 h-3 min-w-3',
       sm: 'w-3 h-3 min-w-3',
-      md: 'w-3 h-3 min-w-3',
+      md: 'w-3.5 h-3.5 min-w-3.5',
       lg: 'w-4 h-4 min-w-4'
     }
   },
