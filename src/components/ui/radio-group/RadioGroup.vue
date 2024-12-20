@@ -13,7 +13,7 @@
         @blur="$emit('blur', option)"
       />
 
-      <div v-if="option[keys.help] || $slots.help" class="grid gap-1 leading-[1.2] peer-disabled:[&>label]:cursor-not-allowed peer-disabled:opacity-70">
+      <div v-if="option[keys.help] || $slots.help" class="grid gap-1 leading-[1.2] [&>label]:peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
         <Label :for="`${name}-${option[keys.id] || option[keys.value]}`">
           <slot v-bind="option">
             {{ option[keys.label] || option }}

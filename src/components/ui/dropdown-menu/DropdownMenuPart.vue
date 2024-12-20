@@ -54,4 +54,11 @@ defineProps<{
 defineEmits<{
   select: [item: MenuItem]
 }>()
+
+defineSlots<{
+  'label'(props: { item: MenuGroupItem }): any
+  'item-icon'(props: { item: MenuItem }): any
+  'item-label'(props: { item: MenuItem }): any
+  'item-help'(props: { item: MenuItem }): any
+}>()
 </script>

@@ -2,8 +2,11 @@
   <SelectRoot v-bind="forwarded" v-model="modelValue">
     <SelectTrigger :class="cn((multiple && Array.isArray(modelValue) && modelValue.length === 0) || !modelValue ? 'text-muted-foreground' : '', props.class)">
       <SelectValue :placeholder="placeholder">
-        <slot v-if="$slots.label" name="label" v-bind="{ option: selectedOption }">
-          {{ selectedOptionLabel }}
+        <slot v-if="multiple && Array.isArray(modelValue) && (modelValue.length || $slots.label)" name="label" v-bind="{ options: selectedOptions }">
+          {{ selectedOptionsLabel || modelValue!.length + ' selected' }}
+        </slot>
+        <slot v-else-if="!multiple && (modelValue || $slots.label)" name="label" v-bind="{ option: selectedOption }">
+          {{ selectedOptionLabel || modelValue }}
         </slot>
       </SelectValue>
     </SelectTrigger>
@@ -67,17 +70,42 @@ const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'keys',
 const delegatedEmits = useEmitAsProps(emits, ['update:modelValue'])
 const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 
+defineSlots<{
+  'label'(props: { option: CustomOption | undefined | null } | { options: Array<Option | CustomOption> }): any
+  'option'(props: { option: Option | CustomOption }): any
+}>()
+
 const selectedOption = computed(() => {
   if (modelValue.value) {
-    return preparedOptions.value.find(o => o[props.keys.value] === modelValue.value)
+    return preparedOptions.value.find((o) => {
+      return o[props.keys.value] === modelValue.value
+    })
   }
 
   return null
 })
 
+const selectedOptions = computed(() => {
+  if (Array.isArray(modelValue.value)) {
+    return preparedOptions.value.filter((o) => {
+      return (<Array<unknown>>modelValue.value).includes(o[props.keys.value])
+    })
+  }
+
+  return []
+})
+
 const selectedOptionLabel = computed(() => {
   if (selectedOption.value) {
     return selectedOption.value[props.keys.label]
+  }
+
+  return null
+})
+
+const selectedOptionsLabel = computed(() => {
+  if (selectedOptions.value) {
+    return selectedOptions.value.map(o => o[props.keys.label]).join(', ')
   }
 
   return null

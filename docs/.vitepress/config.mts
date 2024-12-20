@@ -1,36 +1,26 @@
-import {defineConfig, postcssIsolateStyles} from 'vitepress'
+import { defineConfig, postcssIsolateStyles } from 'vitepress'
 import { fileURLToPath, URL } from 'url'
-import { whyframe } from '@whyframe/core'
-import { whyframeVue } from '@whyframe/vue'
-import tailwind from "tailwindcss";
+import tailwindcssVite from '@tailwindcss/vite'
+import tailwindcssPostCss from '@tailwindcss/postcss'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Personizely UI",
-  description: "Personizely UI - Beautiful set of components.",
+  title: 'Personizely UI',
+  description: 'Personizely UI - Beautiful set of components.',
   vite: {
     css: {
       postcss: {
         plugins: [
+          tailwindcssPostCss(),
           postcssIsolateStyles({
-            prefix: ":not(:where(.vp-raw, .vp-raw *), :where([data-radix-popper-content-wrapper], [data-radix-popper-content-wrapper] *))",
+            prefix: ':not(:where(.vp-raw, .vp-raw *, [id^="reka"], [id^="reka"] *), :where([data-reka-popper-content-wrapper], [data-reka-popper-content-wrapper] *))',
             includeFiles: [/vp-doc\.css/, /base\.css/]
-          }),
-          tailwind()
+          })
         ]
       }
     },
     plugins: [
-      whyframe({
-        defaultSrc: '/frames/default'
-      }),
-
-      whyframeVue({
-        include: /\.(?:vue|md)$/,
-        parserOptions: {
-
-        }
-      })
+      tailwindcssVite()
     ],
     resolve: {
       alias: {
@@ -41,11 +31,11 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
+      { text: 'Home', link: '/' }
     ],
 
     outline: {
-      level: [2, 3],
+      level: [2, 3]
     },
 
     sidebar: [

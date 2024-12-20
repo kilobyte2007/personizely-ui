@@ -2,7 +2,7 @@ import { type VariantProps, cva } from 'class-variance-authority'
 
 export { default as Button } from './Button.vue'
 
-export const buttonVariants = cva('inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium text-xs gap-1 ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50', {
+export const buttonVariants = cva('inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium text-xs gap-1 ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50', {
   variants: {
     variant: {
       default: 'bg-primary text-primary-foreground hover:bg-primary/90',
@@ -16,7 +16,7 @@ export const buttonVariants = cva('inline-flex items-center justify-center white
       link: 'text-primary underline-offset-4 hover:underline'
     },
     size: {
-      xxs: 'px-1.5 h-5 rounded-sm font-normal text-xxs gap-0.5',
+      '2xs': 'px-1.5 h-5 rounded-sm font-normal text-2xs gap-0.5',
       xs: 'px-2 h-6 rounded-sm font-normal',
       sm: 'px-2.5 h-7 rounded-sm font-normal',
       md: 'px-3 h-8',
@@ -30,7 +30,7 @@ export const buttonVariants = cva('inline-flex items-center justify-center white
   compoundVariants: [
     {
       icon: true,
-      size: 'xxs',
+      size: '2xs',
       class: 'px-0 w-5'
     },
     {
@@ -63,7 +63,7 @@ export const buttonVariants = cva('inline-flex items-center justify-center white
 export const buttonIconVariants = cva('', {
   variants: {
     size: {
-      xxs: 'w-2.5 h-2.5 min-w-2.5',
+      '2xs': 'w-2.5 h-2.5 min-w-2.5',
       xs: 'w-3 h-3 min-w-3',
       sm: 'w-3 h-3 min-w-3',
       md: 'w-3.5 h-3.5 min-w-3.5',

@@ -1,93 +1,137 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss' source('../components/**/*');
+@config '../../tailwind.config.ts';
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+@variant dark (&:where(.dark, .dark *));
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+@source '../**/*.{js,ts,vue}';
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --error: var(--destructive);
-    --error-foreground: var(--destructive-foreground);
-
-    --warning: 35.76 100% 50%;
-    --warning-foreground: 210 40% 98%;
-
-    --success: 122 39% 49%;
-    --success-foreground: 210 40% 98%;
-
-    --ring: 240 5% 64.9%;
-
-    --radius: 0.5rem;
+@theme {
+  @keyframes accordion-up {
+    0% {
+      height: var(--reka-accordion-content-height);
+      overflow: hidden;
+    }
+    100% {
+      height: 0;
+      overflow: hidden;
+    }
   }
 
+  @keyframes accordion-down {
+    0% {
+      height: 0;
+      overflow: hidden;
+    }
+    100% {
+      height: var(--reka-accordion-content-height);
+      overflow: hidden;
+    }
+  }
+
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+
+  --radius: 0.5rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --text-2xs: 0.65rem;
+
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(222.2 84% 4.9%);
+
+  --color-muted: hsl(210 40% 96.1%);
+  --color-muted-foreground: hsl(215.4 16.3% 46.9%);
+
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(222.2 84% 4.9%);
+
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222.2 84% 4.9%);
+
+  --color-border: hsl(214.3 31.8% 91.4%);
+  --color-input: hsl(214.3 31.8% 91.4%);
+
+  --color-primary: hsl(222.2 47.4% 11.2%);
+  --color-primary-foreground: hsl(210 40% 98%);
+
+  --color-secondary: hsl(210 40% 96.1%);
+  --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
+
+  --color-accent: hsl(210 40% 96.1%);
+  --color-accent-foreground: hsl(222.2 47.4% 11.2%);
+
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+
+  --color-error: hsl(var(--color-destructive));
+  --color-error-foreground: hsl(var(--color-destructive-foreground));
+
+  --color-warning: hsl(35.76 100% 50%);
+  --color-warning-foreground: hsl(210 40% 98%);
+
+  --color-success: hsl(122 39% 49%);
+  --color-success-foreground: hsl(210 40% 98%);
+
+  --color-ring: hsl(240 5% 64.9%);
+}
+
+@layer themes {
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --color-background: hsl(222.2 84% 4.9%);
+    --color-foreground: hsl(210 40% 98%);
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --color-muted: hsl(217.2 32.6% 17.5%);
+    --color-muted-foreground: hsl(215 20.2% 65.1%);
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --color-popover: hsl(222.2 84% 4.9%);
+    --color-popover-foreground: hsl(210 40% 98%);
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --color-card: hsl(222.2 84% 4.9%);
+    --color-card-foreground: hsl(210 40% 98%);
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --color-border: hsl(217.2 32.6% 17.5%);
+    --color-input: hsl(217.2 32.6% 17.5%);
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --color-primary: hsl(210 40% 98%);
+    --color-primary-foreground: hsl(222.2 47.4% 11.2%);
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --color-secondary: hsl(217.2 32.6% 17.5%);
+    --color-secondary-foreground: hsl(210 40% 98%);
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --color-accent: hsl(217.2 32.6% 17.5%);
+    --color-accent-foreground: hsl(210 40% 98%);
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --color-destructive: hsl(0 62.8% 30.6%);
+    --color-destructive-foreground: hsl(210 40% 98%);
 
-    --error: var(--destructive);
-    --error-foreground: var(--destructive-foreground);
+    --color-error: hsl(var(--color-destructive));
+    --color-error-foreground: hsl(var(--color-destructive-foreground));
 
-    --warning: 0 84.2% 60.2%;
-    --warning-foreground: 210 40% 98%;
+    --color-warning: hsl(0 84.2% 60.2%);
+    --color-warning-foreground: hsl(210 40% 98%);
 
-    --success: 122 39% 49%;
-    --success-foreground: 210 40% 98%;
+    --color-success: hsl(122 39% 49%);
+    --color-success-foreground: hsl(210 40% 98%);
 
-    --ring: 212.7 26.8% 83.9%;
+    --color-ring: hsl(212.7 26.8% 83.9%);
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border, currentColor);
+  }
+
+  [role="button"],
+  button {
+    user-select: none;
+    cursor: pointer;
   }
 }

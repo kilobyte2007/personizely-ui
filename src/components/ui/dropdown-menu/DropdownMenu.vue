@@ -56,7 +56,7 @@ import { useEmitAsProps } from '@/composables/emits-as-props'
 import { forwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps, 'side' | 'align'> & {
-  items:(MenuItem | MenuItemWithChildren | MenuGroupItem)[]
+  items: (MenuItem | MenuItemWithChildren | MenuGroupItem)[]
   label?: string,
   class?: HTMLAttributes['class']
 }>()

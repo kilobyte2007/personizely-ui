@@ -8,6 +8,6 @@ import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
 
 const props = defineProps<{
-  class? : HTMLAttributes['class']
+  class?: HTMLAttributes['class']
 }>()
 </script>

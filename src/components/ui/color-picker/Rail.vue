@@ -6,7 +6,7 @@
     <div class="overflow-hidden">
       <Checkboard
         v-if="checkboard"
-        class="absolute z-1 inset-0 overflow-hidden rounded-md"
+        class="absolute inset-0 overflow-hidden rounded-md"
       />
       <div
         class="absolute inset-0 rounded-md"
@@ -45,7 +45,10 @@ const props = withDefaults(defineProps<{
 const container = ref<HTMLElement>()
 
 const handleMove = (e: MouseEvent | TouchEvent, skip: boolean = false) => {
-  !skip && e.preventDefault()
+  if (!skip) {
+    e.preventDefault()
+  }
+
   const offset = calculateOffset(e)
 
   if (!skip) {

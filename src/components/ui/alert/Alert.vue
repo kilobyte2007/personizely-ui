@@ -19,7 +19,7 @@
       v-if="dismissible"
       icon="x"
       variant="ghost"
-      size="xxs"
+      size="2xs"
       class="absolute right-2 top-2"
       type="button"
       @click="dismiss"

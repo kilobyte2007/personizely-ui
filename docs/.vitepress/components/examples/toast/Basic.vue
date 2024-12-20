@@ -1,7 +1,4 @@
 <template>
-  <teleport to="body">
-    <Toaster />
-  </teleport>
   <Button
     @click="toast({ title: 'Success', description: 'Item successfully added!' } )"
   >
@@ -10,7 +7,7 @@
 </template>
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
-import { Toaster, useToast } from '@/components/ui/toast'
+import { useToast } from '@/components/ui/toast'
 
 const { toast } = useToast()
 </script>

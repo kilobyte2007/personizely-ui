@@ -6,7 +6,7 @@
     :ignore-filter="disableFilter"
     :reset-search-term-on-blur="false"
   >
-    <ComboboxAnchor :class="cn('flex h-8 items-center w-full justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 [&>span]:break-all', props.class)">
+    <ComboboxAnchor :class="cn('flex h-8 items-center w-full justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 [&>span]:break-all', props.class)">
       <ComboboxInput
         ref="input"
         :model-value="selectedOption ? selectedOption[keys.label] : modelValue"
@@ -14,7 +14,7 @@
         :disabled="disabled"
         :placeholder="placeholder"
         :class="cn(
-          'flex h-8 w-full bg-transparent py-1 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
+          'flex h-8 w-full bg-transparent py-1 text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
           loading ? 'pe-8' : 'pe-2'
         )"
         @update:model-value="modelValue = $event"
@@ -26,7 +26,7 @@
       <Primitive
         v-else-if="modelValue"
         as="button"
-        class="focus:outline-none focus:ring-2 rounded focus:ring-ring focus:ring-offset-2"
+        class="focus:outline-hidden focus:ring-2 rounded focus:ring-ring focus:ring-offset-2"
         @click="reset"
       >
         <X class="w-4 h-4 opacity-50" />

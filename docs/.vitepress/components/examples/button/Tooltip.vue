@@ -16,5 +16,5 @@
 import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
-const sizes = ['lg', 'md', 'sm', 'xs', 'xxs']
+const sizes = ['lg', 'md', 'sm', 'xs', '2xs']
 </script>

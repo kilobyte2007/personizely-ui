@@ -3,7 +3,7 @@
     v-bind="forwarded"
     v-model="value"
     :class="cn(
-      'relative flex touch-none select-none data-[disabled]:opacity-50',
+      'relative flex touch-none select-none data-disabled:opacity-50',
       (orientation === 'horizontal' ? 'w-full h-2 items-center' : 'h-full w-2 justify-center'),
       props.class,
     )"
@@ -20,14 +20,14 @@
     <SliderThumb
       v-for="(thumbValue, index) in value ? value : []"
       :key="index"
-      class="flex h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-[disabled]:pointer-events-none"
+      class="flex h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-disabled:pointer-events-none"
       :class="orientation === 'horizontal' ? 'justify-center' : 'items-center'"
       @focus="onFocus({ index, value: thumbValue }, $event)"
       @blur="onBlur({ value: thumbValue }, $event)"
     >
       <div
         v-if="showMarker && (visibleMarker === index)"
-        class="absolute z-1 bg-primary rounded-sm px-1.5 py-1 shadow text-xs text-primary-foreground min-w-6 text-center"
+        class="absolute z-1 bg-primary rounded-sm px-1.5 py-1 shadow-sm text-xs text-primary-foreground min-w-6 text-center"
         :class="orientation === 'horizontal' ? 'bottom-6' : 'left-6'"
       >
         <slot name="marker" v-bind="{ value: thumbValue }">
@@ -88,12 +88,12 @@ const value = computed({
   }
 })
 
-const onFocus = ({ index, value }: { index: number, value: number}, e: FocusEvent) => {
+const onFocus = ({ index, value }: { index: number, value: number }, e: FocusEvent) => {
   emits('focus', value, e)
   visibleMarker.value = index
 }
 
-const onBlur = ({ value }: { value: number}, e: FocusEvent) => {
+const onBlur = ({ value }: { value: number }, e: FocusEvent) => {
   emits('blur', value, e)
   visibleMarker.value = null
 }

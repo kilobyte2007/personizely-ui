@@ -1,0 +1,4 @@
+@import '../../../src/assets/index.css';
+
+@source '../../docs/.vitepress/**/*.{js,ts,vue}';
+@source '../../docs/**/*.{js,ts,vue,md}';

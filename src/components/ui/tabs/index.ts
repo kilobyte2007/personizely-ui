@@ -15,11 +15,11 @@ export const tabsVariants = cva('', {
   }
 })
 
-export const tabsListVariants = cva('[&>*]:h-8', {
+export const tabsListVariants = cva('*:h-8', {
   variants: {
     orientation: {
-      vertical: 'flex flex-col items-start [&>*]:w-full',
-      horizontal: 'grid auto-cols-[1fr] grid-flow-col h-10 inline-grid items-center justify-center [&>*]:justify-center'
+      vertical: 'flex flex-col items-start *:w-full',
+      horizontal: 'grid auto-cols-[1fr] grid-flow-col h-10 inline-grid items-center justify-center *:justify-center'
     }
   },
   defaultVariants: {

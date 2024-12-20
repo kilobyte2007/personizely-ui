@@ -12,7 +12,7 @@
       @blur="$emit('blur', $event)"
     />
 
-    <div v-if="help || $slots.help" class="grid gap-1 leading-[1.2] peer-disabled:[&>label]:cursor-not-allowed peer-disabled:opacity-70">
+    <div v-if="help || $slots.help" class="grid gap-1 leading-[1.2] [&>label]:peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
       <label
         :for="id"
         class="text-sm font-medium leading-[1.2]"

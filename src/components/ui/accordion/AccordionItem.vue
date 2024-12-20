@@ -1,7 +1,7 @@
 <template>
   <AccordionItem
     v-bind="omit(forwardedProps, ['title'])"
-    :class="cn('[&:not(:last-child)]:border-b', props.class)"
+    :class="cn('not-last:border-b', props.class)"
   >
     <AccordionTrigger>
       <slot name="title">

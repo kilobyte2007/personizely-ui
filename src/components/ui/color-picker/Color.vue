@@ -36,7 +36,7 @@
           <Input
             :id="id"
             :model-value="Math.round(color.r)"
-            class="w-12 [&>*]:text-center"
+            class="w-12 *:text-center"
             @update:model-value="setRgb(Number($event) || color.r, 'r')"
           />
         </LabelInput>
@@ -69,7 +69,7 @@
           <Input
             :id="id"
             :model-value="Math.round(h)"
-            class="w-12 [&>*]:text-center"
+            class="w-12 *:text-center"
             @update:model-value="setHsl(Number($event) || color.toHsl().h, 'h')"
           />
         </LabelInput>

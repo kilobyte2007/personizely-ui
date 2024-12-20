@@ -37,7 +37,6 @@
 </template>
 
 <script setup lang="ts">
-import omit from 'lodash/omit'
 import {
   DropdownMenuRoot,
   type DropdownMenuRootEmits,

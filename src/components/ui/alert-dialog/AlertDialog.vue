@@ -23,7 +23,7 @@
           </Button>
         </AlertDialogCancel>
         <AlertDialogAction as-child @click="$emit('confirm')">
-          <Button>
+          <Button variant="default">
             Confirm
           </Button>
         </AlertDialogAction>

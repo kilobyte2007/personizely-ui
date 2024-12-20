@@ -17,8 +17,8 @@
     "build:types": "vue-tsc --project tsconfig.json --declaration --emitDeclarationOnly --outDir dist/types",
     "build:web-types": "node scripts/generate.js",
     "clean": "rimraf ./dist",
-    "lint": "eslint --ext .ts,.vue . --no-ignore",
-    "lint:fix": "eslint --fix --ext .ts,.vue . --no-ignore",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
@@ -55,6 +55,8 @@
   "homepage": "https://ui.personizely.dev/",
   "dependencies": {
     "@ctrl/tinycolor": "^4.1.0",
+    "@stylistic/eslint-plugin": "^2.12.1",
+    "@tailwindcss/vite": "^0.0.0-development.1",
     "@types/chroma-js": "^2.4.5",
     "@types/lodash": "^4.17.0",
     "@vueuse/core": "^10.9.0",
@@ -76,38 +78,41 @@
     "zod": "^3.23.5"
   },
   "devDependencies": {
-    "@iconify/vue": "^4.1.1",
-    "@stylistic/eslint-plugin-js": "^1.2.0",
-    "@stylistic/eslint-plugin-ts": "^1.6.3",
-    "@vee-validate/rules": "^4.12.6",
-    "@vee-validate/zod": "^4.12.6",
-    "@vitejs/plugin-vue": "5.0.4",
-    "@vue/tsconfig": "^0.5.1",
-    "@whyframe/core": "^0.1.11",
-    "@whyframe/vue": "^0.1.7",
-    "autoprefixer": "^10.4.19",
-    "cross-env": "^3.0.0",
-    "eslint": "^8.22.0",
-    "eslint-plugin-import": "^2.29.1",
+    "@eslint/js": "^9.17.0",
+    "@iconify/vue": "^4.2.0",
+    "@tailwindcss/postcss": "^4.0.0-beta.8",
+    "@vee-validate/rules": "^4.14.7",
+    "@vee-validate/zod": "^4.14.7",
+    "@vitejs/plugin-vue": "5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.17.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-promise": "^6.6.0",
     "eslint-plugin-standard": "^5.0.0",
-    "eslint-plugin-vue": "^9.25.0",
-    "rimraf": "^2.5.4",
-    "tailwindcss": "^3.4.3",
+    "eslint-plugin-vue": "^9.32.0",
+    "globals": "^15.14.0",
+    "rimraf": "^2.7.1",
+    "tailwindcss": "^4.0.0-beta.8",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
-    "typescript-eslint": "^7.1.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1",
     "vee-validate": "^4.14.7",
-    "vite": "^5.4.8",
-    "vite-plugin-banner": "^0.7.0",
-    "vitepress": "^1.0.2",
-    "vue": "^3.5.4",
+    "vite": "^6.0.5",
+    "vite-plugin-banner": "^0.8.0",
+    "vitepress": "^1.5.0",
+    "vue": "^3.5.13",
     "vue-docgen-api": "^4.79.2",
     "vue-docgen-web-types": "^0.1.8",
-    "vue-tsc": "^1.8.27"
+    "vue-tsc": "^2.1.10"
   },
   "peerDependencies": {
-    "vee-validate": "^4.12.6"
+    "vee-validate": "^4.14.7"
+  },
+  "overrides": {
+    "tailwindcss-animate": {
+      "tailwindcss": "^4.0.0-beta.8"
+    }
   }
 }

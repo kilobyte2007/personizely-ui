@@ -78,43 +78,43 @@ const state = ref<State>({
 
 function dispatch (action: Action) {
   switch (action.type) {
-  case actionTypes.ADD_TOAST:
-    state.value.toasts = [action.toast, ...state.value.toasts].slice(0, TOAST_LIMIT)
-    break
+    case actionTypes.ADD_TOAST:
+      state.value.toasts = [action.toast, ...state.value.toasts].slice(0, TOAST_LIMIT)
+      break
 
-  case actionTypes.UPDATE_TOAST:
-    state.value.toasts = state.value.toasts.map(t =>
-      t.id === action.toast.id ? { ...t, ...action.toast } : t)
-    break
+    case actionTypes.UPDATE_TOAST:
+      state.value.toasts = state.value.toasts.map(t =>
+        t.id === action.toast.id ? { ...t, ...action.toast } : t)
+      break
 
-  case actionTypes.DISMISS_TOAST: {
-    const { toastId } = action
+    case actionTypes.DISMISS_TOAST: {
+      const { toastId } = action
 
-    if (toastId) {
-      addToRemoveQueue(toastId)
-    } else {
-      state.value.toasts.forEach((toast) => {
-        addToRemoveQueue(toast.id)
-      })
+      if (toastId) {
+        addToRemoveQueue(toastId)
+      } else {
+        state.value.toasts.forEach((toast) => {
+          addToRemoveQueue(toast.id)
+        })
+      }
+
+      state.value.toasts = state.value.toasts.map(t =>
+        t.id === toastId || toastId === undefined
+          ? {
+            ...t,
+            open: false
+          }
+          : t)
+      break
     }
 
-    state.value.toasts = state.value.toasts.map(t =>
-      t.id === toastId || toastId === undefined
-        ? {
-          ...t,
-          open: false
-        }
-        : t)
-    break
-  }
+    case actionTypes.REMOVE_TOAST:
+      if (action.toastId === undefined)
+        state.value.toasts = []
+      else
+        state.value.toasts = state.value.toasts.filter(t => t.id !== action.toastId)
 
-  case actionTypes.REMOVE_TOAST:
-    if (action.toastId === undefined)
-      state.value.toasts = []
-    else
-      state.value.toasts = state.value.toasts.filter(t => t.id !== action.toastId)
-
-    break
+      break
   }
 }
 

@@ -20,7 +20,11 @@
         </template>
       </Button>
     </template>
-    <Calendar v-bind="forwarded" v-model="modelValue" initial-focus />
+    <Calendar
+      v-model="modelValue"
+      :multiple="false"
+      initial-focus
+    />
   </Popover>
 </template>
 
@@ -35,22 +39,17 @@ import { Calendar } from '@/components/ui/calendar'
 import { Button } from '@/components/ui/button'
 import { Popover } from '@/components/ui/popover'
 import { cn } from '@/utils/tailwind'
-import { type CalendarRootProps, useForwardProps } from 'reka-ui'
 import { type HTMLAttributes } from 'vue'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
 
 const modelValue = defineModel<DateValue>()
 const props = withDefaults(defineProps<{
   placeholder?: string
   class?: HTMLAttributes['class']
   formatter?: DateFormatter
-} & Omit<CalendarRootProps, 'placeholder' | 'modelValue'>>(), {
+}>(), {
   placeholder: 'Pick a date',
   formatter: () => new DateFormatter('en-US', {
     dateStyle: 'long'
   })
 })
-
-const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'formatter', 'modelValue'])
-const forwarded = useForwardProps(delegatedProps)
 </script>

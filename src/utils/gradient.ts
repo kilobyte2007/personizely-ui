@@ -1,4 +1,4 @@
-import chroma, { type InterpolationMode} from 'chroma-js'
+import chroma, { type InterpolationMode } from 'chroma-js'
 
 
 export type Point = { left: number, color: string }
@@ -51,7 +51,7 @@ const extractColors = (gradient: string) => {
   }
 
   return [...rgba || [], ...hex || [], ...hsla || []]
-    .reduce((buffer: Array<{ left: number, color: string}>, entry) => {
+    .reduce((buffer: Array<{ left: number, color: string }>, entry) => {
       const regexp = entry.startsWith('#')
         ? /(?<color>#[a-fA-F\d+]{3,6}|#([A-Fa-f0-9]{4}){1,2})\s(?<left>\d+)%/i
         : /(?<color>rgba?\(\s?\d+,\s+?\d+,\s+?\d+(,\s+?\d+\.?\d*)?\)|hsla?\(\s?\d+,\s+?\d+%,\s+?\d+%(,\s+?\d+\.?\d*)?\))\s(?<left>\d+)%/i
@@ -150,9 +150,9 @@ export const parse = (declaration: string) => {
 
 export const compile = ({ points, interpolation = 'hsl', precision = 0, type = 'linear', angle = 90 }: Gradient) => {
   switch (type) {
-  case 'linear': return toLinearGradient({ points, interpolation, precision, type, angle })
-  case 'radial': return toRadialGradient({ points, interpolation, precision, type, angle })
-  case 'conic': return toConicGradient({ points, interpolation, precision, type, angle })
-  default: return ''
+    case 'linear': return toLinearGradient({ points, interpolation, precision, type, angle })
+    case 'radial': return toRadialGradient({ points, interpolation, precision, type, angle })
+    case 'conic': return toConicGradient({ points, interpolation, precision, type, angle })
+    default: return ''
   }
 }

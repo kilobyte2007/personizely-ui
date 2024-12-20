@@ -1,6 +1,6 @@
 <template>
   <TabsContent
-    :class="cn('data-[orientation=horizontal]:mt-4 data-[orientation=vertical]:ml-4 rounded-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2', props.class)"
+    :class="cn('data-[orientation=horizontal]:mt-4 data-[orientation=vertical]:ml-4 rounded-sm ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2', props.class)"
     v-bind="delegatedProps"
   >
     <slot />

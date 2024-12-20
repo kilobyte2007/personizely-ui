@@ -9,8 +9,8 @@
     @touchend="isDragging = false"
   >
     <div class="overflow-hidden">
-      <div class="absolute inset-0 w-full h-full rounded-md bg-gradient-to-r from-white to-transparent" />
-      <div class="absolute inset-0 w-full h-full rounded-md bg-gradient-to-t from-black to-transparent" />
+      <div class="absolute inset-0 w-full h-full rounded-md bg-linear-to-r from-white to-transparent" />
+      <div class="absolute inset-0 w-full h-full rounded-md bg-linear-to-t from-black to-transparent" />
     </div>
     <div
       class="absolute cursor-pointer"
@@ -20,7 +20,7 @@
       }"
     >
       <div
-        class="w-3 h-3 border-2 border-white box-content shadow-md inset-shadow-sm inset-shadow-md rounded-full transform -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        class="w-3 h-3 border-2 border-white box-content shadow-md inset-shadow-xs inset-shadow-md rounded-full transform -translate-x-1/2 -translate-y-1/2 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         tabindex="0"
         role="presentation"
         @keydown.up.prevent="onUp"

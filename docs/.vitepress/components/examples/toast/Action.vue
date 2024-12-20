@@ -1,7 +1,4 @@
 <template>
-  <teleport to="body">
-    <Toaster />
-  </teleport>
   <Button
     @click="toast({
       title: 'In progress...',
@@ -21,7 +18,7 @@
 </template>
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
-import { Toaster, ToastAction, useToast } from '@/components/ui/toast'
+import { ToastAction, useToast } from '@/components/ui/toast'
 import { h } from 'vue'
 
 const { toast, dismiss } = useToast()

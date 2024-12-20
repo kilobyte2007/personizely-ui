@@ -1,7 +1,7 @@
 <template>
   <div
     ref="container"
-    class="relative select-none rounded-full w-8 h-8 cursor-pointer border dark:border-gray-700 border-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+    class="relative select-none rounded-full w-8 h-8 cursor-pointer border dark:border-gray-700 border-gray-200 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
     tabindex="0"
     @focus="beginKeyboardInput"
     @blur="endKeyboardInput"
@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   'update:model-value': [value: number]
-  'change': [value: number]
+  change: [value: number]
 }>()
 
 const container = ref<HTMLElement | null>(null)
@@ -73,14 +73,14 @@ const onKeyDown = (e: KeyboardEvent) => {
 
   let dir = 0
   switch (e.keyCode) {
-  case UP_ARROW:
-  case RIGHT_ARROW:
-    dir = 1
-    break
-  case DOWN_ARROW:
-  case LEFT_ARROW:
-    dir = -1
-    break
+    case UP_ARROW:
+    case RIGHT_ARROW:
+      dir = 1
+      break
+    case DOWN_ARROW:
+    case LEFT_ARROW:
+      dir = -1
+      break
   }
 
   let val = props.modelValue + (dir * props.step)
