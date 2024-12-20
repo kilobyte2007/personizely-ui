@@ -43,7 +43,7 @@
 
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
-import { RangeCalendarRoot, type RangeCalendarRootEmits, type RangeCalendarRootProps, useForwardPropsEmits } from 'radix-vue'
+import { RangeCalendarRoot, type RangeCalendarRootEmits, type RangeCalendarRootProps, useForwardPropsEmits } from 'reka-ui'
 import RangeCalendarCell from './RangeCalendarCell.vue'
 import RangeCalendarCellTrigger from './RangeCalendarCellTrigger.vue'
 import RangeCalendarGrid from './RangeCalendarGrid.vue'

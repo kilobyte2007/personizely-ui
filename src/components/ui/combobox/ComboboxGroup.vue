@@ -12,8 +12,8 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
-import type { ComboboxGroupProps } from 'radix-vue'
-import { SelectGroup, SelectLabel } from 'radix-vue'
+import type { ComboboxGroupProps } from 'reka-ui'
+import { SelectGroup, SelectLabel } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<ComboboxGroupProps & {

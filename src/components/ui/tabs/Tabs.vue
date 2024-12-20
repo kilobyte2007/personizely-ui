@@ -31,8 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { TabsRoot, useForwardPropsEmits, TabsList } from 'radix-vue'
-import type { TabsRootEmits, TabsRootProps } from 'radix-vue'
+import { TabsRoot, useForwardPropsEmits, TabsList } from 'reka-ui'
+import type { TabsRootEmits, TabsRootProps } from 'reka-ui'
 import TabsTrigger from './TabsTrigger.vue'
 import { Icon } from '@/components/ui/icon'
 import { Tooltip } from '@/components/ui/tooltip'

@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
-import { AccordionContent, type AccordionContentProps } from 'radix-vue'
+import { AccordionContent, type AccordionContentProps } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<AccordionContentProps & { class?: HTMLAttributes['class'] }>()

@@ -40,8 +40,8 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed, ref } from 'vue'
-import type { SliderRootProps, SliderRootEmits } from 'radix-vue'
-import { SliderRange, SliderRoot, SliderThumb, SliderTrack, useForwardPropsEmits } from 'radix-vue'
+import type { SliderRootProps, SliderRootEmits } from 'reka-ui'
+import { SliderRange, SliderRoot, SliderThumb, SliderTrack, useForwardPropsEmits } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import omit from 'lodash/omit'
 

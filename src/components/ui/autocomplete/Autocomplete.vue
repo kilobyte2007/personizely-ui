@@ -1,17 +1,15 @@
 <template>
   <AutocompleteRoot
     v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'disableFilter', 'disablePortal', 'keys', 'options', 'autofocus', 'modelValue', 'onUpdate:modelValue'])"
-    v-model="normalizedValue"
-    v-model:search-term="searchTerm"
+    v-model="modelValue"
     v-model:open="open"
-    :filter-function="filterFunction"
+    :ignore-filter="disableFilter"
     :reset-search-term-on-blur="false"
-    @update:model-value="searchTerm = $event"
-    @update:search-term="normalizedValue = $event"
   >
     <ComboboxAnchor :class="cn('flex h-8 items-center w-full justify-between rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 [&>span]:break-all', props.class)">
       <ComboboxInput
         ref="input"
+        :model-value="selectedOption ? selectedOption[keys.label] : modelValue"
         :auto-focus="autofocus"
         :disabled="disabled"
         :placeholder="placeholder"
@@ -19,6 +17,7 @@
           'flex h-8 w-full bg-transparent py-1 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
           loading ? 'pe-8' : 'pe-2'
         )"
+        @update:model-value="modelValue = $event"
       />
       <div v-if="loading" class="pointer-events-none">
         <ProgressCircular class="size-4 text-muted-foreground" />
@@ -34,12 +33,13 @@
       </Primitive>
     </ComboboxAnchor>
 
-    <ComboboxPortal v-if="(disableFilter && preparedOptions.length > 0) || filterFunction(preparedOptions.map(o => o[keys.value]), searchTerm).length > 0" :disabled="disablePortal">
+    <ComboboxPortal v-if="filteredOptions.length > 0" :disabled="disablePortal">
       <AutocompleteContent :side-offset="5">
         <ComboboxViewport class="p-1 max-h-[300px] overflow-y-auto overflow-x-hidden">
+          <AutocompleteEmpty />
           <AutocompleteGroup>
             <AutocompleteItem
-              v-for="(option, index) in preparedOptions"
+              v-for="(option, index) in filteredOptions"
               :key="option[keys.id] || option[keys.value] || index"
               :value="option[keys.value]"
               :disabled="option[keys.disabled] || disabled"
@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { type HTMLAttributes, computed, ref } from 'vue'
+import { type HTMLAttributes, computed, ref, useTemplateRef } from 'vue'
 import {
   ComboboxItemIndicator,
   ComboboxAnchor,
@@ -69,10 +69,11 @@ import {
   type ComboboxItemEmits,
   type ComboboxRootEmits,
   type ComboboxRootProps,
+  type AcceptableInputValue,
   ComboboxPortal,
   ComboboxViewport,
   ComboboxInput
-} from 'radix-vue'
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import AutocompleteRoot from './AutocompleteRoot.vue'
 import AutocompleteContent from './AutocompleteContent.vue'
@@ -82,11 +83,10 @@ import { Check } from 'lucide-vue-next'
 import { X } from 'lucide-vue-next'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
 import omit from 'lodash/omit'
-import { useEmpty } from '@/composables/useEmpty'
 import { ProgressCircular } from '@/components/ui/progress-circular'
+import AutocompleteEmpty from '@/components/ui/autocomplete/AutocompleteEmpty.vue'
 
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
-const normalizedValue = useEmpty(modelValue)
 
 const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'searchTerm' | 'resetSearchTermOnBlur'> & {
   class?: HTMLAttributes['class']
@@ -121,8 +121,8 @@ const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
 }>()
 
 const open = ref(false)
-const searchTerm = ref('')
-const input = ref<typeof ComboboxInput | undefined>(undefined)
+const searchTerm = ref<AcceptableInputValue>('')
+const input = useTemplateRef<typeof ComboboxInput>('input')
 
 const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | CustomOption) => {
   modelValue.value = event.detail.value
@@ -130,13 +130,23 @@ const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | Custom
 }
 
 const reset = () => {
-  normalizedValue.value = null
+  modelValue.value = null
   searchTerm.value = ''
   input.value?.$el.focus()
 }
 
+const selectedOption = computed(() => {
+  if (modelValue.value) {
+    return preparedOptions.value.find((o) => {
+      return o[props.keys.value] === modelValue.value
+    })
+  }
+
+  return null
+})
+
 const filterFunction = (options: any, searchTerm: string) => {
-  if (props.disableFilter) return options
+  if (!props.disableFilter) return options
 
   return options.filter((option: any) => {
     const result = preparedOptions.value.find((o: Option | CustomOption) => {
@@ -150,4 +160,5 @@ const filterFunction = (options: any, searchTerm: string) => {
 const forwarded = useForwardPropsEmits(props, emits)
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
+const filteredOptions = computed(() => filterFunction(preparedOptions.value, String(searchTerm.value)))
 </script>

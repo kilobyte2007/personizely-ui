@@ -21,7 +21,7 @@ import {
   ProgressIndicator,
   ProgressRoot,
   type ProgressRootProps
-} from 'radix-vue'
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = withDefaults(defineProps<ProgressRootProps & { class?: HTMLAttributes['class'] }>(), {

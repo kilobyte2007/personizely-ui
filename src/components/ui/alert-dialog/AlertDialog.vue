@@ -43,7 +43,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
   useForwardPropsEmits
-} from 'radix-vue'
+} from 'reka-ui'
 import AlertDialogContent from './AlertDialogContent.vue'
 import omit from 'lodash/omit'
 import { Button } from '@/components/ui/button'

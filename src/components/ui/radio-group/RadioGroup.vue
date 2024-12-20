@@ -1,7 +1,6 @@
 <template>
   <RadioGroupRoot
-    v-bind="omit(forwarded, ['options', 'keys', 'modelValue', 'onUpdate:modelValue'])"
-    v-model="normalizedValue"
+    v-bind="forwarded"
     :class="cn(radioGroupVariants({ orientation }), props.class)"
   >
     <div v-for="(option, index) in preparedOptions" :key="option[keys.id] || index" class="flex items-start space-x-2">
@@ -44,19 +43,15 @@ import {
   type RadioGroupRootProps,
   useForwardPropsEmits,
   useId
-} from 'radix-vue'
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import { radioGroupVariants } from './'
 import RadioGroupItem from './RadioGroupItem.vue'
 import { Label } from '@/components/ui/label'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
 import omit from 'lodash/omit'
-import { useNormalizedTypes } from '@/composables/useNormalizedTypes'
-import { useEmpty } from '@/composables/useEmpty'
 
-const modelValue = defineModel<string | number | null | true | false>()
-const normalizedValue = useNormalizedTypes(useEmpty(modelValue))
-const props = withDefaults(defineProps<Omit<RadioGroupRootProps, 'modelValue'> & {
+const props = withDefaults(defineProps<RadioGroupRootProps & {
   class?: HTMLAttributes['class']
   keys?: Keys
   options: string[] | Option[] | CustomOption[] | { [key:string]: string },
@@ -71,15 +66,14 @@ const props = withDefaults(defineProps<Omit<RadioGroupRootProps, 'modelValue'> &
   orientation: 'vertical',
   name: () => useId()
 })
-const emits = defineEmits<Omit<RadioGroupRootEmits, 'update:modelValue'> & {
+
+const emits = defineEmits<RadioGroupRootEmits & {
   blur: [option: Option | CustomOption]
   focus: [option: Option | CustomOption]
 }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
-
-  return delegated
+  return omit(props, ['keys', 'options', 'class'])
 })
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)

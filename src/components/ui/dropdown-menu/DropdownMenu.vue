@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { DropdownMenuRoot, type DropdownMenuRootEmits, type DropdownMenuRootProps, type DropdownMenuContentProps, useForwardPropsEmits } from 'radix-vue'
+import { DropdownMenuRoot, type DropdownMenuRootEmits, type DropdownMenuRootProps, type DropdownMenuContentProps, useForwardPropsEmits } from 'reka-ui'
 import DropdownMenuTrigger from './DropdownMenuTrigger.vue'
 import DropdownMenuContent from './DropdownMenuContent.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'

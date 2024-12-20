@@ -25,7 +25,7 @@ import {
   type TooltipRootEmits,
   type TooltipRootProps,
   useForwardPropsEmits
-} from 'radix-vue'
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
 

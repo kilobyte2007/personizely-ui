@@ -16,33 +16,23 @@ const value = ref(null)
 const loading = ref(false)
 const options = ref([])
 
+const fetch = (search?: string) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const result = ['Red', 'Green', 'Blue', 'Yellow', 'Purple', 'Gray'].filter(option => !search || option.toLowerCase().includes(search.toLowerCase()))
+
+      options.value = result
+      resolve(result)
+    }, 200)
+  })
+}
+
 const search = (value: string) => {
   console.log(`Imitating a search with ${value}`)
 
   loading.value = true
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const result = value
-        ? [
-          {
-            label: 'Red',
-            value: 'red'
-          },
-          {
-            label: 'Green',
-            value: 'green'
-          },
-          {
-            label: 'Blue',
-            value: 'blue'
-          }
-        ]
-        : []
-
-      options.value = result
-      loading.value = false
-      resolve(result)
-    }, 1000)
+  fetch(value).then(() => {
+    loading.value = false
   })
 }
 </script>

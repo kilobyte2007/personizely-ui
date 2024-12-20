@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { AvatarRoot } from 'radix-vue'
+import { AvatarRoot } from 'reka-ui'
 import { type AvatarVariants, avatarVariant } from '.'
 import AvatarImage from './AvatarImage.vue'
 import AvatarFallback from './AvatarFallback.vue'

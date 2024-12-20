@@ -30,7 +30,7 @@ import { computed, type Events } from 'vue'
 import { prepareOptions } from '@/utils/options'
 import type { Keys, Option, CustomOption } from '@/utils/options'
 import { checkboxGroupVariants } from './'
-import { useId } from 'radix-vue'
+import { useId } from 'reka-ui'
 
 const modelValue = defineModel<(string | number)[]>({
   default: () => []

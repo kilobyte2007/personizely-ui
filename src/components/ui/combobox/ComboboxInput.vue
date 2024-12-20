@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center border-b relative">
+  <div class="flex items-center relative">
     <span class="absolute start-0 inset-y-0 flex items-center justify-center px-2 pointer-events-none">
       <Search class="size-4 text-muted-foreground" />
     </span>
@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
 import { Search } from 'lucide-vue-next'
-import { ComboboxInput, type ComboboxInputProps, useForwardProps } from 'radix-vue'
+import { ComboboxInput, type ComboboxInputProps, useForwardProps } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import { ProgressCircular } from '@/components/ui/progress-circular'
 

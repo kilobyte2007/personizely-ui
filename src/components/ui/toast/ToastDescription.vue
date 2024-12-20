@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
-import { ToastDescription, type ToastDescriptionProps } from 'radix-vue'
+import { ToastDescription, type ToastDescriptionProps } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<ToastDescriptionProps & { class?: HTMLAttributes['class'] }>()

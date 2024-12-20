@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
-import { CalendarCell, type CalendarCellProps, useForwardProps } from 'radix-vue'
+import { CalendarCell, type CalendarCellProps, useForwardProps } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<CalendarCellProps & { class?: HTMLAttributes['class'] }>()

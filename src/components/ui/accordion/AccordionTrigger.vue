@@ -25,7 +25,7 @@ import {
   AccordionHeader,
   AccordionTrigger,
   type AccordionTriggerProps
-} from 'radix-vue'
+} from 'reka-ui'
 import { ChevronDown } from 'lucide-vue-next'
 import { cn } from '@/utils/tailwind'
 

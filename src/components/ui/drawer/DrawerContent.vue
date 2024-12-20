@@ -23,7 +23,7 @@ import {
   DialogOverlay,
   DialogPortal,
   useForwardPropsEmits
-} from 'radix-vue'
+} from 'reka-ui'
 import { type DrawerVariants, drawerVariants } from '.'
 import { cn } from '@/utils/tailwind'
 

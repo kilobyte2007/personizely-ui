@@ -53,7 +53,7 @@ import {
   type DialogRootEmits,
   type DialogRootProps,
   useForwardPropsEmits
-} from 'radix-vue'
+} from 'reka-ui'
 import { Button } from '@/components/ui/button'
 import type { HTMLAttributes } from 'vue'
 import DrawerTrigger from './DrawerTrigger.vue'

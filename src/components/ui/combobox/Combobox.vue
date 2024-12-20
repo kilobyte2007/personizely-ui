@@ -1,12 +1,9 @@
 <template>
   <ComboboxRoot
-    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'disableFilter', 'disablePortal', 'modelValue', 'onUpdate:modelValue'])"
-    v-model="normalizedValue"
-    v-model:search-term="searchTerm"
+    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'disablePortal', 'modelValue', 'onUpdate:modelValue'])"
+    v-model="modelValue"
     v-model:open="open"
-    :filter-function="filterFunction"
     :reset-search-term-on-blur="false"
-    :display-value="(value) => preparedOptions.find(o => o[keys.value] === value)?.[keys.label]"
     @update:open="onToggle"
   >
     <ComboboxAnchor as-child>
@@ -24,11 +21,11 @@
         @blur="$emit('blur', $event)"
       >
         <span class="pointer-events-none">
-          <slot v-if="multiple && ($slots.label || selectedOptions.length)" name="label" v-bind="{ options: selectedOptions }">
-            {{ selectedOptionsLabel }}
+          <slot v-if="multiple && ($slots.label || (modelValue && modelValue.length))" name="label" v-bind="{ options: selectedOptions }">
+            {{ selectedOptionsLabel || modelValue!.length + ' selected' }}
           </slot>
-          <slot v-else-if="!multiple && ($slots.label || selectedOption)" name="label" v-bind="{ option: selectedOptions }">
-            {{ selectedOptionLabel }}
+          <slot v-else-if="!multiple && ($slots.label || modelValue)" name="label" v-bind="{ option: selectedOption }">
+            {{ selectedOptionLabel || modelValue }}
           </slot>
           <template v-else>
             {{ placeholder }}
@@ -40,10 +37,23 @@
 
     <ComboboxPortal :disabled="disablePortal">
       <ComboboxContent :side-offset="5">
-        <ComboboxInput :placeholder="searchPlaceholder" :loading="loading" @keydown.tab.prevent />
-        <ComboboxViewport class="p-1 max-h-[300px] overflow-y-auto overflow-x-hidden">
-          <ComboboxEmpty>No matching options.</ComboboxEmpty>
-          <ComboboxGroup>
+        <ComboboxInput
+          :model-value="searchTerm"
+          :placeholder="searchPlaceholder"
+          :loading="loading"
+          :display-value="() => ''"
+          @update:model-value="(v) => {
+            if (v !== searchTerm) {
+              searchTerm = v
+            }
+          }"
+          @change.stop
+          @keydown.tab.prevent
+        />
+        <ComboboxViewport class="max-h-[300px] overflow-y-auto overflow-x-hidden">
+          <ComboboxEmpty />
+
+          <ComboboxGroup class="p-1 empty:p-0 [&:not(:empty)]:border-t">
             <ComboboxItem
               v-for="(option, index) in preparedOptions"
               :key="option[keys.id] || option[keys.value] || index"
@@ -76,8 +86,8 @@ import {
   type ComboboxRootProps,
   ComboboxPortal,
   ComboboxTrigger,
-  ComboboxViewport
-} from 'radix-vue'
+  ComboboxViewport, type ComboboxInputProps
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import ComboboxRoot from './ComboboxRoot.vue'
 import ComboboxContent from './ComboboxContent.vue'
@@ -89,22 +99,19 @@ import { Check } from 'lucide-vue-next'
 import { ChevronDown } from 'lucide-vue-next'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
 import omit from 'lodash/omit'
-import { useEmpty } from '@/composables/useEmpty'
 
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
-const normalizedValue = useEmpty(modelValue)
+const searchTerm = defineModel<ComboboxInputProps['modelValue']>('searchTerm', { default: '' })
 
 const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'resetSearchTermOnBlur'> & {
   class?: HTMLAttributes['class']
   placeholder?: string
   loading?: boolean
   disablePortal?: boolean
-  disableFilter?: boolean
   searchPlaceholder?: string
   keys?: Keys
   options: string[] | Option[] | CustomOption[] | { [key:string]: string }
 }>(), {
-  disableFilter: false,
   disablePortal: false,
   loading: false,
   placeholder: 'Select a value...',
@@ -121,18 +128,16 @@ const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'r
 const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
   blur: [event: MouseEvent]
   focus: [event: MouseEvent]
-  select: [option: Option | CustomOption]
+  select: [option: Option | CustomOption],
+  'update:searchTerm': [value: string]
 }>()
+
+const forwarded = useForwardPropsEmits(props, emits)
 
 const button = ref<ComponentInstance<typeof ComboboxTrigger>>()
 const open = ref(false)
-const searchTerm = ref('')
 
-const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | CustomOption) => {
-  modelValue.value = event.detail.value
-  requestAnimationFrame(() => {
-    searchTerm.value = ''
-  })
+const onSelect = (_event: ComboboxItemEmits['select'][0], option: Option | CustomOption) => {
   emits('select', option)
 }
 
@@ -141,19 +146,6 @@ const onToggle = (open: boolean) => {
     if (!open) {
       button.value!.$el.focus()
     }
-    searchTerm.value = ''
-  })
-}
-
-const filterFunction = (options: any, searchTerm: string) => {
-  if (props.disableFilter) return options
-
-  return options.filter((option: any) => {
-    const result = preparedOptions.value.find((o: Option | CustomOption) => {
-      return o[props.keys.value] === option
-    })
-
-    return result ? result[props.keys.label]?.toLowerCase().includes(searchTerm.toLowerCase()) : false
   })
 }
 
@@ -192,8 +184,6 @@ const selectedOptionsLabel = computed(() => {
 
   return null
 })
-
-const forwarded = useForwardPropsEmits(props, emits)
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
 </script>

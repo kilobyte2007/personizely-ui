@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
-import { CalendarCellTrigger, type CalendarCellTriggerProps, useForwardProps } from 'radix-vue'
+import { CalendarCellTrigger, type CalendarCellTriggerProps, useForwardProps } from 'reka-ui'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/utils/tailwind'
 

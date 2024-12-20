@@ -90,7 +90,7 @@ export { type ButtonProps }
 
 <script setup lang="ts">
 import { inject } from 'vue'
-import { Primitive } from 'radix-vue'
+import { Primitive } from 'reka-ui'
 import { buttonIconVariants, buttonVariants } from '.'
 import { cn } from '@/utils/tailwind'
 import { ProgressCircular } from '@/components/ui/progress-circular'

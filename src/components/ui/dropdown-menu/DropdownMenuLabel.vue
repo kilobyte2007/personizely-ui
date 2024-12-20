@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
-import { DropdownMenuLabel, type DropdownMenuLabelProps, useForwardProps } from 'radix-vue'
+import { DropdownMenuLabel, type DropdownMenuLabelProps, useForwardProps } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<DropdownMenuLabelProps & { class?: HTMLAttributes['class'], inset?: boolean }>()

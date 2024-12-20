@@ -54,7 +54,7 @@ import DropdownMenuSub from './DropdownMenuSub.vue'
 import DropdownMenuSubContent from './DropdownMenuSubContent.vue'
 import DropdownMenuSubTrigger from './DropdownMenuSubTrigger.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
-import { DropdownMenuPortal } from 'radix-vue'
+import { DropdownMenuPortal } from 'reka-ui'
 import { Icon } from '@/components/ui/icon'
 import type { MenuItem, MenuItemWithChildren } from './'
 

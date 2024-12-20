@@ -20,7 +20,7 @@ import {
   type SwitchRootEmits,
   type SwitchRootProps,
   useForwardPropsEmits
-} from 'radix-vue'
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<SwitchRootProps & { class?: HTMLAttributes['class'] }>()

@@ -23,7 +23,7 @@ import {
   type DropdownMenuCheckboxItemProps,
   DropdownMenuItemIndicator,
   useForwardPropsEmits
-} from 'radix-vue'
+} from 'reka-ui'
 import { Check } from 'lucide-vue-next'
 import { cn } from '@/utils/tailwind'
 

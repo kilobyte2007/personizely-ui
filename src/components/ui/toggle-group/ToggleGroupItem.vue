@@ -1,26 +1,24 @@
 <template>
   <Tooltip :disabled="!label || !icon">
     <template #trigger>
-      <div>
-        <ToggleGroupItem
-          v-bind="forwardedProps"
-          :aria-label="label"
-          :class="cn(toggleVariants({
-            variant: variant,
-            size: size,
-            icon: Boolean(icon)
-          }), props.class)"
-        >
-          <slot>
-            <component
-              :is="typeof icon === 'string' ? Icon : icon"
-              v-if="icon"
-              :class="buttonIconVariants({ size })"
-              :icon="icon!"
-            />
-          </slot>
-        </ToggleGroupItem>
-      </div>
+      <ToggleGroupItem
+        v-bind="forwardedProps"
+        :aria-label="label"
+        :class="cn(toggleVariants({
+          variant: variant,
+          size: size,
+          icon: Boolean(icon)
+        }), props.class)"
+      >
+        <slot>
+          <component
+            :is="typeof icon === 'string' ? Icon : icon"
+            v-if="icon"
+            :class="buttonIconVariants({ size })"
+            :icon="icon!"
+          />
+        </slot>
+      </ToggleGroupItem>
     </template>
 
     {{ label }}
@@ -30,7 +28,7 @@
 <script setup lang="ts">
 import type { VariantProps } from 'class-variance-authority'
 import { type HTMLAttributes, type Component, computed } from 'vue'
-import { ToggleGroupItem, type ToggleGroupItemProps, useForwardProps } from 'radix-vue'
+import { ToggleGroupItem, type ToggleGroupItemProps, useForwardProps } from 'reka-ui'
 import { toggleVariants } from '@/components/ui/toggle'
 import { cn } from '@/utils/tailwind'
 import { buttonIconVariants } from '@/components/ui/button'

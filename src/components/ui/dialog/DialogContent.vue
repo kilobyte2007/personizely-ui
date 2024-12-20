@@ -26,7 +26,7 @@ import {
   DialogOverlay,
   DialogPortal,
   useForwardPropsEmits
-} from 'radix-vue'
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<DialogContentProps & { class?: HTMLAttributes['class'] }>()

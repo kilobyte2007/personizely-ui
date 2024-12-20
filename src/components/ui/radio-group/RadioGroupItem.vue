@@ -23,7 +23,7 @@ import {
   RadioGroupItem,
   type RadioGroupItemProps,
   useForwardProps
-} from 'radix-vue'
+} from 'reka-ui'
 import { Circle } from 'lucide-vue-next'
 import { cn } from '@/utils/tailwind'
 

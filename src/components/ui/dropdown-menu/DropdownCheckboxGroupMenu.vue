@@ -23,8 +23,8 @@
         v-for="(item, index) in items"
         :key="index"
         :value="item.value"
-        :checked="modelValue.includes(item.value)"
-        @update:checked="updateValue(item, $event)"
+        :model-value="modelValue.includes(item.value)"
+        @update:model-value="updateValue(item, $event)"
         @select="$emit('select', item)"
       >
         <span>{{ item.label }}</span>
@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import omit from 'lodash/omit'
-import { DropdownMenuRoot, type DropdownMenuRootEmits, type DropdownMenuRootProps, type DropdownMenuContentProps, useForwardPropsEmits } from 'radix-vue'
+import { DropdownMenuRoot, type DropdownMenuRootEmits, type DropdownMenuRootProps, type DropdownMenuContentProps, useForwardPropsEmits } from 'reka-ui'
 import DropdownMenuTrigger from './DropdownMenuTrigger.vue'
 import DropdownMenuContent from './DropdownMenuContent.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'

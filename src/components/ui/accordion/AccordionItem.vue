@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
-import { AccordionItem, type AccordionItemProps, useForwardProps } from 'radix-vue'
+import { AccordionItem, type AccordionItemProps, useForwardProps } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import AccordionContent from './AccordionContent.vue'
 import AccordionTrigger from './AccordionTrigger.vue'

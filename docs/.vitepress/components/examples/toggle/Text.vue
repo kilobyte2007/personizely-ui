@@ -1,6 +1,6 @@
 <template>
   <TooltipProvider :delay-duration="100">
-    <Toggle v-model:pressed="value">
+    <Toggle v-model="value">
       Bold
     </Toggle>
   </TooltipProvider>

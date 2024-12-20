@@ -2,7 +2,7 @@
   <div :class="cn('items-top flex gap-x-2', props.class)">
     <CheckboxBase
       :id="id"
-      v-model:checked="modelValue"
+      v-model="modelValue"
       :disabled="disabled"
       :required="required"
       :name="name"
@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, type Events } from 'vue'
-import { useId } from 'radix-vue'
+import { useId } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import CheckboxBase from './CheckboxBase.vue'
 

@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
-import { ToastAction, type ToastActionProps } from 'radix-vue'
+import { ToastAction, type ToastActionProps } from 'reka-ui'
 import { Button } from '@/components/ui/button'
 import type { ToastVariants } from './'
 

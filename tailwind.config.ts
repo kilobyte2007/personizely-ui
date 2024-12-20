@@ -80,10 +80,10 @@ export default {
       keyframes: {
         'accordion-down': {
           from: { height: 0, overflow: 'hidden' },
-          to: { height: 'var(--radix-accordion-content-height)', overflow: 'hidden' }
+          to: { height: 'var(--reka-accordion-content-height)', overflow: 'hidden' }
         },
         'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)', overflow: 'hidden' },
+          from: { height: 'var(--reka-accordion-content-height)', overflow: 'hidden' },
           to: { height: 0, overflow: 'hidden' }
         }
       },

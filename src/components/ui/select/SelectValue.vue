@@ -1,11 +1,11 @@
 <template>
   <SelectValue v-bind="props">
-    <slot />
+    <slot v-if="$slots.default" />
   </SelectValue>
 </template>
 
 <script setup lang="ts">
-import { SelectValue, type SelectValueProps } from 'radix-vue'
+import { SelectValue, type SelectValueProps } from 'reka-ui'
 
 const props = defineProps<SelectValueProps>()
 </script>

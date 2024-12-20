@@ -12,7 +12,7 @@
 
 <script lang="ts" setup>
 import { type HTMLAttributes, computed } from 'vue'
-import { RangeCalendarHeading, type RangeCalendarHeadingProps, useForwardProps } from 'radix-vue'
+import { RangeCalendarHeading, type RangeCalendarHeadingProps, useForwardProps } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<RangeCalendarHeadingProps & { class?: HTMLAttributes['class'] }>()

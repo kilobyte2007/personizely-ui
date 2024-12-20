@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import {
   PopoverTrigger
-} from 'radix-vue'
+} from 'reka-ui'
 import { provide } from 'vue'
 
 

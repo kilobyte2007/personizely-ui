@@ -6,8 +6,8 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed } from 'vue'
-import type { ComboboxEmptyProps } from 'radix-vue'
-import { ComboboxEmpty } from 'radix-vue'
+import type { ComboboxEmptyProps } from 'reka-ui'
+import { ComboboxEmpty } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<ComboboxEmptyProps & { class?: HTMLAttributes['class'] }>()

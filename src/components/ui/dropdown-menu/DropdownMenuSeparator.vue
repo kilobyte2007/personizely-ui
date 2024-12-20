@@ -7,7 +7,7 @@ import { type HTMLAttributes, computed } from 'vue'
 import {
   DropdownMenuSeparator,
   type DropdownMenuSeparatorProps
-} from 'radix-vue'
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 const props = defineProps<DropdownMenuSeparatorProps & {

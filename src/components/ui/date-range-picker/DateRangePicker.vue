@@ -65,7 +65,7 @@ import {
   DateFormatter,
   getLocalTimeZone
 } from '@internationalized/date'
-import { type DateRange, type RangeCalendarRootProps, useForwardProps } from 'radix-vue'
+import { type DateRange, type RangeCalendarRootProps, useForwardProps } from 'reka-ui'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
 import { RangeCalendar } from '@/components/ui/range-calendar'
 import { Button } from '@/components/ui/button'

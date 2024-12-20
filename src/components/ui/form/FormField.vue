@@ -35,7 +35,7 @@ export const FORM_ITEM_INJECTION_KEY
 <script lang="ts" setup>
 import { Field } from 'vee-validate'
 import { provide } from 'vue'
-import { useId } from 'radix-vue'
+import { useId } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import FormMessage from './FormMessage.vue'
 import FormDescription from './FormDescription.vue'
@@ -50,7 +50,7 @@ const props = withDefaults(defineProps<{
   errorLabel?: string
   required?: boolean
   rules?: string
-  modelModifiers: { [key:string]: any }
+  modelModifiers?: { [key:string]: any }
 }>(), {
   default: () => {},
   required: false

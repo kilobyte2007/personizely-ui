@@ -2,7 +2,7 @@
   <div class="flex items-center gap-x-2">
     <SwitchBase
       :id="id"
-      v-model:checked="modelValue"
+      v-model="modelValue"
       :disabled="disabled"
       :required="required"
       :name="name"
@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { Label } from '@/components/ui/label'
 import SwitchBase from './SwitchBase.vue'
-import { useId } from 'radix-vue'
+import { useId } from 'reka-ui'
 import type { Events } from 'vue'
 
 const modelValue = defineModel<boolean>()

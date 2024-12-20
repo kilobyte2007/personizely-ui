@@ -17,7 +17,7 @@ import {
   DropdownMenuSubTrigger,
   type DropdownMenuSubTriggerProps,
   useForwardProps
-} from 'radix-vue'
+} from 'reka-ui'
 import { ChevronRight } from 'lucide-vue-next'
 import { cn } from '@/utils/tailwind'
 

@@ -9,7 +9,7 @@ import { ToggleGroup } from '@/components/ui/toggle-group'
 import { ref } from 'vue'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
-const value = ref(null)
+const value = ref('left')
 
 const items = [
   { value: 'left', icon: 'align-left', label: 'Left' },

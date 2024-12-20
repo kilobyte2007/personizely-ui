@@ -9,7 +9,7 @@
     )
     "
   >
-    <SelectViewport :class="cn('p-1', position === 'popper' && 'h-[--radix-select-trigger-height] w-full min-w-[--radix-select-trigger-width]')">
+    <SelectViewport :class="cn('p-1', position === 'popper' && 'h-[--reka-select-trigger-height] w-full min-w-[--reka-select-trigger-width]')">
       <slot />
     </SelectViewport>
   </SelectContent>
@@ -23,7 +23,7 @@ import {
   type SelectContentProps,
   SelectViewport,
   useForwardPropsEmits
-} from 'radix-vue'
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 
 defineOptions({
