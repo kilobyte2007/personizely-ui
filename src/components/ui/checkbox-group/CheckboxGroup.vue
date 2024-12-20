@@ -36,10 +36,12 @@ import { forwardPropsEmits } from '@/composables/forward-props-emits'
 import { useDelegatedProps } from '@/composables/use-delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
 
-const props = withDefaults(defineProps<CheckboxGroupRootProps & {
+const props = withDefaults(defineProps<Omit<CheckboxGroupRootProps, 'as' | 'asChild'> & {
   keys?: Keys
   options: string[] | Option[] | CustomOption[] | { [key:string]: string }
 }>(), {
+  loop: false,
+  dir: 'ltr',
   orientation: 'vertical',
   keys: () => ({
     id: 'id',
