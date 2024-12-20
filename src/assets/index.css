@@ -1,7 +1,8 @@
-@import 'tailwindcss' source('../../../src');
+@import 'tailwindcss' source(none);
 @config '../../tailwind.config.ts';
 
 @variant dark (&:where(.dark, .dark *));
+@source '../../src/**/*.{js,ts,vue}';
 
 @theme {
   @keyframes accordion-up {
