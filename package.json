@@ -96,6 +96,7 @@
     "rimraf": "^2.7.1",
     "tailwindcss": "^4.0.0-beta.8",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.1",
     "vee-validate": "^4.14.7",
