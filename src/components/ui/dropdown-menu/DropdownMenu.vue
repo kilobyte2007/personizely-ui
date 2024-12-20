@@ -1,5 +1,5 @@
 <template>
-  <DropdownMenuRoot v-bind="omit(forwarded, ['align', 'side', 'label', 'items', 'onSelect', 'class'])">
+  <DropdownMenuRoot v-bind="forwarded">
     <DropdownMenuTrigger as-child>
       <slot name="trigger" />
     </DropdownMenuTrigger>
@@ -38,16 +38,22 @@
 </template>
 
 <script setup lang="ts">
-import { DropdownMenuRoot, type DropdownMenuRootEmits, type DropdownMenuRootProps, type DropdownMenuContentProps, useForwardPropsEmits } from 'reka-ui'
+import { type HTMLAttributes, provide } from 'vue'
+import {
+  DropdownMenuRoot,
+  type DropdownMenuRootEmits,
+  type DropdownMenuRootProps,
+  type DropdownMenuContentProps
+} from 'reka-ui'
 import DropdownMenuTrigger from './DropdownMenuTrigger.vue'
 import DropdownMenuContent from './DropdownMenuContent.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
 import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import DropdownMenuPart from './DropdownMenuPart.vue'
-import omit from 'lodash/omit'
 import type { MenuItem, MenuItemWithChildren, MenuGroupItem } from './'
-import { cn } from '@/utils/tailwind'
-import { type HTMLAttributes, provide } from 'vue'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps, 'side' | 'align'> & {
   items:(MenuItem | MenuItemWithChildren | MenuGroupItem)[]
@@ -60,5 +66,7 @@ const emits = defineEmits<DropdownMenuRootEmits & {
 
 provide('hasDropdown', true)
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['align', 'side', 'label', 'items', 'class'])
+const delegatedEmits = useEmitAsProps(emits, ['select'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 </script>

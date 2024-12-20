@@ -23,14 +23,14 @@
 </template>
 
 <script setup lang="ts">
-import { type HTMLAttributes, computed, type Component } from 'vue'
+import { type HTMLAttributes, type Component } from 'vue'
 import { Toggle, type ToggleEmits, type ToggleProps, useForwardPropsEmits } from 'reka-ui'
 import { type ToggleVariants, toggleVariants } from '.'
 import { cn } from '@/utils/tailwind'
 import { Icon } from '@/components/ui/icon'
 import { Tooltip } from '@/components/ui/tooltip'
 import { buttonIconVariants } from '@/components/ui/button'
-import omit from 'lodash/omit'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
 
 const props = withDefaults(defineProps<ToggleProps & {
   class?: HTMLAttributes['class']
@@ -46,9 +46,6 @@ const props = withDefaults(defineProps<ToggleProps & {
 
 const emits = defineEmits<ToggleEmits>()
 
-const delegatedProps = computed(() => {
-  return omit(props, ['class', 'size', 'variant', 'icon', 'label'])
-})
-
+const delegatedProps = useDelegatedProps(props, ['class', 'size', 'variant', 'icon', 'label'])
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>

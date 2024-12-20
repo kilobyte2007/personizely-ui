@@ -41,7 +41,6 @@ import {
   RadioGroupRoot,
   type RadioGroupRootEmits,
   type RadioGroupRootProps,
-  useForwardPropsEmits,
   useId
 } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
@@ -49,7 +48,9 @@ import { radioGroupVariants } from './'
 import RadioGroupItem from './RadioGroupItem.vue'
 import { Label } from '@/components/ui/label'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
-import omit from 'lodash/omit'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = withDefaults(defineProps<RadioGroupRootProps & {
   class?: HTMLAttributes['class']
@@ -72,11 +73,9 @@ const emits = defineEmits<RadioGroupRootEmits & {
   focus: [option: Option | CustomOption]
 }>()
 
-const delegatedProps = computed(() => {
-  return omit(props, ['keys', 'options', 'class'])
-})
-
-const forwarded = useForwardPropsEmits(delegatedProps, emits)
+const delegatedProps = useDelegatedProps(props, ['keys', 'options', 'class'])
+const delegatedEmits = useEmitAsProps(emits, ['blur', 'focus'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
 </script>

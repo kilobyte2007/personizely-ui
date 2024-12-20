@@ -1,5 +1,5 @@
 <template>
-  <SelectRoot v-bind="omit(forwarded, ['class', 'placeholder', 'keys', 'options', 'disablePortal', 'modelValue', 'onUpdate:modelValue'])" v-model="modelValue">
+  <SelectRoot v-bind="forwarded" v-model="modelValue">
     <SelectTrigger :class="cn((multiple && Array.isArray(modelValue) && modelValue.length === 0) || !modelValue ? 'text-muted-foreground' : '', props.class)">
       <SelectValue :placeholder="placeholder">
         <slot v-if="$slots.label" name="label" v-bind="{ option: selectedOption }">
@@ -28,7 +28,6 @@
 import {
   SelectRoot,
   SelectPortal,
-  useForwardPropsEmits,
   type SelectRootEmits,
   type SelectRootProps
 } from 'reka-ui'
@@ -38,8 +37,10 @@ import SelectContent from './SelectContent.vue'
 import SelectTrigger from './SelectTrigger.vue'
 import SelectValue from './SelectValue.vue'
 import SelectItem from './SelectItem.vue'
-import omit from 'lodash/omit'
 import { cn } from '@/utils/tailwind'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useEmitAsProps } from '@/composables/emits-as-props'
 
 const modelValue = defineModel<SelectRootProps['modelValue']>()
 
@@ -62,7 +63,9 @@ const props = withDefaults(defineProps<Omit<SelectRootProps, 'modelValue'> & {
 })
 const emits = defineEmits<Omit<SelectRootEmits, 'update:modelValue'>>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'keys', 'options', 'disablePortal', 'modelValue'])
+const delegatedEmits = useEmitAsProps(emits, ['update:modelValue'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 
 const selectedOption = computed(() => {
   if (modelValue.value) {

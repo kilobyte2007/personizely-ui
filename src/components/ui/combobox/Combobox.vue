@@ -1,6 +1,6 @@
 <template>
   <ComboboxRoot
-    v-bind="omit(forwarded, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'disablePortal', 'modelValue', 'onUpdate:modelValue'])"
+    v-bind="forwarded"
     v-model="modelValue"
     v-model:open="open"
     :reset-search-term-on-blur="false"
@@ -21,10 +21,10 @@
         @blur="$emit('blur', $event)"
       >
         <span class="pointer-events-none">
-          <slot v-if="multiple && ($slots.label || (modelValue && modelValue.length))" name="label" v-bind="{ options: selectedOptions }">
+          <slot v-if="multiple && Array.isArray(modelValue) && (modelValue.length || $slots.label)" name="label" v-bind="{ options: selectedOptions }">
             {{ selectedOptionsLabel || modelValue!.length + ' selected' }}
           </slot>
-          <slot v-else-if="!multiple && ($slots.label || modelValue)" name="label" v-bind="{ option: selectedOption }">
+          <slot v-else-if="!multiple && (modelValue || $slots.label)" name="label" v-bind="{ option: selectedOption }">
             {{ selectedOptionLabel || modelValue }}
           </slot>
           <template v-else>
@@ -80,13 +80,13 @@ import { type HTMLAttributes, computed, ref, type ComponentInstance } from 'vue'
 import {
   ComboboxItemIndicator,
   ComboboxAnchor,
-  useForwardPropsEmits,
+  ComboboxPortal,
+  ComboboxTrigger,
+  ComboboxViewport,
   type ComboboxItemEmits,
   type ComboboxRootEmits,
   type ComboboxRootProps,
-  ComboboxPortal,
-  ComboboxTrigger,
-  ComboboxViewport, type ComboboxInputProps
+  type ComboboxInputProps
 } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import ComboboxRoot from './ComboboxRoot.vue'
@@ -98,7 +98,9 @@ import ComboboxGroup from './ComboboxGroup.vue'
 import { Check } from 'lucide-vue-next'
 import { ChevronDown } from 'lucide-vue-next'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
-import omit from 'lodash/omit'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
 
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
 const searchTerm = defineModel<ComboboxInputProps['modelValue']>('searchTerm', { default: '' })
@@ -132,7 +134,9 @@ const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
   'update:searchTerm': [value: string]
 }>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'disablePortal', 'searchTerm', 'modelValue'])
+const delegatedEmits = useEmitAsProps(emits, ['blur', 'focus', 'select', 'update:searchTerm', 'update:modelValue'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 
 const button = ref<ComponentInstance<typeof ComboboxTrigger>>()
 const open = ref(false)

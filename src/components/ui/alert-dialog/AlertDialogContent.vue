@@ -21,10 +21,10 @@
 import { type HTMLAttributes, computed } from 'vue'
 import {
   AlertDialogContent,
-  type AlertDialogContentEmits,
-  type AlertDialogContentProps,
   AlertDialogOverlay,
   AlertDialogPortal,
+  type AlertDialogContentEmits,
+  type AlertDialogContentProps,
   useForwardPropsEmits
 } from 'reka-ui'
 import { cn } from '@/utils/tailwind'

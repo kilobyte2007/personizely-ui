@@ -1,5 +1,5 @@
 <template>
-  <DropdownMenuRoot v-bind="omit(forwarded, ['align', 'side', 'label', 'items', 'onSelect', 'modelValue', 'onUpdateModelValue'])">
+  <DropdownMenuRoot v-bind="forwarded">
     <DropdownMenuTrigger as-child>
       <slot name="trigger" />
     </DropdownMenuTrigger>
@@ -37,8 +37,12 @@
 </template>
 
 <script setup lang="ts">
-import omit from 'lodash/omit'
-import { DropdownMenuRoot, type DropdownMenuRootEmits, type DropdownMenuRootProps, type DropdownMenuContentProps, useForwardPropsEmits } from 'reka-ui'
+import {
+  DropdownMenuRoot,
+  type DropdownMenuRootEmits,
+  type DropdownMenuRootProps,
+  type DropdownMenuContentProps
+} from 'reka-ui'
 import DropdownMenuTrigger from './DropdownMenuTrigger.vue'
 import DropdownMenuContent from './DropdownMenuContent.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
@@ -46,8 +50,11 @@ import DropdownMenuHelp from './DropdownMenuHelp.vue'
 import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import DropdownMenuCheckboxItem from './DropdownMenuCheckboxItem.vue'
 import type { MenuCheckboxItem } from './'
-import { cn } from '@/utils/tailwind'
 import { type HTMLAttributes, provide } from 'vue'
+import { cn } from '@/utils/tailwind'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
 
 const modelValue = defineModel<any[]>({
   required: true
@@ -62,7 +69,9 @@ const emits = defineEmits<DropdownMenuRootEmits & {
   select: [item: MenuCheckboxItem]
 }>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['align', 'side', 'label', 'items', 'class', 'modelValue'])
+const delegatedEmits = useEmitAsProps(emits, ['select', 'update:modelValue'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 
 provide('hasDropdown', true)
 

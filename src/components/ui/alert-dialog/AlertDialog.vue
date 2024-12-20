@@ -1,9 +1,9 @@
 <template>
-  <AlertDialogRoot v-bind="omit(forwarded, ['title', 'description', 'onConfirm', 'onCancel'])">
+  <AlertDialogRoot v-bind="forwarded">
     <AlertDialogTrigger as-child>
       <slot name="trigger" />
     </AlertDialogTrigger>
-    <AlertDialogContent>
+    <AlertDialogContent :class="props.class">
       <div class="flex flex-col gap-y-2 text-center sm:text-left">
         <AlertDialogTitle class="text-lg font-medium">
           <slot name="title">
@@ -41,14 +41,17 @@ import {
   AlertDialogCancel,
   AlertDialogDescription,
   AlertDialogTitle,
-  AlertDialogTrigger,
-  useForwardPropsEmits
+  AlertDialogTrigger
 } from 'reka-ui'
 import AlertDialogContent from './AlertDialogContent.vue'
-import omit from 'lodash/omit'
 import { Button } from '@/components/ui/button'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import type { HTMLAttributes } from 'vue'
 
 const props = defineProps<AlertDialogProps & {
+  class?: HTMLAttributes['class'],
   title: string
   description?: string
 }>()
@@ -57,5 +60,7 @@ const emits = defineEmits<AlertDialogEmits & {
   cancel: []
 }>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['class', 'title', 'description'])
+const delegatedEmits = useEmitAsProps(emits, ['confirm', 'cancel'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 </script>

@@ -13,10 +13,17 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes } from 'vue'
-import { type CheckboxRootEmits, type CheckboxRootProps, useId } from 'reka-ui'
-import { CheckboxIndicator, CheckboxRoot, useForwardPropsEmits } from 'reka-ui'
+import {
+  CheckboxIndicator,
+  CheckboxRoot,
+  type CheckboxRootEmits,
+  type CheckboxRootProps,
+  useId,
+  useForwardPropsEmits
+} from 'reka-ui'
 import { Check } from 'lucide-vue-next'
 import { cn } from '@/utils/tailwind'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
 
 const props = withDefaults(defineProps<CheckboxRootProps & {
   class?: HTMLAttributes['class']
@@ -25,5 +32,6 @@ const props = withDefaults(defineProps<CheckboxRootProps & {
 })
 const emits = defineEmits<CheckboxRootEmits>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['class'])
+const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>

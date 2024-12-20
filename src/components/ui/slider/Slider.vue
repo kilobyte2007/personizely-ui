@@ -1,6 +1,6 @@
 <template>
   <SliderRoot
-    v-bind="omit(forwarded, ['showMarker', 'modelValue', 'onUpdate:modelValue'])"
+    v-bind="forwarded"
     v-model="value"
     :class="cn(
       'relative flex touch-none select-none data-[disabled]:opacity-50',
@@ -40,10 +40,18 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed, ref } from 'vue'
-import type { SliderRootProps, SliderRootEmits } from 'reka-ui'
-import { SliderRange, SliderRoot, SliderThumb, SliderTrack, useForwardPropsEmits } from 'reka-ui'
+import {
+  SliderRange,
+  SliderRoot,
+  SliderThumb,
+  SliderTrack,
+  type SliderRootProps,
+  type SliderRootEmits
+} from 'reka-ui'
 import { cn } from '@/utils/tailwind'
-import omit from 'lodash/omit'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = withDefaults(defineProps<Omit<SliderRootProps, 'modelValue'> & {
   class?: HTMLAttributes['class']
@@ -62,16 +70,12 @@ const emits = defineEmits<Omit<SliderRootEmits, 'update:modelValue'> & {
   blur: [payload: number, event: FocusEvent]
   dragstart: [payload: number]
   dragend: [payload: number]
-  'update:modelValue': [payload: number | number[]]
+  'update:modelValue': [value: number | number[]]
 }>()
 
-const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
-
-  return delegated
-})
-
-const forwarded = useForwardPropsEmits(delegatedProps, emits)
+const delegatedProps = useDelegatedProps(props, ['class', 'showMarker', 'modelValue'])
+const delegatedEmits = useEmitAsProps(emits, ['update:modelValue', 'focus', 'blur', 'dragstart', 'dragend'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 
 const visibleMarker = ref<number | null>(null)
 
@@ -88,6 +92,7 @@ const onFocus = ({ index, value }: { index: number, value: number}, e: FocusEven
   emits('focus', value, e)
   visibleMarker.value = index
 }
+
 const onBlur = ({ value }: { value: number}, e: FocusEvent) => {
   emits('blur', value, e)
   visibleMarker.value = null

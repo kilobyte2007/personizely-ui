@@ -1,5 +1,5 @@
 <template>
-  <CheckboxGroup v-model="value" :options="options" horizontal />
+  <CheckboxGroup v-model="value" :options="options" orientation="horizontal" />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'

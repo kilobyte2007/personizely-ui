@@ -1,5 +1,5 @@
 <template>
-  <TooltipRoot v-bind="{ ...forwarded }">
+  <TooltipRoot v-bind="forwarded">
     <TooltipTrigger as-child>
       <slot name="trigger" />
     </TooltipTrigger>
@@ -28,11 +28,13 @@ import {
 } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
 
 const props = defineProps<TooltipRootProps & {
   class?: HTMLAttributes['class']
 }>()
 const emits = defineEmits<TooltipRootEmits>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['class'])
+const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>

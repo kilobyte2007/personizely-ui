@@ -1,12 +1,12 @@
 <template>
-  <DialogRoot v-bind="omit(forwarded, ['title', 'description', 'side', 'class', 'disableOverlay', 'disableOutsidePointerEvents', 'onHide'])">
+  <DialogRoot v-bind="forwarded">
     <DrawerTrigger v-if="$slots.trigger" as-child>
       <slot name="trigger" />
     </DrawerTrigger>
 
     <DrawerContent
       :side="side"
-      :class="$props.class"
+      :class="props.class"
       :disable-overlay="disableOverlay"
       :disable-outside-pointer-events="disableOutsidePointerEvents"
       @hide="$emit('hide')"
@@ -51,8 +51,7 @@ import {
   DialogClose,
   DialogRoot,
   type DialogRootEmits,
-  type DialogRootProps,
-  useForwardPropsEmits
+  type DialogRootProps
 } from 'reka-ui'
 import { Button } from '@/components/ui/button'
 import type { HTMLAttributes } from 'vue'
@@ -62,8 +61,10 @@ import DrawerHeader from './DrawerHeader.vue'
 import DrawerFooter from './DrawerFooter.vue'
 import DrawerTitle from './DrawerTitle.vue'
 import DrawerDescription from './DrawerDescription.vue'
-import omit from 'lodash/omit'
-import { type DrawerVariants } from '@/components/ui/drawer'
+import { type DrawerVariants } from './'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = withDefaults(defineProps<DialogRootProps & {
   class?: HTMLAttributes['class']
@@ -81,5 +82,7 @@ const emits = defineEmits<DialogRootEmits & {
   hide: []
 }>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['class', 'title', 'side', 'description', 'disableOverlay', 'disableOutsidePointerEvents'])
+const delegatedEmits = useEmitAsProps(emits, ['hide'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 </script>

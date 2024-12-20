@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import type { VariantProps } from 'class-variance-authority'
-import { type HTMLAttributes, computed } from 'vue'
+import { type HTMLAttributes } from 'vue'
 import {
   ToggleGroupRoot,
   type ToggleGroupRootEmits,
@@ -31,7 +31,7 @@ import {
 import type { toggleVariants } from '@/components/ui/toggle'
 import ToggleGroupItem from './ToggleGroupItem.vue'
 import { cn } from '@/utils/tailwind'
-import omit from 'lodash/omit'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
 
 type ToggleGroupVariants = VariantProps<typeof toggleVariants>
 
@@ -53,9 +53,6 @@ defineSlots<{
   default(props: { item: Item }): any
 }>()
 
-const delegatedProps = computed(() => {
-  return omit(props, ['items', 'size', 'variant', 'class'])
-})
-
+const delegatedProps = useDelegatedProps(props, ['class', 'size', 'variant', 'items'])
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>

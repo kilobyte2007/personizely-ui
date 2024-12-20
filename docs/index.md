@@ -14,8 +14,8 @@ hero:
 features:
   - title: Fully accessible
     details: The components are fully accessible and support tab navigation and aria attributes.
-  - title: Based on radix-vue
-    details: The components are based on radix-vue to support adhere to best accessibility practices.
+  - title: Based on reka-ui
+    details: The components are based on reka-ui to support adhere to best accessibility practices.
   - title: Customizable
     details: Can be styled using css variables.
 ---

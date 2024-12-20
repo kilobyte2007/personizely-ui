@@ -1,4 +1,5 @@
-import chroma from 'chroma-js'
+import chroma, { type InterpolationMode} from 'chroma-js'
+
 
 export type Point = { left: number, color: string }
 type Gradient = {
@@ -6,7 +7,7 @@ type Gradient = {
   angle: number,
   type: string,
   precision?: number,
-  interpolation?: string
+  interpolation?: InterpolationMode
   xAxis?: string
   yAxis?: string
   shape?: string
@@ -85,7 +86,7 @@ const spread = (arr: string[], from: number, to: number) => {
   return result
 }
 
-export const preparePoints = (points: Point[], interpolation: string, precision: number) => {
+export const preparePoints = (points: Point[], interpolation: InterpolationMode, precision: number) => {
   const result = []
   points = sortPoints(points)
   for (let i = 0; i <= points.length - 2; i++) {

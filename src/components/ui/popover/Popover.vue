@@ -1,5 +1,5 @@
 <template>
-  <PopoverRoot v-bind="omit(forwarded, ['side', 'align', 'alignOffset', 'sideOffset', 'class'])">
+  <PopoverRoot v-bind="forwarded">
     <PopoverTrigger v-if="$slots.trigger">
       <slot name="trigger" />
     </PopoverTrigger>
@@ -28,17 +28,17 @@
 
 <script setup lang="ts">
 import {
-  type PopoverContentProps,
   PopoverPortal,
   PopoverRoot,
   PopoverContent,
+  type PopoverContentProps,
   useForwardPropsEmits
 } from 'reka-ui'
 import type { PopoverRootEmits, PopoverRootProps } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import { type HTMLAttributes } from 'vue'
-import omit from 'lodash/omit'
 import PopoverTrigger from './PopoverTrigger.vue'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
 
 const props = withDefaults(defineProps<PopoverRootProps & Pick<PopoverContentProps, 'side' | 'align' | 'alignOffset' | 'sideOffset'> & {
   class?: HTMLAttributes['class']
@@ -50,5 +50,6 @@ const props = withDefaults(defineProps<PopoverRootProps & Pick<PopoverContentPro
 })
 const emits = defineEmits<PopoverRootEmits>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['side', 'align', 'alignOffset', 'sideOffset', 'class'])
+const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>

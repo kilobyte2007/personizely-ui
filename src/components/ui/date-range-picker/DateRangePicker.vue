@@ -6,7 +6,7 @@
         :class="cn(
           'justify-start text-left font-normal',
           !modelValue.start && 'text-muted-foreground',
-          $props.class
+          props.class
         )"
       >
         <template #icon>
@@ -43,7 +43,7 @@
         </Button>
       </div>
       <RangeCalendar
-        v-bind="omit(forwarded, ['class', 'placeholder', 'formatter', 'presets', 'modelValue'])"
+        v-bind="forwarded"
         v-model="dateRange"
         :number-of-months="2"
         :prevent-deselect="true"
@@ -65,23 +65,28 @@ import {
   DateFormatter,
   getLocalTimeZone
 } from '@internationalized/date'
-import { type DateRange, type RangeCalendarRootProps, useForwardProps } from 'reka-ui'
+import {
+  type DateRange,
+  type RangeCalendarRootProps
+} from 'reka-ui'
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
 import { RangeCalendar } from '@/components/ui/range-calendar'
 import { Button } from '@/components/ui/button'
 import { Popover } from '@/components/ui/popover'
 import { cn } from '@/utils/tailwind'
-import { type HTMLAttributes, ref, watch } from 'vue'
-import omit from 'lodash/omit'
+import { type HTMLAttributes, type Ref, ref, watch } from 'vue'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
 
 const emit = defineEmits(['update:modelValue'])
-const props = withDefaults(defineProps<{
+const props = withDefaults(defineProps<Omit<RangeCalendarRootProps, 'placeholder' | 'modelValue'> & {
   placeholder?: string
   formatter?: DateFormatter
   class?: HTMLAttributes['class']
   modelValue: DateRange
   presets?: Array<{ label: string, value: DateRange }>
-} & Omit<RangeCalendarRootProps, 'placeholder'>>(), {
+}>(), {
   placeholder: 'Pick a date range',
   initialFocus: false,
   defaultValue: () => ({ start: undefined, end: undefined }),
@@ -92,17 +97,21 @@ const props = withDefaults(defineProps<{
   })
 })
 
+const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'formatter', 'presets', 'modelValue'])
+const delegatedEmits = useEmitAsProps(emit, ['update:modelValue'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+
 const isOpen = ref(false)
 
-const dateRange = ref<DateRange>({
+const dateRange = ref({
   start: props.modelValue.start,
   end: props.modelValue.end
-})
+}) as Ref<DateRange>
 
 watch(() => props.modelValue, (to) => {
   dateRange.value = {
-    start: to.start,
-    end: to.end
+    start: to ? to.start : undefined,
+    end: to ? to.end : undefined
   }
 })
 
@@ -110,6 +119,7 @@ const reset = () => {
   emit('update:modelValue', props.defaultValue)
   isOpen.value = false
 }
+
 const apply = () => {
   emit('update:modelValue', dateRange.value)
   isOpen.value = false
@@ -117,14 +127,11 @@ const apply = () => {
 
 const isSelectedPreset = (value: DateRange) => {
   const { end, start } = dateRange.value
-
-  return dateRange.value.start
-    ? value.start?.compare(start) === 0
+  return start && value.start
+    ? start.compare(value.start) === 0
     : start === value.start
-    && end
-      ? value.end?.compare(end) === 0
+    && end && value.end
+      ? end.compare(value.end) === 0
       : end === value.end
 }
-
-const forwarded = useForwardProps(props)
 </script>

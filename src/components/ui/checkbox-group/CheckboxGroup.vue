@@ -1,14 +1,11 @@
 <template>
-  <div :class="checkboxGroupVariants({ direction: horizontal ? 'horizontal' : 'vertical' })">
+  <CheckboxGroupRoot v-bind="forwarded" :class="checkboxGroupVariants({ orientation })">
     <Checkbox
       v-for="(option, index) in preparedOptions"
-      :id="`${name}-${option[keys.id] || option[keys.value]}`"
-      :key="option[keys.id] || index"
+      :key="option[keys.id] || option[keys.value] || index"
+      :value="option[keys.value]"
       :disabled="disabled || option[keys.disabled]"
-      :help="disabled || option[keys.help]"
-      :name="`${name}[${option[keys.value]}]`"
-      :model-value="modelValue.includes(option[keys.value])"
-      @update:model-value="onUpdate(option, $event)"
+      :help="option[keys.help]"
       @blur="$emit('blur', option, $event)"
       @focus="$emit('focus', option, $event)"
     >
@@ -21,30 +18,29 @@
         </slot>
       </template>
     </Checkbox>
-  </div>
+  </CheckboxGroupRoot>
 </template>
 
 <script setup lang="ts">
-import Checkbox from '@/components/ui/checkbox/Checkbox.vue'
 import { computed, type Events } from 'vue'
 import { prepareOptions } from '@/utils/options'
 import type { Keys, Option, CustomOption } from '@/utils/options'
 import { checkboxGroupVariants } from './'
-import { useId } from 'reka-ui'
+import {
+  CheckboxGroupRoot,
+  type CheckboxGroupRootProps,
+  type CheckboxGroupRootEmits
+} from 'reka-ui'
+import Checkbox from '@/components/ui/checkbox/Checkbox.vue'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
 
-const modelValue = defineModel<(string | number)[]>({
-  default: () => []
-})
-const props = withDefaults(defineProps<{
-  name?: string
-  horizontal?: boolean
-  disabled?: boolean
+const props = withDefaults(defineProps<CheckboxGroupRootProps & {
   keys?: Keys
   options: string[] | Option[] | CustomOption[] | { [key:string]: string }
 }>(), {
-  horizontal: false,
-  disabled: false,
-  name: () => useId(),
+  orientation: 'vertical',
   keys: () => ({
     id: 'id',
     label: 'label',
@@ -53,21 +49,15 @@ const props = withDefaults(defineProps<{
     disabled: 'disabled'
   })
 })
-defineEmits<{
+
+const emits = defineEmits<CheckboxGroupRootEmits & {
   focus: [option: Option | CustomOption, event: Events['onFocus']]
   blur: [option: Option | CustomOption, event: Events['onBlur']]
 }>()
 
+const delegatedProps = useDelegatedProps(props, ['keys', 'options'])
+const delegatedEmits = useEmitAsProps(emits, ['focus', 'blur'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
-
-const onUpdate = (option: Option | CustomOption, checked: boolean) => {
-  const value = [...modelValue.value]
-  if (checked) {
-    value.push(option[props.keys.value])
-  } else {
-    value.splice(value.indexOf(option[props.keys.value]), 1)
-  }
-
-  modelValue.value = value
-}
 </script>

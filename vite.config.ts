@@ -43,8 +43,8 @@ export default defineConfig(({ mode }) => {
             vue: 'Vue',
             'vee-validate': 'veeValidate'
           },
-          assetFileNames: assetInfo =>
-            assetInfo.name?.endsWith('.css') ? `${options.name}.css` : assetInfo.name
+          assetFileNames: assetInfo => 
+            assetInfo.name?.endsWith('.css') ? `${options.name}.css` : assetInfo.name || '[name][extname]'
         }
       }
     }

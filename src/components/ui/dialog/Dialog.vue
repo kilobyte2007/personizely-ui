@@ -4,7 +4,7 @@
       <slot name="trigger" />
     </DialogTrigger>
 
-    <DialogContent :class="cn('max-h-[90dvh]', $attrs.class)" :trap-focus="false" @hide="$emit('hide')">
+    <DialogContent :class="props.class" :trap-focus="false" @hide="$emit('hide')">
       <DialogHeader>
         <DialogTitle v-if="title || $slots.title">
           <slot name="title">
@@ -42,8 +42,12 @@
 </template>
 
 <script setup lang="ts">
-import { DialogClose, DialogRoot, type DialogRootEmits, type DialogRootProps, useForwardPropsEmits } from 'reka-ui'
-import { cn } from '@/utils/tailwind'
+import {
+  DialogClose,
+  DialogRoot,
+  type DialogRootEmits,
+  type DialogRootProps
+} from 'reka-ui'
 import { Button } from '@/components/ui/button'
 import DialogTrigger from './DialogTrigger.vue'
 import DialogHeader from './DialogHeader.vue'
@@ -51,8 +55,13 @@ import DialogTitle from './DialogTitle.vue'
 import DialogDescription from './DialogDescription.vue'
 import DialogContent from './DialogContent.vue'
 import DialogFooter from './DialogFooter.vue'
+import type { HTMLAttributes } from 'vue'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = withDefaults(defineProps<DialogRootProps & {
+  class?: HTMLAttributes['class'],
   title?: string,
   description?: string,
   removeCloseButton?: boolean
@@ -63,5 +72,7 @@ const emits = defineEmits<DialogRootEmits & {
   hide: []
 }>()
 
-const forwarded = useForwardPropsEmits(props, emits)
+const delegatedProps = useDelegatedProps(props, ['class', 'title', 'description', 'removeCloseButton'])
+const delegatedEmits = useEmitAsProps(emits, ['hide'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
 </script>

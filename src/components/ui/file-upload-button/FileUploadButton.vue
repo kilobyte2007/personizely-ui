@@ -1,7 +1,7 @@
 <template>
   <div class="inline-flex">
     <Button
-      v-bind="omit($props, ['accept', 'name'])"
+      v-bind="forwardedProps"
       @click="input!.click()"
     >
       <template v-if="$slots.default" #default>
@@ -29,16 +29,17 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
 import { type ButtonProps } from '@/components/ui/button/Button.vue'
-import omit from 'lodash/omit'
 import { ref } from 'vue'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useForwardProps } from 'reka-ui'
 
 const input = ref<HTMLElement | null>(null)
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<ButtonProps & {
   accept?: string
   name: string,
   multiple?: boolean
-} & ButtonProps>(), {
+}>(), {
   loading: false,
   disabled: false,
   iconPosition: 'left',
@@ -48,4 +49,7 @@ withDefaults(defineProps<{
 defineEmits<{
   change: [event: Event]
 }>()
+
+const delegatedProps = useDelegatedProps(props, ['accept', 'name', 'multiple'])
+const forwardedProps = useForwardProps(delegatedProps)
 </script>

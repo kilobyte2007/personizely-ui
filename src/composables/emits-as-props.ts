@@ -1,0 +1,17 @@
+import { camelize, getCurrentInstance, toHandlerKey } from 'vue'
+
+export function useEmitAsProps<Name extends string> (emit: (name: Name, ...args: any[]) => void, exclude: Array<string> = []) {
+  const vm = getCurrentInstance()
+
+  const events = vm?.type.emits as Name[]
+  const result: Record<string, any> = {}
+
+  if (!events?.length) {
+    console.warn(`No emitted event found. Please check component: ${vm?.type.__name}`)
+  }
+
+  events?.filter(ev => !exclude.includes(ev)).forEach((ev) => {
+    result[toHandlerKey(camelize(ev))] = (...arg: any) => emit(ev, ...arg)
+  })
+  return result
+}

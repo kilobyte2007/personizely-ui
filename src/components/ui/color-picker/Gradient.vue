@@ -152,7 +152,7 @@ const decrease = (point: Point) => {
 }
 
 const onKeyDown = (e: KeyboardEvent) => {
-  if (e.target!.tagName.toLowerCase() !== 'input' && ['delete', 'backspace'].includes(e.key.toLowerCase()) && points.value.length > props.min) {
+  if ((e.target as HTMLElement).tagName.toLowerCase() !== 'input' && ['delete', 'backspace'].includes(e.key.toLowerCase()) && points.value.length > props.min) {
     removePoint()
   }
 }

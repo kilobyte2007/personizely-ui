@@ -6,7 +6,7 @@
       :disabled="disabled"
       :required="required"
       :name="name"
-      :default-checked="defaultChecked"
+      :default-value="defaultValue"
       :value="value"
       @focus="$emit('focus', $event)"
       @blur="$emit('blur', $event)"
@@ -44,7 +44,7 @@ import CheckboxBase from './CheckboxBase.vue'
 
 const modelValue = defineModel<boolean | 'indeterminate'>()
 const props = withDefaults(defineProps<{
-  defaultChecked?: boolean
+  defaultValue?: boolean
   disabled?: boolean
   required?: boolean
   name?: string

@@ -12,6 +12,7 @@
     ],
     "noImplicitThis": true,
     "strict": true,
+    "noErrorTruncation": true,
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "bundler",

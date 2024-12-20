@@ -6,7 +6,7 @@
         :class="cn(
           'justify-start text-left font-normal',
           !modelValue && 'text-muted-foreground',
-          $props.class
+          props.class
         )"
       >
         <template #icon>
@@ -20,7 +20,7 @@
         </template>
       </Button>
     </template>
-    <Calendar v-bind="omit(forwarded, ['class', 'placeholder', 'formatter'])" v-model="modelValue" initial-focus />
+    <Calendar v-bind="forwarded" v-model="modelValue" initial-focus />
   </Popover>
 </template>
 
@@ -30,7 +30,6 @@ import {
   type DateValue,
   getLocalTimeZone
 } from '@internationalized/date'
-
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
 import { Calendar } from '@/components/ui/calendar'
 import { Button } from '@/components/ui/button'
@@ -38,7 +37,7 @@ import { Popover } from '@/components/ui/popover'
 import { cn } from '@/utils/tailwind'
 import { type CalendarRootProps, useForwardProps } from 'reka-ui'
 import { type HTMLAttributes } from 'vue'
-import omit from 'lodash/omit'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
 
 const modelValue = defineModel<DateValue>()
 const props = withDefaults(defineProps<{
@@ -52,5 +51,6 @@ const props = withDefaults(defineProps<{
   })
 })
 
-const forwarded = useForwardProps(props)
+const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'formatter', 'modelValue'])
+const forwarded = useForwardProps(delegatedProps)
 </script>

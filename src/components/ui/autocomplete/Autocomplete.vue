@@ -61,34 +61,37 @@
 
 <script setup lang="ts">
 import { type HTMLAttributes, computed, ref, useTemplateRef } from 'vue'
+import { Check } from 'lucide-vue-next'
+import { X } from 'lucide-vue-next'
+import omit from 'lodash/omit'
 import {
+  Primitive,
   ComboboxItemIndicator,
   ComboboxAnchor,
-  Primitive,
-  useForwardPropsEmits,
+  ComboboxPortal,
+  ComboboxViewport,
+  ComboboxInput,
   type ComboboxItemEmits,
   type ComboboxRootEmits,
   type ComboboxRootProps,
-  type AcceptableInputValue,
-  ComboboxPortal,
-  ComboboxViewport,
-  ComboboxInput
+  type ComboboxInputProps
 } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import AutocompleteRoot from './AutocompleteRoot.vue'
 import AutocompleteContent from './AutocompleteContent.vue'
 import AutocompleteItem from './AutocompleteItem.vue'
 import AutocompleteGroup from './AutocompleteGroup.vue'
-import { Check } from 'lucide-vue-next'
-import { X } from 'lucide-vue-next'
-import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
-import omit from 'lodash/omit'
+import AutocompleteEmpty from './AutocompleteEmpty.vue'
 import { ProgressCircular } from '@/components/ui/progress-circular'
-import AutocompleteEmpty from '@/components/ui/autocomplete/AutocompleteEmpty.vue'
+import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useEmitAsProps } from '@/composables/emits-as-props'
+import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
 
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
+const searchTerm = defineModel<ComboboxInputProps['modelValue']>('searchTerm', { default: '' })
 
-const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'searchTerm' | 'resetSearchTermOnBlur'> & {
+const props = withDefaults(defineProps<Omit<ComboboxRootProps, 'modelValue' | 'resetSearchTermOnBlur'> & {
   class?: HTMLAttributes['class']
   placeholder?: string
   loading?: boolean
@@ -120,8 +123,11 @@ const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
   select: [option: Option | CustomOption]
 }>()
 
+const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'loading', 'disableFilter', 'disablePortal', 'autofocus', 'searchPlaceholder', 'keys', 'options'])
+const delegatedEmits = useEmitAsProps(emits, ['blur', 'focus', 'select', 'update:modelValue', 'update:searchTerm'])
+const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+
 const open = ref(false)
-const searchTerm = ref<AcceptableInputValue>('')
 const input = useTemplateRef<typeof ComboboxInput>('input')
 
 const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | CustomOption) => {
@@ -130,7 +136,7 @@ const onSelect = (event: ComboboxItemEmits['select'][0], option: Option | Custom
 }
 
 const reset = () => {
-  modelValue.value = null
+  modelValue.value = ''
   searchTerm.value = ''
   input.value?.$el.focus()
 }
@@ -156,8 +162,6 @@ const filterFunction = (options: any, searchTerm: string) => {
     return result ? result[props.keys.label]?.toLowerCase().includes(searchTerm?.toLowerCase()) : false
   })
 }
-
-const forwarded = useForwardPropsEmits(props, emits)
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
 const filteredOptions = computed(() => filterFunction(preparedOptions.value, String(searchTerm.value)))
