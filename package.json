@@ -56,7 +56,6 @@
   "dependencies": {
     "@ctrl/tinycolor": "^4.1.0",
     "@stylistic/eslint-plugin": "^2.12.1",
-    "@tailwindcss/vite": "next",
     "@types/chroma-js": "^2.4.5",
     "@types/lodash": "^4.17.0",
     "@vueuse/core": "^10.9.0",
@@ -78,7 +77,8 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@iconify/vue": "^4.2.0",
-    "@tailwindcss/postcss": "next",
+    "@tailwindcss/postcss": "^4.0.0-beta.8",
+    "@tailwindcss/vite": "^4.0.0-beta.8",
     "@vee-validate/rules": "^4.14.7",
     "@vee-validate/zod": "^4.14.7",
     "@vitejs/plugin-vue": "5.2.1",
@@ -92,7 +92,7 @@
     "eslint-plugin-vue": "^9.32.0",
     "globals": "^15.14.0",
     "rimraf": "^2.7.1",
-    "tailwindcss": "next",
+    "tailwindcss": "^4.0.0-beta.8",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
@@ -111,7 +111,7 @@
   },
   "overrides": {
     "tailwindcss-animate": {
-      "tailwindcss": "next"
+      "tailwindcss": "^4.0.0-beta.8"
     }
   }
 }
