@@ -1,5 +1,9 @@
 <template>
-  <Select v-model="value" :options="options" class="w-64" />
+  <Select v-model="value"
+    :options="options"
+    :keys="{ value: 'id', label: 'name' }"
+    class="w-64"
+  />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -8,16 +12,16 @@ import { Select } from '@/components/ui/select'
 const value = ref(null)
 const options = [
   {
-    label: 'Red',
-    value: 1
+    name: 'Red',
+    id: 1
   },
   {
-    label: 'Green',
-    value: 2
+    name: 'Green',
+    id: 2
   },
   {
-    label: 'Blue',
-    value: 3
+    name: 'Blue',
+    id: 3
   }
 ]
 </script>

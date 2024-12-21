@@ -31,7 +31,7 @@ import {
 import type { toggleVariants } from '@/components/ui/toggle'
 import ToggleGroupItem from './ToggleGroupItem.vue'
 import { cn } from '@/utils/tailwind'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 
 type ToggleGroupVariants = VariantProps<typeof toggleVariants>
 

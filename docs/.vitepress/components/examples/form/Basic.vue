@@ -24,6 +24,16 @@
     <FormField
       v-slot="{ componentField }"
       required
+      rules="required"
+      name="sport"
+      label="Your favorite sport"
+    >
+      <Select placeholder="Choose a sport" v-bind="componentField" :options="[{ value: 1, label: 'Football'}, { value: 2, label: 'Basketball' }, { value: 3, label: 'Baseball'}]" />
+    </FormField>
+
+    <FormField
+      v-slot="{ componentField }"
+      required
       error-label="Term of use"
       rules="checked"
       name="accept"

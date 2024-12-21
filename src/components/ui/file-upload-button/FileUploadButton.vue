@@ -30,7 +30,7 @@
 import { Button } from '@/components/ui/button'
 import { type ButtonProps } from '@/components/ui/button/Button.vue'
 import { ref } from 'vue'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useForwardProps } from 'reka-ui'
 
 const input = ref<HTMLElement | null>(null)

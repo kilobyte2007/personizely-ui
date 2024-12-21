@@ -38,7 +38,7 @@ import type { PopoverRootEmits, PopoverRootProps } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import { type HTMLAttributes } from 'vue'
 import PopoverTrigger from './PopoverTrigger.vue'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 
 const props = withDefaults(defineProps<PopoverRootProps & Pick<PopoverContentProps, 'side' | 'align' | 'alignOffset' | 'sideOffset'> & {
   class?: HTMLAttributes['class']

@@ -56,9 +56,9 @@ import DialogDescription from './DialogDescription.vue'
 import DialogContent from './DialogContent.vue'
 import DialogFooter from './DialogFooter.vue'
 import type { HTMLAttributes } from 'vue'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = withDefaults(defineProps<DialogRootProps & {
   class?: HTMLAttributes['class'],
@@ -74,5 +74,5 @@ const emits = defineEmits<DialogRootEmits & {
 
 const delegatedProps = useDelegatedProps(props, ['class', 'title', 'description', 'removeCloseButton'])
 const delegatedEmits = useEmitAsProps(emits, ['hide'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 </script>

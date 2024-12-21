@@ -48,9 +48,9 @@ import { radioGroupVariants } from './'
 import RadioGroupItem from './RadioGroupItem.vue'
 import { Label } from '@/components/ui/label'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = withDefaults(defineProps<RadioGroupRootProps & {
   class?: HTMLAttributes['class']
@@ -75,7 +75,7 @@ const emits = defineEmits<RadioGroupRootEmits & {
 
 const delegatedProps = useDelegatedProps(props, ['keys', 'options', 'class'])
 const delegatedEmits = useEmitAsProps(emits, ['blur', 'focus'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
 </script>

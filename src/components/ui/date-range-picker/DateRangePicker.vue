@@ -75,9 +75,9 @@ import { Button } from '@/components/ui/button'
 import { Popover } from '@/components/ui/popover'
 import { cn } from '@/utils/tailwind'
 import { type HTMLAttributes, type Ref, ref, watch } from 'vue'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 
 const emit = defineEmits(['update:modelValue'])
 const props = withDefaults(defineProps<Omit<RangeCalendarRootProps, 'placeholder' | 'modelValue'> & {
@@ -99,7 +99,7 @@ const props = withDefaults(defineProps<Omit<RangeCalendarRootProps, 'placeholder
 
 const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'formatter', 'presets', 'modelValue'])
 const delegatedEmits = useEmitAsProps(emit, ['update:modelValue'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 
 const isOpen = ref(false)
 

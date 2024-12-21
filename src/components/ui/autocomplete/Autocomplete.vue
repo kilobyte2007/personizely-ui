@@ -83,9 +83,9 @@ import AutocompleteItem from './AutocompleteItem.vue'
 import AutocompleteGroup from './AutocompleteGroup.vue'
 import AutocompleteEmpty from './AutocompleteEmpty.vue'
 import { ProgressCircular } from '@/components/ui/progress-circular'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
 
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
@@ -125,7 +125,7 @@ const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
 
 const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'loading', 'disableFilter', 'disablePortal', 'autofocus', 'searchPlaceholder', 'keys', 'options'])
 const delegatedEmits = useEmitAsProps(emits, ['blur', 'focus', 'select', 'update:modelValue', 'update:searchTerm'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 
 const open = ref(false)
 const input = useTemplateRef<typeof ComboboxInput>('input')

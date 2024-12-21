@@ -48,6 +48,7 @@
             }
           }"
           @change.stop
+          @input.stop
           @keydown.tab.prevent
         />
         <ComboboxViewport class="max-h-[300px] overflow-y-auto overflow-x-hidden">
@@ -98,9 +99,9 @@ import ComboboxGroup from './ComboboxGroup.vue'
 import { Check } from 'lucide-vue-next'
 import { ChevronDown } from 'lucide-vue-next'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
 const searchTerm = defineModel<ComboboxInputProps['modelValue']>('searchTerm', { default: '' })
@@ -136,7 +137,7 @@ const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
 
 const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'disablePortal', 'searchTerm', 'modelValue'])
 const delegatedEmits = useEmitAsProps(emits, ['blur', 'focus', 'select', 'update:searchTerm', 'update:modelValue'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 
 defineSlots<{
   'label'(props: { option: CustomOption | undefined | null } | { options: Array<Option | CustomOption> }): any

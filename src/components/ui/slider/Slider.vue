@@ -49,9 +49,9 @@ import {
   type SliderRootEmits
 } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = withDefaults(defineProps<Omit<SliderRootProps, 'modelValue'> & {
   class?: HTMLAttributes['class']
@@ -75,7 +75,7 @@ const emits = defineEmits<Omit<SliderRootEmits, 'update:modelValue'> & {
 
 const delegatedProps = useDelegatedProps(props, ['class', 'showMarker', 'modelValue'])
 const delegatedEmits = useEmitAsProps(emits, ['update:modelValue', 'focus', 'blur', 'dragstart', 'dragend'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 
 const visibleMarker = ref<number | null>(null)
 

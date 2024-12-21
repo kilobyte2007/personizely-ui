@@ -1,5 +1,8 @@
 <template>
-  <SelectRoot v-bind="forwarded" v-model="modelValue">
+  <SelectRoot v-bind="forwarded"
+    v-model="modelValue"
+    @change.stop
+  >
     <SelectTrigger :class="cn((multiple && Array.isArray(modelValue) && modelValue.length === 0) || !modelValue ? 'text-muted-foreground' : '', props.class)">
       <SelectValue :placeholder="placeholder">
         <slot v-if="multiple && Array.isArray(modelValue) && (modelValue.length || $slots.label)" name="label" v-bind="{ options: selectedOptions }">
@@ -41,8 +44,8 @@ import SelectTrigger from './SelectTrigger.vue'
 import SelectValue from './SelectValue.vue'
 import SelectItem from './SelectItem.vue'
 import { cn } from '@/utils/tailwind'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useDelegatedProps } from '@/composables/delegated-props'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 import { useEmitAsProps } from '@/composables/emits-as-props'
 
 const modelValue = defineModel<SelectRootProps['modelValue']>()
@@ -68,7 +71,7 @@ const emits = defineEmits<Omit<SelectRootEmits, 'update:modelValue'>>()
 
 const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'keys', 'options', 'disablePortal', 'modelValue'])
 const delegatedEmits = useEmitAsProps(emits, ['update:modelValue'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 
 defineSlots<{
   'label'(props: { option: CustomOption | undefined | null } | { options: Array<Option | CustomOption> }): any

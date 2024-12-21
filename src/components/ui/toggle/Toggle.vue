@@ -30,7 +30,7 @@ import { cn } from '@/utils/tailwind'
 import { Icon } from '@/components/ui/icon'
 import { Tooltip } from '@/components/ui/tooltip'
 import { buttonIconVariants } from '@/components/ui/button'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 
 const props = withDefaults(defineProps<ToggleProps & {
   class?: HTMLAttributes['class']

@@ -2,7 +2,7 @@
   <div
     :class="
       cn(
-        'rounded-lg border bg-card text-card-foreground shadow-xs flex flex-col gap-4 p-8',
+        'rounded border bg-card text-card-foreground shadow-xs flex flex-col gap-4 p-8',
         props.class,
       )
     "

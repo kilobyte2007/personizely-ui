@@ -53,9 +53,9 @@ import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import type { MenuRadioItem } from './'
 import { cn } from '@/utils/tailwind'
 import { type HTMLAttributes, provide } from 'vue'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 
 const modelValue = defineModel<any>()
 const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps, 'side' | 'align'> & {
@@ -71,5 +71,5 @@ provide('hasDropdown', true)
 
 const delegatedProps = useDelegatedProps(props, ['align', 'side', 'label', 'items', 'class', 'modelValue'])
 const delegatedEmits = useEmitAsProps(emits, ['select', 'update:modelValue'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 </script>

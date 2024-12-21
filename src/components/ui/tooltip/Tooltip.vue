@@ -28,7 +28,7 @@ import {
 } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 
 const props = defineProps<TooltipRootProps & {
   class?: HTMLAttributes['class']

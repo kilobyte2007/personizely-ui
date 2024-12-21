@@ -45,9 +45,9 @@ import {
 } from 'reka-ui'
 import AlertDialogContent from './AlertDialogContent.vue'
 import { Button } from '@/components/ui/button'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 import type { HTMLAttributes } from 'vue'
 
 const props = defineProps<AlertDialogProps & {
@@ -62,5 +62,5 @@ const emits = defineEmits<AlertDialogEmits & {
 
 const delegatedProps = useDelegatedProps(props, ['class', 'title', 'description'])
 const delegatedEmits = useEmitAsProps(emits, ['confirm', 'cancel'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 </script>

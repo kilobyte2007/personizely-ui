@@ -51,9 +51,9 @@ import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
 import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import DropdownMenuPart from './DropdownMenuPart.vue'
 import type { MenuItem, MenuItemWithChildren, MenuGroupItem } from './'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = defineProps<DropdownMenuRootProps & Pick<DropdownMenuContentProps, 'side' | 'align'> & {
   items: (MenuItem | MenuItemWithChildren | MenuGroupItem)[]
@@ -68,5 +68,5 @@ provide('hasDropdown', true)
 
 const delegatedProps = useDelegatedProps(props, ['align', 'side', 'label', 'items', 'class'])
 const delegatedEmits = useEmitAsProps(emits, ['select'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 </script>

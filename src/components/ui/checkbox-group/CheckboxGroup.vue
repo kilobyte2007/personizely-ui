@@ -32,8 +32,8 @@ import {
   type CheckboxGroupRootEmits
 } from 'reka-ui'
 import Checkbox from '@/components/ui/checkbox/Checkbox.vue'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
 
 const props = withDefaults(defineProps<Omit<CheckboxGroupRootProps, 'as' | 'asChild'> & {
@@ -59,7 +59,7 @@ const emits = defineEmits<CheckboxGroupRootEmits & {
 
 const delegatedProps = useDelegatedProps(props, ['keys', 'options'])
 const delegatedEmits = useEmitAsProps(emits, ['focus', 'blur'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 
 const preparedOptions = computed(() => prepareOptions(props.options, props.keys))
 </script>

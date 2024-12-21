@@ -62,9 +62,9 @@ import DrawerFooter from './DrawerFooter.vue'
 import DrawerTitle from './DrawerTitle.vue'
 import DrawerDescription from './DrawerDescription.vue'
 import { type DrawerVariants } from './'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 
 const props = withDefaults(defineProps<DialogRootProps & {
   class?: HTMLAttributes['class']
@@ -84,5 +84,5 @@ const emits = defineEmits<DialogRootEmits & {
 
 const delegatedProps = useDelegatedProps(props, ['class', 'title', 'side', 'description', 'disableOverlay', 'disableOutsidePointerEvents'])
 const delegatedEmits = useEmitAsProps(emits, ['hide'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 </script>

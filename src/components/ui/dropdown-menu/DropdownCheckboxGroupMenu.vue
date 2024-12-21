@@ -52,9 +52,9 @@ import DropdownMenuCheckboxItem from './DropdownMenuCheckboxItem.vue'
 import type { MenuCheckboxItem } from './'
 import { type HTMLAttributes, provide } from 'vue'
 import { cn } from '@/utils/tailwind'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
-import { forwardPropsEmits } from '@/composables/forward-props-emits'
+import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 
 const modelValue = defineModel<any[]>({
   required: true
@@ -71,7 +71,7 @@ const emits = defineEmits<DropdownMenuRootEmits & {
 
 const delegatedProps = useDelegatedProps(props, ['align', 'side', 'label', 'items', 'class', 'modelValue'])
 const delegatedEmits = useEmitAsProps(emits, ['select', 'update:modelValue'])
-const forwarded = forwardPropsEmits(delegatedProps, delegatedEmits)
+const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
 
 provide('hasDropdown', true)
 

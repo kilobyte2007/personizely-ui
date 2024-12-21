@@ -2,6 +2,8 @@
   <CheckboxRoot
     v-bind="forwarded"
     :class="cn('peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground', props.class)"
+    @change.stop
+    @input.stop
   >
     <CheckboxIndicator class="flex h-full w-full items-center justify-center text-current">
       <slot name="indicator">
@@ -23,7 +25,7 @@ import {
 } from 'reka-ui'
 import { Check } from 'lucide-vue-next'
 import { cn } from '@/utils/tailwind'
-import { useDelegatedProps } from '@/composables/use-delegated-props'
+import { useDelegatedProps } from '@/composables/delegated-props'
 
 const props = withDefaults(defineProps<CheckboxRootProps & {
   class?: HTMLAttributes['class']
