@@ -1,7 +1,7 @@
 {
   "name": "personizely-ui",
   "web-types": "./web-types.json",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "Personizely UI is a Vue.js UI library with a simple API, based on Reka UI, inspired by shadcn-vue and Keen UI.",
   "type": "module",
   "main": "./dist/personizely-ui.js",
@@ -56,7 +56,7 @@
   "dependencies": {
     "@ctrl/tinycolor": "^4.1.0",
     "@stylistic/eslint-plugin": "^2.12.1",
-    "@tailwindcss/vite": "^0.0.0-development.1",
+    "@tailwindcss/vite": "next",
     "@types/chroma-js": "^2.4.5",
     "@types/lodash": "^4.17.0",
     "@vueuse/core": "^10.9.0",
@@ -78,7 +78,7 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@iconify/vue": "^4.2.0",
-    "@tailwindcss/postcss": "^4.0.0-beta.8",
+    "@tailwindcss/postcss": "next",
     "@vee-validate/rules": "^4.14.7",
     "@vee-validate/zod": "^4.14.7",
     "@vitejs/plugin-vue": "5.2.1",
