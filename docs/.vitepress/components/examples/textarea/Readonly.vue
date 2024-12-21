@@ -1,6 +1,6 @@
 <template>
   <Textarea
-    :model-value="'This is a value you can read but not edit.'"
+    model-value="This is a value you can read but not edit."
     readonly
   />
 </template>
