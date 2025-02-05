@@ -35,18 +35,19 @@
       </ComboboxTrigger>
     </ComboboxAnchor>
 
-    <ComboboxPortal :disabled="disablePortal">
+    <ComboboxPortal :disabled="disablePortal" :to="opts.portalTo">
       <ComboboxContent :side-offset="5">
         <ComboboxInput
+          class="border-b"
           :model-value="searchTerm"
           :placeholder="searchPlaceholder"
           :loading="loading"
           :display-value="() => ''"
           @update:model-value="(v) => {
-            if (v !== searchTerm) {
-              searchTerm = v
-            }
-          }"
+          if (v !== searchTerm) {
+            searchTerm = v
+          }
+        }"
           @change.stop
           @input.stop
           @keydown.tab.prevent
@@ -54,7 +55,7 @@
         <ComboboxViewport class="max-h-[300px] overflow-y-auto overflow-x-hidden">
           <ComboboxEmpty />
 
-          <ComboboxGroup class="p-1 empty:p-0 not-empty:border-t">
+          <ComboboxGroup class="p-1 empty:p-0">
             <ComboboxItem
               v-for="(option, index) in preparedOptions"
               :key="option[keys.id] || option[keys.value] || index"
@@ -102,6 +103,7 @@ import { type CustomOption, type Keys, type Option, prepareOptions } from '@/uti
 import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
 import { useForwardPropsEmits } from '@/composables/forward-props-emits'
+import { getOptions } from '@/options-provider'
 
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
 const searchTerm = defineModel<ComboboxInputProps['modelValue']>('searchTerm', { default: '' })
@@ -138,6 +140,7 @@ const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
 const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'searchPlaceholder', 'keys', 'options', 'disablePortal', 'searchTerm', 'modelValue'])
 const delegatedEmits = useEmitAsProps(emits, ['blur', 'focus', 'select', 'update:searchTerm', 'update:modelValue'])
 const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
+const opts = getOptions()
 
 defineSlots<{
   'label'(props: { option: CustomOption | undefined | null } | { options: Array<Option | CustomOption> }): any

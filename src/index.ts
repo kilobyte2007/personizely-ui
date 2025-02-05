@@ -35,6 +35,7 @@ import { Toaster, ToastAction, useToast } from '@/components/ui/toast'
 import { Toggle } from '@/components/ui/toggle'
 import { ToggleGroup } from '@/components/ui/toggle-group'
 import { Tooltip, TooltipProvider } from '@/components/ui/tooltip'
+import { type Options, setOptions } from './options-provider'
 import { type Option } from '@/utils/options'
 
 const components: { [key:string]: Component } = {
@@ -84,7 +85,9 @@ const components: { [key:string]: Component } = {
   Tooltip
 }
 
-export function install (app: App) {
+export function install (app: App, options: Options = {}) {
+  setOptions(options)
+
   Object.keys(components).forEach((key) => {
     const Component = components[key]
     app.component(`Ui${key}`, Component)
@@ -146,5 +149,6 @@ export {
 
 export type {
   Option,
+  Options,
   MenuItem
 }

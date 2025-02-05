@@ -8,7 +8,7 @@
         <slot name="label" v-bind="{ item }">{{ item.label }}</slot>
       </span>
     </DropdownMenuSubTrigger>
-    <DropdownMenuPortal>
+    <DropdownMenuPortal :to="options.portalTo">
       <DropdownMenuSubContent>
         <template v-for="(child, index) in item.children" :key="index">
           <DropdownMenuPart :item="child" @select="$emit('select', $event)">
@@ -57,6 +57,7 @@ import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
 import { DropdownMenuPortal } from 'reka-ui'
 import { Icon } from '@/components/ui/icon'
 import type { MenuItem, MenuItemWithChildren } from './'
+import { getOptions } from '@/options-provider'
 
 defineProps<{
   item: MenuItem | MenuItemWithChildren
@@ -71,4 +72,5 @@ defineSlots<{
   'label'(props: { item: MenuItem }): any
   'help'(props: { item: MenuItem }): any
 }>()
+const options = getOptions()
 </script>

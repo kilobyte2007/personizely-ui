@@ -24,9 +24,9 @@ import { type HTMLAttributes, computed } from 'vue'
 import {
   SelectItem,
   SelectItemIndicator,
-  type SelectItemProps,
   SelectItemText,
-  useForwardProps
+  useForwardProps,
+  type SelectItemProps
 } from 'reka-ui'
 import { Check } from 'lucide-vue-next'
 import { cn } from '@/utils/tailwind'

@@ -33,7 +33,7 @@
       </Primitive>
     </ComboboxAnchor>
 
-    <ComboboxPortal v-if="filteredOptions.length > 0" :disabled="disablePortal">
+    <ComboboxPortal v-if="filteredOptions.length > 0" :disabled="disablePortal" :to="opts.portalTo">
       <AutocompleteContent :side-offset="5">
         <ComboboxViewport class="p-1 max-h-[300px] overflow-y-auto overflow-x-hidden">
           <AutocompleteEmpty />
@@ -87,6 +87,7 @@ import { useDelegatedProps } from '@/composables/delegated-props'
 import { useEmitAsProps } from '@/composables/emits-as-props'
 import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 import { type CustomOption, type Keys, type Option, prepareOptions } from '@/utils/options'
+import { getOptions } from '@/options-provider'
 
 const modelValue = defineModel<ComboboxRootProps['modelValue']>()
 const searchTerm = defineModel<ComboboxInputProps['modelValue']>('searchTerm', { default: '' })
@@ -126,6 +127,7 @@ const emits = defineEmits<Omit<ComboboxRootEmits, 'update:modelValue'> & {
 const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'loading', 'disableFilter', 'disablePortal', 'autofocus', 'searchPlaceholder', 'keys', 'options'])
 const delegatedEmits = useEmitAsProps(emits, ['blur', 'focus', 'select', 'update:modelValue', 'update:searchTerm'])
 const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
+const opts = getOptions()
 
 const open = ref(false)
 const input = useTemplateRef<typeof ComboboxInput>('input')

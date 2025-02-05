@@ -3,7 +3,7 @@
     <TooltipTrigger as-child>
       <slot name="trigger" />
     </TooltipTrigger>
-    <TooltipPortal>
+    <TooltipPortal :to="options.portalTo">
       <TooltipContent
         v-bind="$attrs"
         :side-offset="4"
@@ -29,6 +29,7 @@ import {
 import { cn } from '@/utils/tailwind'
 import type { HTMLAttributes } from 'vue'
 import { useDelegatedProps } from '@/composables/delegated-props'
+import { getOptions } from '@/options-provider'
 
 const props = defineProps<TooltipRootProps & {
   class?: HTMLAttributes['class']
@@ -37,4 +38,5 @@ const emits = defineEmits<TooltipRootEmits>()
 
 const delegatedProps = useDelegatedProps(props, ['class'])
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
+const options = getOptions()
 </script>

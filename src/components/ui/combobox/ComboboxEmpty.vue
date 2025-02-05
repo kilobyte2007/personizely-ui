@@ -1,5 +1,5 @@
 <template>
-  <ComboboxEmpty v-bind="delegatedProps" :class="cn('py-4 text-center text-sm border-t', props.class)">
+  <ComboboxEmpty v-bind="delegatedProps" :class="cn('py-4 text-center text-sm', props.class)">
     <slot />
   </ComboboxEmpty>
 </template>

@@ -13,7 +13,7 @@
         </slot>
       </SelectValue>
     </SelectTrigger>
-    <SelectPortal :disabled="disablePortal">
+    <SelectPortal :disabled="disablePortal" :to="opts.portalTo">
       <SelectContent :body-lock="false">
         <SelectItem
           v-for="(option, index) in preparedOptions"
@@ -47,6 +47,7 @@ import { cn } from '@/utils/tailwind'
 import { useDelegatedProps } from '@/composables/delegated-props'
 import { useForwardPropsEmits } from '@/composables/forward-props-emits'
 import { useEmitAsProps } from '@/composables/emits-as-props'
+import { getOptions } from '@/options-provider'
 
 const modelValue = defineModel<SelectRootProps['modelValue']>()
 
@@ -72,6 +73,7 @@ const emits = defineEmits<Omit<SelectRootEmits, 'update:modelValue'>>()
 const delegatedProps = useDelegatedProps(props, ['class', 'placeholder', 'keys', 'options', 'disablePortal', 'modelValue'])
 const delegatedEmits = useEmitAsProps(emits, ['update:modelValue'])
 const forwarded = useForwardPropsEmits(delegatedProps, delegatedEmits)
+const opts = getOptions()
 
 defineSlots<{
   'label'(props: { option: CustomOption | undefined | null } | { options: Array<Option | CustomOption> }): any

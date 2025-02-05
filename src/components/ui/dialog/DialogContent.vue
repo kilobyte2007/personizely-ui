@@ -1,5 +1,5 @@
 <template>
-  <DialogPortal>
+  <DialogPortal :to="options.portalTo">
     <DialogOverlay
       class="fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
       @after-leave="$emit('hide')"
@@ -28,11 +28,13 @@ import {
   useForwardPropsEmits
 } from 'reka-ui'
 import { cn } from '@/utils/tailwind'
+import { getOptions } from '@/options-provider'
 
 const props = defineProps<DialogContentProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<DialogContentEmits & {
   hide: []
 }>()
+const options = getOptions()
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props

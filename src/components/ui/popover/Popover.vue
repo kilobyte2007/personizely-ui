@@ -4,7 +4,7 @@
       <slot name="trigger" />
     </PopoverTrigger>
 
-    <PopoverPortal>
+    <PopoverPortal :to="options.portalTo">
       <PopoverContent
         :align="align"
         :align-offset="alignOffset"
@@ -39,6 +39,7 @@ import { cn } from '@/utils/tailwind'
 import { type HTMLAttributes } from 'vue'
 import PopoverTrigger from './PopoverTrigger.vue'
 import { useDelegatedProps } from '@/composables/delegated-props'
+import { getOptions } from '@/options-provider'
 
 const props = withDefaults(defineProps<PopoverRootProps & Pick<PopoverContentProps, 'side' | 'align' | 'alignOffset' | 'sideOffset'> & {
   class?: HTMLAttributes['class']
@@ -52,4 +53,5 @@ const emits = defineEmits<PopoverRootEmits>()
 
 const delegatedProps = useDelegatedProps(props, ['side', 'align', 'alignOffset', 'sideOffset', 'class'])
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
+const options = getOptions()
 </script>

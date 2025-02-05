@@ -10,7 +10,7 @@
       :aria-expanded="null"
       size="10"
       :class="cn(
-        'flex h-8 w-full ps-8 rounded-md bg-transparent py-1 text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
+        'flex h-8 w-full ps-8 bg-transparent py-1 text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
         props.class,
         loading ? 'pe-8' : 'pe-2'
       )"

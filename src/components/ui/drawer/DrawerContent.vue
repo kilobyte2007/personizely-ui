@@ -1,5 +1,5 @@
 <template>
-  <DialogPortal>
+  <DialogPortal :to="options.portalTo">
     <DialogOverlay
       v-if="!disableOverlay"
       class="fixed inset-0 z-50 bg-black/80 ata-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
@@ -26,6 +26,7 @@ import {
 } from 'reka-ui'
 import { type DrawerVariants, drawerVariants } from '.'
 import { cn } from '@/utils/tailwind'
+import { getOptions } from '@/options-provider'
 
 interface SheetContentProps extends DialogContentProps {
   class?: HTMLAttributes['class']
@@ -52,4 +53,5 @@ const delegatedProps = computed(() => {
 })
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
+const options = getOptions()
 </script>
