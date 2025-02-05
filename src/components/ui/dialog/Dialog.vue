@@ -4,7 +4,7 @@
       <slot name="trigger" />
     </DialogTrigger>
 
-    <DialogContent :class="props.class" :trap-focus="false" @hide="$emit('hide')">
+    <DialogContent :class="props.class" @hide="$emit('hide')">
       <DialogHeader>
         <DialogTitle v-if="title || $slots.title">
           <slot name="title">
