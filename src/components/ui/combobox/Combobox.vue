@@ -157,7 +157,7 @@ const onSelect = (_event: ComboboxItemEmits['select'][0], option: Option | Custo
 const onToggle = (open: boolean) => {
   requestAnimationFrame(() => {
     if (!open) {
-      button.value!.$el.focus()
+      button.value?.$el.focus()
     }
   })
 }
