@@ -29,7 +29,7 @@
       </Button>
     </template>
     <div class="flex">
-      <div v-if="presets.length > 0" class="p-3 flex flex-col gap-2">
+      <div v-if="presets.length > 0" class="p-3 flex flex-col gap-1">
         <Button
           v-for="preset in presets"
           :key="preset.label"
