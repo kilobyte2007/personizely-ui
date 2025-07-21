@@ -63,6 +63,7 @@ export default defineConfig({
           { text: 'Input', link: '/components/input' },
           { text: 'Icon', link: '/components/icon' },
           { text: 'Form', link: '/components/form' },
+          { text: 'Pagination', link: '/components/pagination' },
           { text: 'Popover', link: '/components/popover' },
           { text: 'Progress', link: '/components/progress' },
           { text: 'Progress circular', link: '/components/progress-circular' },

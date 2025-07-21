@@ -22,6 +22,7 @@ import { Input } from '@/components/ui/input'
 import { FileUploadButton } from '@/components/ui/file-upload-button'
 import { Icon } from '@/components/ui/icon'
 import { Form, FormField } from '@/components/ui/form'
+import { Pagination } from '@/components/ui/pagination'
 import { Popover } from '@/components/ui/popover'
 import { Progress } from '@/components/ui/progress'
 import { ProgressCircular } from '@/components/ui/progress-circular'
@@ -68,6 +69,7 @@ const components: { [key:string]: Component } = {
   Form,
   FormField,
   FileUploadButton,
+  Pagination,
   Popover,
   Progress,
   ProgressCircular,
@@ -129,6 +131,7 @@ export {
   FileUploadButton,
   Form,
   FormField,
+  Pagination,
   Popover,
   Progress,
   ProgressCircular,
