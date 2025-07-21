@@ -24,7 +24,7 @@ import { Icon } from '@/components/ui/icon'
 import { Form, FormField } from '@/components/ui/form'
 import { Pagination } from '@/components/ui/pagination'
 import { Popover } from '@/components/ui/popover'
-import { Progress } from '@/components/ui/progress'
+import { Progress, ProgressIndicator } from '@/components/ui/progress'
 import { ProgressCircular } from '@/components/ui/progress-circular'
 import { RadioGroup } from '@/components/ui/radio-group'
 import { Select } from '@/components/ui/select'
@@ -72,6 +72,7 @@ const components: { [key:string]: Component } = {
   Pagination,
   Popover,
   Progress,
+  ProgressIndicator,
   ProgressCircular,
   RadioGroup,
   Select,
@@ -134,6 +135,7 @@ export {
   Pagination,
   Popover,
   Progress,
+  ProgressIndicator,
   ProgressCircular,
   RadioGroup,
   Select,
