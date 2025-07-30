@@ -5,7 +5,7 @@
         v-bind="forwarded"
         :aria-label="label"
         :data-active="modelValue"
-        :class="cn(toggleVariants({ variant, size, icon: Boolean(icon) }), props.class)"
+        :class="cn(toggleVariants({ variant, size, icon: Boolean(icon) }), 'data-[active=true]:bg-accent data-[active=true]:text-accent-foreground', props.class)"
       >
         <slot>
           <component

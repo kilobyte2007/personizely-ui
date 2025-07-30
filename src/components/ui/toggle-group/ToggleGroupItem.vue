@@ -8,7 +8,7 @@
           variant: variant,
           size: size,
           icon: Boolean(icon)
-        }), props.class)"
+        }), 'data-active:bg-accent data-active:text-accent-foreground', props.class)"
       >
         <slot>
           <component
